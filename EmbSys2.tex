@@ -1,0 +1,92 @@
+% ========================================= TEMPLATE INFO ========================================
+%
+% Author:       P4ntomime
+% Version:      1.0.0
+% Last updated: 2024-02-18
+% Brief:        A LaTeX template for summaries. See README.md for more information.
+% 
+% ================================================================================================
+\documentclass[8pt, a4paper, twoside]{extarticle}
+% Font size:    8pt
+% Paper size:   A4
+% style:        twoside (needed, so odd and even pages have different margins)
+% orientation:  portrait. (use 'landscape' for landscape orientation)
+
+
+% ========================================= DOCUMENT INFO =========================================
+\def\title{Embedded Systems 1}                      % title
+\def\shorttitle{EmbSys1}                            % short title (displayed as PDF title)
+\def\dozent{Prof.\ Dr.\ Andreas Breitenmoser}       % lecturer
+\def\semester{HS 2025}                              % semester
+\def\author{Fabian Steiner, Martina Knobel}         % author(s)
+\def\repo{https://github.com/Iceteavanill/Cheatsheet_EmbSys2_FS_2026_OST}          % repository link
+\def\version{1.0.\today}                            % version
+\def\pagelimit{8}                                   % page limit -> causes pages after limit to be red
+\def\titleoption{ultra compact}                     % options: ultra compact, compact, normal 
+\def\enableToC{false}                                
+
+
+% ================================= PACKAGES, SETUP AND COMMANDS ==================================
+\input{preamble.tex}
+
+% PID ---------------------------------------------------------------------------------------------
+\newcommand{\kpColor}[1]       {\pastelbox{yellow}{#1}}
+\newcommand{\kiColor}[1]       {\pastelbox{orange}{#1}}
+\newcommand{\kdColor}[1]       {\pastelbox{red}{#1}}
+
+% USB defines -------------------------------------------------------------------------------------
+\newcommand{\USBHost}[1]       {\pastelbox{green}{#1}}
+\newcommand{\USBPeripheral}[1] {\pastelbox{blue}{#1}}
+
+% WiFi defines ------------------------------------------------------------------------------------
+\newcommand{\fh}[1]            {\pastelbox{magenta}{#1}}
+\newcommand{\vh}[1]            {\pastelbox{orange}{#1}}
+\newcommand{\pl}[1]            {\pastelbox{cyan}{#1}}
+
+
+% Audio parameters
+\newcommand{\nch}       {\pastelbox{yellow}{\ensuremath{n_\mathrm{channels}}}}
+\newcommand{\fs}        {\pastelbox{blue}  {\ensuremath{f_\mathrm{s}}}}
+\newcommand{\res}       {\pastelbox{green} {\ensuremath{res}}}
+
+% Required audio bandwidth
+\newcommand{\BWaudio}   {\pastelbox{red}   {\ensuremath{BW_\mathrm{audio}}}}
+
+% Bandwidths
+\definecolor{atomictangerine}{rgb}{1.0, 0.6, 0.4}
+\newcommand{\BWtotal}   {\pastelbox{orange}{\ensuremath{BW_\mathrm{total}}}}
+\newcommand{\BWpayload} {\pastelbox{atomictangerine} {\ensuremath{BW_\mathrm{payload}}}}
+\newcommand{\BWrem}     {\pastelbox{gray}  {\ensuremath{BW_\mathrm{rem}}}}
+\newcommand{\BWmax}     {\pastelbox{black} {\ensuremath{BW_\mathrm{\max}}}}
+
+% Overhead
+\newcommand{\OH}        {\pastelbox{magenta}{\ensuremath{OH}}}
+
+% Frame data
+\definecolor{bazaar}{rgb}{0.6, 0.47, 0.48}
+\definecolor{blizzardblue}{rgb}{0.5, 0.9, 1.0}
+\newcommand{\Tframe}    {\pastelbox{cyan}  {\ensuremath{T_\mathrm{frame}}}}
+\newcommand{\Dnet}      {\pastelbox{bazaar}  {\ensuremath{D_\mathrm{net}}}}
+\newcommand{\Daudio}    {\pastelbox{blizzardblue}  {\ensuremath{D_\mathrm{audio}}}}
+
+% Data rate
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\newcommand{\Rdata}     {\pastelbox{britishracinggreen}{\ensuremath{R_\mathrm{data}}}}
+
+% Scheduling
+\newcommand{\Nframe}    {\pastelbox{brown} {\ensuremath{N_\mathrm{frame}}}}
+
+% BLE defines -------------------------------------------------------------------------------------
+
+% BLE Roles
+\newcommand{\centralAttCommand}[1]    {\pastelbox{green}{\ovalbox{\footnotesize #1}}}
+\newcommand{\BleCentral}[1]           {\pastelbox{green}{#1}}
+\newcommand{\peripheralAttCommand}[1] {\pastelbox{blue}{\ovalbox{\footnotesize #1}}}
+\newcommand{\BlePeripheral}[1]        {\pastelbox{blue}{#1}}
+
+% =========================================== DOCUMENT ============================================
+\begin{document}
+    \begin{layout}
+        \input{sections/01_real_time_systems.tex}
+    \end{layout}
+\end{document}
