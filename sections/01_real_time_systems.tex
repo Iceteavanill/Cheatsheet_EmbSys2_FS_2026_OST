@@ -1,17 +1,109 @@
 \section{Real time systems}
 % TODO v1
+\subsection{Characteristics of embedded systems}
+\begin{enumerate}
+    \item \textbf{Interactivity}: They react via sensor input or actor output with the environement (event driven)
+    \item \textbf{efficient}: Ressources are used effectively
+    \item \textbf{reliable, save}: The (should) always work predictively as designed
+    \item \textbf{specific}: They are specific for an application
+    \item \textbf{Real time}: They achieve either hard or soft Real time requirements
+    \item \textbf{External timing}: Typically the speed they operate on is dedicated from the outside
+\end{enumerate}
 
+\subsection{Real time systems definition}
+
+\begin{minipage}{0.45\columnwidth}
+Real time systems are computing system that \textbf{must} react within precise time constraints to events in the environment.
+They are also characterized by a deadline.
+Rather than beeing fast, a real time computing system is \textbf{predictable}.
+Even in a worst case event where workload is the largest, they do not violate timing constraints.
+\end{minipage}
+\begin{minipage}{0.55\columnwidth}
+    \includegraphics[width=\columnwidth]{images/PDF/System_OS.pdf}
+\end{minipage}
+
+\subsection{Scheduling problem}
+
+The correct and effective scheduling of tasks is a difficult problem to solve and involves the following design criteria
+
+\begin{itemize}
+    \item Time restriction (Deadlines): hard vs. soft (vs. no deadlines)
+    \item Task-Periodicity: periodic vs. aperiodic (vs. sporadic)
+    \item Cooperation: preemptive vs. non-preemptive
+    \item Design-/Run-Time: static vs. dynamic
+    \item Task-dependencies: dependent vs. independent
+\end{itemize}
+
+\input{images/tikz/scheduling_problem.tex}
+
+\subsubsection{\textit{Firmness} Of time systems}
+\begin{itemize}
+\item \textbf{Hard}: Missing deadline may cause catastrophic consequences on the system.
+\item \textbf{Firm}: Getting results after its deadline is useless for the system, but does not cause any damage.
+\item \textbf{Soft}: Producing the results after its deadline has some utility for the system, although causing a performance degradation.
+\end{itemize}
+
+\subsubsection{Execution time}
+
+The execution time of a task can be calculated by
+\begin{equation*}
+    \boxed{\text{Time} = 
+    \frac{\text{Seconds}}{\text{Program}} = 
+    \frac{\#\text{Instructions}}{\text{Program}} \frac{\text{Clock cycles}}{\text{Instruction}} \frac{\text{Seconds}}{\text{Clock cycle}}}
+\end{equation*}
 
 % TODO v2
 \subsection{RTOS vs. Bare-Metal}
 % GOAL • V02 You can explain the functionality and purpose of an embedded real-time operating system (RTOS), how it is built and how it relates to a “bare metal” implementation (pros and cons).
 
-\begin{tabular}{lll}
-  
+\includegraphics[width=\columnwidth]{images/PDF/Drawings-Bare-Metal vs. Embedded OS.pdf}
+
+\begin{tabular}{clc}
+    \textbf{User Program}                       & &\textbf{The operating system} \\\
+    Directly, accesses real machine components  & & is a clear access abstraction \\
+    Is closely coupled                          & & provides additional functionality\\
+    uses a single super loop                    & & \\ 
 \end{tabular}
+
+\subsubsection{Advantages of staying bare metal}
+\begin{itemize}
+    \item Simple structure (for small applications)
+    \item Low stack usage (only one stack required)
+\end{itemize}
+
+\subsection{Disadvantages of staying bare metal}
+
+\begin{itemize}
+    \item No “delay” capability
+    \item Higher power consumption due to the lack of a power save mode in most architectures
+    \item Difficult to maintain as program grows
+    \item Timing of all software components depends on all other software components: Small change in one place can have major side effects in other places
+    \item Defeats modular programming
+    \item Real time behaviour only with interrupts
+\end{itemize}
 
 
 % GOAL • V02 You can explain the underlying concepts and mechanisms related to an RTOS’s task management, including tasks/processes, process states, task/context switches and scheduling/dispatching.
 % GOAL • V02 You can explain the principles of multitasking and concurrency.
 % GOAL • V02 You can understand and utilize a selected RTOS, the FreeRTOS, to create and manage tasks.
 
+\subsection{Simple RTOS implementation}
+
+\begin{center}
+\includegraphics[width=0.6\columnwidth]{images/PDF/Scheduler.pdf}
+\end{center}
+When \verb|Addtaks| is called for a task, it is added to the queue.
+The Scheduler periodically checks if tasks are ready.
+If the task is ready to be called (Delay passed, sufficient priority), it is added to the dispatcher queue.
+The scheduler calls the dispatcher queue, which executes all queued tasks.
+
+\begin{minipage}[t]{0.5\columnwidth}
+    \lstinputlisting{code/Simple_Rtos_Dispatcher.hpp}
+    \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+    \lstinputlisting{code/Simple_Rtos_Scheduler.hpp}
+    The scheduler instantiates the dispatcher.
+\end{minipage}
+
+\lstinputlisting{code/Simple_Rtos_Scheduler.cpp}
