@@ -1,0 +1,38 @@
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+  font=\sffamily,
+  >=Latex,
+  edge/.style={->, line width=0.6pt},
+  level 1/.style={sibling distance=30mm, level distance=10mm},
+  level 2/.style={sibling distance=70mm,  level distance=10mm},
+  level 3/.style={sibling distance=38mm,  level distance=10mm},
+  level 4/.style={sibling distance=18mm,  level distance=10mm},
+  every node/.style={align=center},
+]
+
+\node (root) {real--time scheduling}
+  child[edge] { node {hard deadlines}
+    child[edge] { node {periodic}
+      child[edge] { node {preemptive}
+        child[edge] { node {static} }
+        child[edge] { node {dynamic} }
+      }
+      child[edge] { node {non--preemptive}
+        child[edge] { node {static} }
+        child[edge] { node {dynamic} }
+      }
+    }
+    child[edge] { node {aperiodic}
+      child[edge] { node {preemptive}
+        child[edge] { node {static} }
+        child[edge] { node {dynamic} }
+      }
+      child[edge] { node {non--preemptive}
+        child[edge] { node {static} }
+        child[edge] { node {dynamic} }
+      }
+    }
+  }
+  child[edge] {node {soft deadlines}};
+\end{tikzpicture}
+}

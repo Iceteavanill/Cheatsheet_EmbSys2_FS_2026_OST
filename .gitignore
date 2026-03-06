@@ -308,7 +308,7 @@ TSWLatexianTemp*
 
 /.vscode
 
-# Backup files
-.bkp
+# Backup files (of Drawio)
+*.bkp
 
 EmbSys2.pdf
