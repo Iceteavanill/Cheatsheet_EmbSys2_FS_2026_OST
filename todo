@@ -13,7 +13,7 @@ GOAL L01 • You understand the general structure of a C++ project.
 
 
 GOAL V02 • You can explain the functionality and purpose of an embedded real-time operating system (RTOS), how it is built and how it relates to a “bare metal” implementation (pros and cons).
-GOAL V02 • You can explain the underlying concepts and mechanisms related to an RTOS’s task management, including tasks/processes, process states, task/context switches and scheduling/dispatching.
+GOAL V02 • You can explain the underlying concepts and mechanisms related to an RTOS’s task management, including tasks/ processes, process states, task/context switches and scheduling/dispatching.
 GOAL V02 • You can explain the principles of multitasking and concurrency.
 GOAL V02 • You can understand and utilize a selected RTOS, the FreeRTOS, to create and manage tasks.
 
@@ -27,3 +27,16 @@ GOAL L03 • You can create multiple tasks in FreeRTOS.
 GOAL L03 • You can understand task priorities and the management of tasks.
 GOAL L03 • You can explain the difference between a preemptive and a non-preemptive scheduling policy.
 GOAL L03 • You can use Percepio Tracealyzer to trace the tasks in a quasi-parallel system.
+
+<!-- V03 – Concurrency (I): Task Synchronization -->
+GOAL V03 • You can recognize the problems and the necessity of task synchronization (resources and activities)and inter-process communication (IPC)between two or more tasks.
+GOAL V03 • You can explain how semaphoresand mutexes, signals/task notifications, and event registers/event groups, work and how they are used (best practices).
+GOAL V03 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
+
+<!-- Lab 04 – Semaphores and Mutexes -->
+GOAL L04 • You understand the difference between a semaphore and a mutex.
+GOAL L04 • You can synchronize multiple tasks with semaphores.
+GOAL L04 • You can protect a section in a task with a mutex.
+GOAL L04 • You can use FreeRTOS and the C++ FreeRTOS Wrapper to implement semaphores and mutexes.
+GOAL L04 • You can analyze tasks and other FreeRTOS objects (e.g., semaphore, mutex) with Percepio Tracealyzer.
+GOAL L04 • You can combine semaphores and mutexes to create a safe access pattern.
