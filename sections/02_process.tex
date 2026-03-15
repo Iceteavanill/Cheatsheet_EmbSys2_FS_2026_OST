@@ -1,0 +1,159 @@
+\section{Process}
+
+\subsection{Description}
+
+Every process possesses its own context.
+That consists of:
+\begin{itemize}
+    \item \textbf{Memory context:} Memory used by the process (program code, stack)
+    \item \textbf{Hardware context:} Registers (PC, SP, PSR)
+    \item \textbf{System context:} OS intern management data of the process (called TCB)
+\end{itemize}
+
+% TODO : Maybe add Task Control Block (TCB)
+
+\subsection{Process vs Thread model}
+
+In FreeRTOS, a thread is called a task.
+In this context it can be used interchangeably.
+
+When allowing multiple threads, they can be changed with each sysTick.
+However, the context has to be saved.
+To minimize this overhead, it is important to minimize task switches when possible.
+
+\subsubsection{Steps for a context switch}
+
+\begin{enumerate}
+    \item Save the context of the interrupted process 1
+    \item Change the status of process 1 to \emph{Ready} or \emph{Waiting} (depending on the reason for the interruption)
+    \item Selection of the process 2 to be activated by the scheduler
+    \item Change the status of process 2 from \emph{Waiting} to \emph{Ready}
+    \item Restoring the (saved) context of process 2 by loading the processor registers
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[width=0.8\columnwidth]{images/PDF/process_model.pdf}
+\end{center}
+
+
+\subsection{Process states}
+
+\begin{itemize}
+    \item \textbf{Inactive:} "Formal" state for processes that do not yet or no longer exist in the system.
+    \item \textbf{Ready:} The process is waiting for the allocation of a processor (no further wait conditions apply). 
+    If multiple processes are in the Ready state, the operating system decides, based on its scheduling policy, 
+    which one may switch to the Running state.
+    \item \textbf{Running:} The process has been allocated a processor, and it is running. 
+    In a single-processor system, a maximum of one process can be in this state.
+    \item \textbf{Waiting:} The process is waiting for the fulfilment of at least one wait condition.
+\end{itemize}
+
+\subsubsection{Transitions}
+
+A state transition may happen for the following reason:
+
+\begin{tabular}{lcll}
+    \textbf{Inactive}   & $\Rightarrow$ & \textbf{Ready}    & A process is generated \\
+    \textbf{Ready}      & $\Rightarrow$ & \textbf{Running}  & The process gets execution time\\
+    \textbf{Running}    & $\Rightarrow$ & \textbf{Ready}    & A different process gets priority\\
+    \textbf{Running}    & $\Rightarrow$ & \textbf{Waiting}  & A waiting condition occurs\\
+    \textbf{Waiting}    & $\Rightarrow$ & \textbf{Ready}    & All waiting conditions got fullfilled\\
+    \textbf{Running}    & $\Rightarrow$ & \textbf{Inactive} & The process is finished and stops\\
+    \textbf{Waiting}    & $\Rightarrow$ & \textbf{Inactive} & The process is aborted(by OS or other process)\\
+    \textbf{Ready}      & $\Rightarrow$ & \textbf{Inactive} & The process is aborted(by OS or other process)
+\end{tabular}
+
+\begin{center}
+    \includegraphics[width=0.8\columnwidth]{images/PDF/transitions.pdf}
+\end{center}
+
+\subsection{Scheduling-Policies}
+Scheduling policies are different strategies to maximize some metrics (and improve system performance in):
+
+\begin{itemize}
+    \item \textbf{CPU utilization:}CPU utilization should be optimized.
+        The goal is 100\% CPU utilization; otherwise, 40\%\-90\% is typical.
+    \item \textbf{Throughput:} Number of tasks completed per unit of time. 
+        This is a measure of system utilization.
+    \item \textbf{Fairness:} No task should be given preferential treatment. 
+        On average, every user should receive the same share of CPU time.
+    \item \textbf{Turnaround time:} The time span from the start to the end of the task.
+        This includes all times for queues, execution (processing time), and input and output.
+    \item \textbf{Waiting time:} The scheduler cannot influence execution time, only the waiting times in the waiting and ready lists. 
+        The goal is to minimize these waiting times.
+    \item \textbf{Response time:} Users find it particularly frustrating when a system response is delayed (high latency). 
+        The goal is to minimize the response time between input and the resulting response.
+\end{itemize}
+
+% TODO maybe add time definition (V02 slide 42)
+
+\subsection{Scheduling problem}
+
+The correct and effective scheduling of tasks is a difficult problem to solve and involves the following design criteria
+
+\begin{itemize}
+    \item Time restriction (Deadlines): hard vs. soft (vs. no deadlines)
+    \item Task-Periodicity: periodic vs. aperiodic (vs. sporadic)
+    \item Cooperation: preemptive vs. non-preemptive
+    \item Design-/Run-Time: static vs. dynamic
+    \item Task-dependencies: dependent vs. independent
+\end{itemize}
+
+\input{images/tikz/scheduling_problem.tex}
+
+\subsubsection{\textit{Firmness} Of time systems}
+\begin{itemize}
+\item \textbf{Hard}: Missing deadline may cause catastrophic consequences on the system.
+\item \textbf{Firm}: Getting results after its deadline is useless for the system, but does not cause any damage.
+\item \textbf{Soft}: Producing the results after its deadline has some utility for the system, although causing a performance degradation.
+\end{itemize}
+
+\subsubsection{Execution time}
+
+The execution time of a task can be calculated by
+\begin{equation*}
+    \boxed{\text{Time} = 
+    \frac{\text{Seconds}}{\text{Program}} = 
+    \frac{\#\text{Instructions}}{\text{Program}} \frac{\text{Clock cycles}}{\text{Instruction}} \frac{\text{Seconds}}{\text{Clock cycle}}}
+\end{equation*}
+
+\subsubsection{Preemption}{verdrängung}
+
+When pursuing a non-preemptive scheduling policy, the tasks are always run to completion.
+Only when the tasks itself yields, can a context switch occur.
+This reduces overhead of context switches, but it also increases response time.
+
+The following example shows 3 concurrent, cyclical tasks in a preemptive and non-preemptive situation.
+The tasks' priority is \( \text{A} > \text{B} > \text{C}\).
+A occurs every 6s, B every 9 and C every 3s.
+
+\includegraphics[width=\columnwidth]{images/preemptive_vs_non.png}
+
+With preemptive scheduling, more context switches occur, but higher priority tasks are always executed on time.
+
+All modern OS's use preemptive scheduling, this however has the consequence that taks execution is less predictive.
+In generall the \emph{save bet} is to use none-preemptive scheduling.
+
+\textbf{Scheduling of FreeRTOS}
+
+The scheduling of FreeRTOS executes tasks with the highest priority and then shares CPU time between similar priorities(so-called round-robin).
+% TODO maybe add more scheduling stuff
+
+\subsection{Inter-Process communication}
+
+\subsubsection{Mutex}
+
+\subsubsection{Mutex from ISR}
+
+When a Mutex is given, a previously blocked task might become unblocked.
+To remove additional overhead, the current executed task can direcltly be set to the now ready task without waiting for an additional systick:
+\begin{lstlisting}
+extern "C" void button_pressed_callback_bin_sem(){
+	portBASE_TYPE higher_task_unblocked;
+	buttonPressedSemHandle->give_ISR(higher_task_unblocked);
+	portYIELD_FROM_ISR( higher_task_unblocked );
+}
+\end{lstlisting}
+
+\subsubsection{Semaphore}
+

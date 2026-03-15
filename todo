@@ -2,17 +2,17 @@ Note : commented lines (with ";") are done / clearly attributed somewhere.
 The rest is not yet done or could be improved.
 
 
-GOAL V01 • You can describe what an embedded real-time system is, how it can be built and what challenges may arise in such systems.
+<!-- GOAL V01 • You can describe what an embedded real-time system is, how it can be built and what challenges may arise in such systems. -->
 GOAL V01 • You gain a basic understanding of the modelling process and the system structure of the underlying embedded hardware and software layers (programmed in C/C++).
 
 GOAL L01 • You can set up a C++ project in STM32CubeIDE from scratch.
 GOAL L01 • You can add libraries to your project and configure them properly.
-GOAL L01 • You can write C code that is callable from C++.
+<!-- GOAL L01 • You can write C code that is callable from C++. -->
 GOAL L01 • You can write a C++ application and call it from C.
 GOAL L01 • You understand the general structure of a C++ project.
 
 
-GOAL V02 • You can explain the functionality and purpose of an embedded real-time operating system (RTOS), how it is built and how it relates to a “bare metal” implementation (pros and cons).
+<!-- GOAL V02 • You can explain the functionality and purpose of an embedded real-time operating system (RTOS), how it is built and how it relates to a “bare metal” implementation (pros and cons). -->
 GOAL V02 • You can explain the underlying concepts and mechanisms related to an RTOS’s task management, including tasks/ processes, process states, task/context switches and scheduling/dispatching.
 GOAL V02 • You can explain the principles of multitasking and concurrency.
 GOAL V02 • You can understand and utilize a selected RTOS, the FreeRTOS, to create and manage tasks.

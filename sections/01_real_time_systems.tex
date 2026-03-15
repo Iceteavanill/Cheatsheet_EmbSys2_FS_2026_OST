@@ -1,5 +1,5 @@
 \section{Real time systems}
-% TODO v1
+% GOAL V01 • You can describe what an embedded real-time system is, how it can be built and what challenges may arise in such systems.
 \subsection{Characteristics of embedded systems}
 \begin{enumerate}
     \item \textbf{Interactivity}: They react via sensor input or actor output with the environement (event driven)
@@ -12,45 +12,24 @@
 
 \subsection{Real time systems definition}
 
-\begin{minipage}{0.45\columnwidth}
+\begin{minipage}{0.5\columnwidth}
 Real time systems are computing system that \textbf{must} react within precise time constraints to events in the environment.
 They are also characterized by a deadline.
 Rather than beeing fast, a real time computing system is \textbf{predictable}.
 Even in a worst case event where workload is the largest, they do not violate timing constraints.
+Generally operating systems are used when multiple tasks have to be done simultaneously.
+Core functions are:
+\begin{itemize}
+    \item Parallel processes and interprocess communication
+    \item Abstract and provide driver for periphery
+    \item Memory management, file systems
+    \item General utilities(Clock, Math, Multi user)
+\end{itemize}
 \end{minipage}
-\begin{minipage}{0.55\columnwidth}
+\begin{minipage}{0.5\columnwidth}
     \includegraphics[width=\columnwidth]{images/PDF/System_OS.pdf}
 \end{minipage}
 
-\subsection{Scheduling problem}
-
-The correct and effective scheduling of tasks is a difficult problem to solve and involves the following design criteria
-
-\begin{itemize}
-    \item Time restriction (Deadlines): hard vs. soft (vs. no deadlines)
-    \item Task-Periodicity: periodic vs. aperiodic (vs. sporadic)
-    \item Cooperation: preemptive vs. non-preemptive
-    \item Design-/Run-Time: static vs. dynamic
-    \item Task-dependencies: dependent vs. independent
-\end{itemize}
-
-\input{images/tikz/scheduling_problem.tex}
-
-\subsubsection{\textit{Firmness} Of time systems}
-\begin{itemize}
-\item \textbf{Hard}: Missing deadline may cause catastrophic consequences on the system.
-\item \textbf{Firm}: Getting results after its deadline is useless for the system, but does not cause any damage.
-\item \textbf{Soft}: Producing the results after its deadline has some utility for the system, although causing a performance degradation.
-\end{itemize}
-
-\subsubsection{Execution time}
-
-The execution time of a task can be calculated by
-\begin{equation*}
-    \boxed{\text{Time} = 
-    \frac{\text{Seconds}}{\text{Program}} = 
-    \frac{\#\text{Instructions}}{\text{Program}} \frac{\text{Clock cycles}}{\text{Instruction}} \frac{\text{Seconds}}{\text{Clock cycle}}}
-\end{equation*}
 
 % TODO v2
 \subsection{RTOS vs. Bare-Metal}
@@ -71,7 +50,7 @@ The execution time of a task can be calculated by
     \item Low stack usage (only one stack required)
 \end{itemize}
 
-\subsection{Disadvantages of staying bare metal}
+\subsubsection{Disadvantages of staying bare metal}
 
 \begin{itemize}
     \item No “delay” capability
@@ -81,6 +60,31 @@ The execution time of a task can be calculated by
     \item Defeats modular programming
     \item Real time behaviour only with interrupts
 \end{itemize}
+
+\subsection{Components of a RTOS}
+
+\begin{itemize}
+    \item Scheduler
+    \begin{itemize}
+        \item Algorithm that determines when, which task is executed
+        \item Allows for multitasking
+    \end{itemize}
+    \item Objects
+    \begin{itemize}
+        \item Kernel constructs that function as an API
+        \item e.g. Tasks, semaphores, Message queues, ...
+    \end{itemize}
+    \item Services
+    \begin{itemize}
+        \item Timing, interrupt handling, resources management like file systems
+    \end{itemize}
+\end{itemize}
+
+Another important mechanism is the execution mode.
+An OS has at least 2 privilege levels / modes for executing instructions.
+The different modes are called \textbf{rings}.
+Kernel mode (ring 0) allows for exetution of all instructions.
+User mode (ring 1,2,3,4) does \textbf{not allow} execution of all instructions
 
 
 % GOAL • V02 You can explain the underlying concepts and mechanisms related to an RTOS’s task management, including tasks/processes, process states, task/context switches and scheduling/dispatching.
