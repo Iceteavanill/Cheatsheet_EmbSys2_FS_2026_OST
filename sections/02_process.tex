@@ -142,6 +142,13 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
 \subsection{Inter-Process communication}
 
 \subsubsection{Mutex}
+    % GOAL L04 • You understand the difference between a semaphore and a mutex.
+    A mutex is a locking mechanism used to protect a shared resource.
+    \begin{itemize}
+        \item Must be taken and released by the same task.
+        \item Has an ``owner''.
+        \item Is typically initialized in the unlocked state (i.e., token is available).
+    \end{itemize}
 
 \subsubsection{Mutex from ISR}
 
@@ -156,4 +163,11 @@ extern "C" void button_pressed_callback_bin_sem(){
 \end{lstlisting}
 
 \subsubsection{Semaphore}
+    % GOAL L04 • You understand the difference between a semaphore and a mutex.
+    A semaphore is a signaling mechanism used to notify a waiting task that it can proceed.
+    \begin{itemize}
+        \item Can be manipulated from different tasks; any can execute \texttt{give} and \texttt{take}.
+        \item Has no ``owner''.
+        \item At initialization it is typically empty (i.e., no available token).
+    \end{itemize}
 

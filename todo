@@ -34,7 +34,7 @@ GOAL V03 • You can explain how semaphoresand mutexes, signals/task notificatio
 GOAL V03 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
 
 <!-- Lab 04 – Semaphores and Mutexes -->
-GOAL L04 • You understand the difference between a semaphore and a mutex.
+<!-- GOAL L04 • You understand the difference between a semaphore and a mutex. -->
 GOAL L04 • You can synchronize multiple tasks with semaphores.
 GOAL L04 • You can protect a section in a task with a mutex.
 GOAL L04 • You can use FreeRTOS and the C++ FreeRTOS Wrapper to implement semaphores and mutexes.
