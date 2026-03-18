@@ -40,3 +40,10 @@ GOAL L04 • You can protect a section in a task with a mutex.
 GOAL L04 • You can use FreeRTOS and the C++ FreeRTOS Wrapper to implement semaphores and mutexes.
 GOAL L04 • You can analyze tasks and other FreeRTOS objects (e.g., semaphore, mutex) with Percepio Tracealyzer.
 GOAL L04 • You can combine semaphores and mutexes to create a safe access pattern.
+
+<!-- Lab 05: Priority Inversion, Deadlocks and Queues -->
+GOAL L05 • You can recognize and prevent deadlocks in a system design.
+GOAL L05 • You understand the mechanisms of priority inversion and priority inheritance.
+GOAL L05 • You develop a feel for locking and lock-free implementations.
+GOAL L05 • You can use message queues and buffers for inter-process communication in FreeRTOS.
+GOAL L05 • You can make use of a tracing and visualizing tool like Percepio Tracealyzer for system analysis.

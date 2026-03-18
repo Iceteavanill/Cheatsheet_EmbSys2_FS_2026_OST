@@ -143,7 +143,7 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
 
 \subsubsection{Mutex}
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
-    A mutex is a locking mechanism used to protect a shared resource.
+    A mutex is \textbf{a locking mechanism} used to protect a shared resource.
     \begin{itemize}
         \item Must be taken and released by the same task.
         \item Has an ``owner''.
@@ -164,7 +164,7 @@ extern "C" void button_pressed_callback_bin_sem(){
 
 \subsubsection{Semaphore}
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
-    A semaphore is a signaling mechanism used to notify a waiting task that it can proceed.
+    A semaphore is \textbf{a signaling mechanism} used to notify a waiting task that it can proceed.
     \begin{itemize}
         \item Can be manipulated from different tasks; any can execute \texttt{give} and \texttt{take}.
         \item Has no ``owner''.
