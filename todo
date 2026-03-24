@@ -54,3 +54,16 @@ GOAL L05 • You understand the mechanisms of priority inversion and priority in
 GOAL L05 • You develop a feel for locking and lock-free implementations.
 GOAL L05 • You can use message queues and buffers for inter-process communication in FreeRTOS.
 GOAL L05 • You can make use of a tracing and visualizing tool like Percepio Tracealyzer for system analysis.
+
+<!-- V05 – Embedded Memory -->
+GOAL V05 • You are familiar with the basic types of embedded memory, the memory modeland memory map as typically used in a microcontroller.
+GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacksand heap implementations.
+GOAL V05 • You can explain internal / external fragmentationand coalescing / free-space management.
+
+<!-- Lab 06 –FreeRTOS Memory Model -->
+GOAL L06 • You can understand where and how a task is placed in memory.
+GOAL L06 • You can use FreeRTOS with and without heap.
+GOAL L06 • You can explain the pros and cons of static/dynamic allocation.
+GOAL L06 • You can describe what memory fragmentation is.
+GOAL L06 • You can apply watermarking to analyze memory usage.
+GOAL L06 • You can assess and estimate the memory usage of a task.
