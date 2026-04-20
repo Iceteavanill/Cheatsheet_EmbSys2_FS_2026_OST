@@ -75,7 +75,13 @@ GOAL V06 • You can describe the purpose of access levels and a memory protecti
 GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code. 
 
 <!-- Lab 07 – Access Levels, Memory Protection and Caching -->
-GOAL L07• You can tell the difference between cache, scratchpad and main memory.
-GOAL L07• You can analyze code with regard to its cache friendliness.
-GOAL L07• You can use the memory protection unit to control access rights and prevent memory corruption.
-GOAL L07• You can employ Arm’s access levels to manage privileges of tasks and user programs in FreeRTOS.
+GOAL L07 • You can tell the difference between cache, scratchpad and main memory.
+GOAL L07 • You can analyze code with regard to its cache friendliness.
+GOAL L07 • You can use the memory protection unit to control access rights and prevent memory corruption.
+GOAL L07 • You can employ Arm’s access levels to manage privileges of tasks and user programs in FreeRTOS.
+
+<!-- V07 – Memory Management (II): Caching -->
+GOAL V07 • You can explain the different cache types and their characteristics.
+GOAL V07 • You understand the cache accesses (read, write) and different cache replacement strategies.
+GOAL V07 • You know how to assess the cache performance.
+GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency.
