@@ -108,3 +108,13 @@ GOAL L09 • You know the purpose and use cases of serialization.
 GOAL L09 • You understand how data is serialized and deserialized.
 GOAL L09 • You can select an appropriate serialization format given a program’s requirements.
 GOAL L09 • You know how to use the FlatBuffers serialization library.
+
+<!-- V10 – Parallelism (I): SIMD Architectures -->
+GOAL V10 • You can explain how SIMD instructions lead to improved performance of applications like signal processing, machine learning or real-time data handling on microcontrollers.
+
+<!-- Lab 10 – DSP/SIMD Instructions -->
+GOAL L10 • You can utilize SIMD instructions to speed up basic matrix and vector calculations.
+GOAL L10 • You can apply the concepts of loop unrolling and partial loop unrolling.
+GOAL L10 • You can use a cycle counter to analyze the speed of a function.
+GOAL L10 • You can work with the CMSIS-Core and CMSIS DSP library on Arm Cortex microcontrollers
+to realize the vector and matrix operations.
