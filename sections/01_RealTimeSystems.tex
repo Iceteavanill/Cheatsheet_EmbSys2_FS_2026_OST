@@ -2,8 +2,8 @@
 % GOAL V01 • You can describe what an embedded real-time system is, how it can be built and what challenges may arise in such systems.
 \subsection{Characteristics of embedded systems}
 \begin{enumerate}
-    \item \textbf{Interactivity}: They react via sensor input or actor output with the environement (event driven)
-    \item \textbf{efficient}: Ressources are used effectively
+    \item \textbf{Interactivity}: They react via sensor input or actor output with the environment (event driven)
+    \item \textbf{efficient}: Resources are used effectively
     \item \textbf{reliable, save}: The (should) always work predictively as designed
     \item \textbf{specific}: They are specific for an application
     \item \textbf{Real time}: They achieve either hard or soft Real time requirements
@@ -15,7 +15,7 @@
 \begin{minipage}{0.5\columnwidth}
 Real time systems are computing system that \textbf{must} react within precise time constraints to events in the environment.
 They are also characterized by a deadline.
-Rather than beeing fast, a real time computing system is \textbf{predictable}.
+Rather than being fast, a real time computing system is \textbf{predictable}.
 Even in a worst case event where workload is the largest, they do not violate timing constraints.
 Generally operating systems are used when multiple tasks have to be done simultaneously.
 Core functions are:
@@ -23,7 +23,7 @@ Core functions are:
     \item Parallel processes and interprocess communication
     \item Abstract and provide driver for periphery
     \item Memory management, file systems
-    \item General utilities(Clock, Math, Multi user)
+    \item General utilities (Clock, Math, Multi user)
 \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
@@ -58,7 +58,7 @@ Core functions are:
     \item Difficult to maintain as program grows
     \item Timing of all software components depends on all other software components: Small change in one place can have major side effects in other places
     \item Defeats modular programming
-    \item Real time behaviour only with interrupts
+    \item Real time behavior only with interrupts
 \end{itemize}
 
 \subsection{Components of a RTOS}
@@ -72,7 +72,7 @@ Core functions are:
     \item Objects
     \begin{itemize}
         \item Kernel constructs that function as an API
-        \item e.g. Tasks, semaphores, Message queues, ...
+        \item e.g. Tasks, semaphores, Message queues, \dots
     \end{itemize}
     \item Services
     \begin{itemize}
@@ -83,7 +83,7 @@ Core functions are:
 Another important mechanism is the execution mode.
 An OS has at least 2 privilege levels / modes for executing instructions.
 The different modes are called \textbf{rings}.
-Kernel mode (ring 0) allows for exetution of all instructions.
+Kernel mode (ring 0) allows for execution of all instructions.
 User mode (ring 1,2,3,4) does \textbf{not allow} execution of all instructions
 
 

@@ -30,7 +30,7 @@ GOAL L03 • You can use Percepio Tracealyzer to trace the tasks in a quasi-para
 
 <!-- V03 – Concurrency (I): Task Synchronization -->
 GOAL V03 • You can recognize the problems and the necessity of task synchronization (resources and activities)and inter-process communication (IPC)between two or more tasks.
-GOAL V03 • You can explain how semaphoresand mutexes, signals/task notifications, and event registers/event groups, work and how they are used (best practices).
+GOAL V03 • You can explain how semaphores and mutexes, signals/task notifications, and event registers/event groups, work and how they are used (best practices).
 GOAL V03 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
 
 
@@ -57,8 +57,8 @@ GOAL L05 • You can make use of a tracing and visualizing tool like Percepio Tr
 
 <!-- V05 – Embedded Memory -->
 GOAL V05 • You are familiar with the basic types of embedded memory, the memory modeland memory map as typically used in a microcontroller.
-GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacksand heap implementations.
-GOAL V05 • You can explain internal / external fragmentationand coalescing / free-space management.
+GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks and heap implementations.
+GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
 
 <!-- Lab 06 –FreeRTOS Memory Model -->
 GOAL L06 • You can understand where and how a task is placed in memory.
