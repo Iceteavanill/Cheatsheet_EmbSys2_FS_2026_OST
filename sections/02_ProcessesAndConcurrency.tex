@@ -1,6 +1,9 @@
 \section{Processes and Concurrency}
 
 \subsection{Description}
+% GOAL V02 • You can explain tasks/processes, process states, context switches and scheduling/dispatching.
+% GOAL V02 • You can explain the principles of multitasking and concurrency.
+% GOAL V02 • You can understand and utilize a selected RTOS, the FreeRTOS, to create and manage tasks.
 
 Every process possesses its own context.
 That consists of:
@@ -13,6 +16,7 @@ That consists of:
 % TODO : Maybe add Task Control Block (TCB)
 
 \subsection{Process vs Thread model}
+% GOAL V02 • multitasking and concurrency (FreeRTOS tasks)
 
 In FreeRTOS, a thread is called a task.
 In this context it can be used interchangeably.
@@ -37,6 +41,7 @@ To minimize this overhead, it is important to minimize task switches when possib
 
 
 \subsection{Process states}
+% GOAL V02 • process states
 
 \begin{itemize}
     \item \textbf{Inactive:} ``Formal'' state for processes that do not yet or no longer exist in the system.
@@ -67,7 +72,9 @@ A state transition may happen for the following reason:
     \includegraphics[width=0.8\columnwidth]{images/PDF/transitions.pdf}
 \end{center}
 
-\subsection{Scheduling-Policies}
+\subsection{Scheduling}
+% GOAL V02 • scheduling policies, scheduling problem, execution time, preemption
+
 Scheduling policies are different strategies to maximize some metrics (and improve system performance in):
 
 \begin{itemize}
@@ -87,7 +94,7 @@ Scheduling policies are different strategies to maximize some metrics (and impro
 
 % TODO maybe add time definition (V02 slide 42)
 
-\subsection{Scheduling problem}
+\subsubsection{Scheduling problem}
 
 The correct and effective scheduling of tasks is a difficult problem to solve and involves the following design criteria
 
@@ -140,6 +147,7 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
 % TODO maybe add more scheduling stuff
 
 \subsection{Inter-Process communication}
+% GOAL V03/V04/L04/L05 • IPC, mutex, semaphore, queues, deadlocks, priority inversion
 
 \subsubsection{Mutex}
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
