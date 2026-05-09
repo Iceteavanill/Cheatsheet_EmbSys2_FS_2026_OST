@@ -19,13 +19,49 @@
 
 
 \subsection{Caching}
-
+  
   \subsubsection{Locality}
   % GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code.
   % GOAL L07 • You can analyze code with regard to its cache friendliness.
 
   \subsubsection{Cache Types}
+    Cache memory is associative memory.
+
+    \textbf{C}ontent \textbf{A}ddressable \textbf{M}emory is a content based memory.
+    With part of an entry, the whole information can be found.
+
+    Examples CAM:
+
+    \vspace{-0.2cm}
+    \begin{minipage}[H]{0.48\columnwidth}
+    \[
+    \begin{aligned}
+        Pattern:~ &\%~\textcolor{darkgreen}{10}0\textcolor{darkgreen}{0}'0\textcolor{darkgreen}{000}'1100'\textcolor{darkgreen}{1111}\\
+        \textcolor{blue}{Mask}:~    &\%~.~.~\textcolor{red}{0}~.'\textcolor{red}{0}~.~.~.'\textcolor{red}{0000}'.~.~.~.\\
+        Match:~   &\%~\textcolor{darkgreen}{10}1\textcolor{darkgreen}{0}'1\textcolor{darkgreen}{000}'0011'\textcolor{darkgreen}{1111}\\
+    \end{aligned}
+    \]
+    \end{minipage}\hfill
+    \begin{minipage}[H]{0.48\columnwidth}
+    \[
+    \begin{aligned}
+        \textcolor{blue}{Pattern}:~ &\%~.~\textcolor{blue}{0}'.~.~\textcolor{blue}{10}'\textcolor{blue}{1110}'.~\textcolor{blue}{10}~.\\
+        Mask:~    &\%~0\textcolor{darkgreen}{1}'00\textcolor{darkgreen}{11}'\textcolor{darkgreen}{1111}'0\textcolor{darkgreen}{11}0\\
+        Match:~   &\%~0\textcolor{blue}{0}'01\textcolor{blue}{10}'\textcolor{blue}{1110}'0\textcolor{blue}{10}1\\
+    \end{aligned}
+    \]
+  \end{minipage}
+  \vspace{0.2cm}
+
   % GOAL V07 • You can explain the different cache types and their characteristics.
+  There are three different cache types:
+  \begin{itemize}
+    \item Fully associative
+    \item Direct mapped
+    \item Set associative
+  \end{itemize}
+
+  % TODO: Fulfill this goal; add more content
 
   \subsubsection{Cache Accesses}
   % GOAL V07 • You understand the cache accesses (read, write).
