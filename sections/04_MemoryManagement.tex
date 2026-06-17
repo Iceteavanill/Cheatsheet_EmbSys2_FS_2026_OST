@@ -31,55 +31,78 @@
   \subsubsection{Cache Types}
     Cache memory is associative memory.
 
+    \vspace{0.05cm}
+    
     \textbf{C}ontent \textbf{A}ddressable \textbf{M}emory (CAM): Lookup by content rather than address.
 
-    Examples CAM:
-
-    \vspace{-0.2cm}
-    \begin{minipage}[H]{0.48\columnwidth}
-    \[
-    \begin{aligned}
-        Pattern:~ &\%~\textcolor{darkgreen}{10}0\textcolor{darkgreen}{0}'0\textcolor{darkgreen}{000}'1100'\textcolor{darkgreen}{1111}\\
-        \textcolor{blue}{Mask}:~    &\%~.~.~\textcolor{red}{0}~.'\textcolor{red}{0}~.~.~.'\textcolor{red}{0000}'.~.~.~.\\
-        Match:~   &\%~\textcolor{darkgreen}{10}1\textcolor{darkgreen}{0}'1\textcolor{darkgreen}{000}'0011'\textcolor{darkgreen}{1111}\\
-    \end{aligned}
-    \]
+    \begin{minipage}{0.06\columnwidth}
+      \centering
+      \rotatebox{90}{\underline{\textbf{Examples}}}
     \end{minipage}\hfill
-    \begin{minipage}[H]{0.48\columnwidth}
-    \[
-    \begin{aligned}
-        \textcolor{blue}{Pattern}:~ &\%~.~\textcolor{blue}{0}'.~.~\textcolor{blue}{10}'\textcolor{blue}{1110}'.~\textcolor{blue}{10}~.\\
-        Mask:~    &\%~0\textcolor{darkgreen}{1}'00\textcolor{darkgreen}{11}'\textcolor{darkgreen}{1111}'0\textcolor{darkgreen}{11}0\\
-        Match:~   &\%~0\textcolor{blue}{0}'01\textcolor{blue}{10}'\textcolor{blue}{1110}'0\textcolor{blue}{10}1\\
-    \end{aligned}
-    \]
+    \begin{minipage}{0.45\columnwidth}
+      \[  
+      \begin{aligned}
+          Pattern:~ &\%~\textcolor{darkgreen}{10}0\textcolor{darkgreen}{0}'0\textcolor{darkgreen}{000}'1100'\textcolor{darkgreen}{1111}\\
+          \textcolor{blue}{Mask}:~    &\%~.~.~\textcolor{red}{0}~.'\textcolor{red}{0}~.~.~.'\textcolor{red}{0000}'.~.~.~.\\
+          Match:~   &\%~\textcolor{darkgreen}{10}1\textcolor{darkgreen}{0}'1\textcolor{darkgreen}{000}'0011'\textcolor{darkgreen}{1111}\\
+      \end{aligned}
+      \]
+    \end{minipage}\hfill
+    \begin{minipage}[H]{0.45\columnwidth}
+      \[
+      \begin{aligned}
+          \textcolor{blue}{Pattern}:~ &\%~.~\textcolor{blue}{0}'.~.~\textcolor{blue}{10}'\textcolor{blue}{1110}'.~\textcolor{blue}{10}~.\\
+          Mask:~    &\%~0\textcolor{darkgreen}{1}'00\textcolor{darkgreen}{11}'\textcolor{darkgreen}{1111}'0\textcolor{darkgreen}{11}0\\
+          Match:~   &\%~0\textcolor{blue}{0}'01\textcolor{blue}{10}'\textcolor{blue}{1110}'0\textcolor{blue}{10}1\\
+      \end{aligned}
+      \]
   \end{minipage}
   \vspace{0.2cm}
 
+    % TODO: Sinnvoll einbetten
+    \textbf{Main Memory Size}\\
+    Given an address width of $\cacheM$ bits \textrightarrow~Main Memory Size = $2^{\cacheM}$ bytes.
+    \vspace{0.1cm}
+
     % GOAL V07 • You can explain the different cache types and their characteristics.
     % TODO: Fulfill this goal; add more content (and pictures)
-    \textbf{Cache Types} % CHECK whether this fits in here like that... % CHECK content
+    \textbf{Cache Types and Structure} % CHECK whether this fits in here like that... % CHECK content
 
-    \begin{tabular}{l|l|l|l}
-      Type ($\dots$-way) & Address Format & Characteristics & Cache Size \\
-      \hline
-      Fully associative & Tag $|$ Offset &
-      Any block $\rightarrow$ any line & \\
-      Direct mapped ($1$) & Tag $|$ Index $|$ Offset &
-      One block $\rightarrow$ one line & $2^{k+i}$ \\
-      Set associative ($n$) & Tag $|$ Set $|$ Offset &
-      One block $\rightarrow$ one set & $n\cdot2^{k+i}$
+    % TODO: add image
+    \begin{tabular}{llll}
+      \toprule
+      \textbf{Type ($\dots$-way)} & \textbf{Address Format}   & \textbf{Characteristics}          & \textbf{Cache Size} \\
+      \midrule
+      Fully associative           & Tag $|$ Offset            & Any block $\rightarrow$ any line  & $2^{\cacheK+\cacheI}$           \\
+      Direct mapped ($1$)         & Tag $|$ Index $|$ Offset  & One block $\rightarrow$ one line  & $2^{\cacheK+\cacheI}$           \\
+      Set associative ($n$)       & Tag $|$ Set $|$ Offset    & One block $\rightarrow$ one set   & $n\cdot2^{\cacheK+\cacheI}$     \\
+      \bottomrule
     \end{tabular}
 
     \vspace{0.1cm}
 
-    \[\text{Index} = k, \quad \text{Offset} = i, \quad \text{Tag} = m-k-i \qquad \boxed{\text{Line Size}=2^i,\quad \#L=2^k}\]
+    \textbf{Address Structure}
+    \[\text{Index} = \cacheK, \quad \text{Offset} = \cacheI, \quad \text{Tag} = \cacheM-\cacheK-\cacheI\]
+    
+    \begin{minipage}[t]{0.36\columnwidth}
+      \textbf{Cache Line}\\
+      A cache line is a block of $2^{\cacheI}$ bytes copied from main memory.
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.35\columnwidth}
+      \textbf{Cache Organization}
+      \begin{itemize}
+        \item Cache contains $2^{\cacheK}$ lines
+        \item Cache size: $2^{\cacheK+\cacheI}$
+        \item Entry: Tag + Valid + Data
+      \end{itemize}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.23\columnwidth}
+      \textbf{Block Mapping}
+      \[\text{Block}=\left\lfloor \frac{\text{Address}}{2^{\cacheI}} \right\rfloor\]
+    \end{minipage}
 
-    \subsubsection{Cache Accesses}
-
-    \[
-    Address = Tag|Index|Offset
-    \]
+  \subsubsection{Cache Accesses}
+  % GOAL V07 • You understand the cache accesses (read, write).
 
     \begin{enumerate}
       \item Convert address to binary
@@ -89,14 +112,13 @@
       \item Hit / Miss
     \end{enumerate}
 
-  \subsubsection{Cache Accesses}
-  % GOAL V07 • You understand the cache accesses (read, write).
-
   \subsubsection{Replacement Policies}
   % GOAL V07 • You understand different cache replacement strategies.
 
   \subsubsection{Cache Performance}
   % GOAL V07 • You know how to assess the cache performance.
+  % CHECK correctness of these formulas
+  \[\boxed{R_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{R_{miss}=1-R_{hit}} \quad \boxed{AMAT=T_{hit}+R_{miss}\cdot P_{miss}}\]
 
   \subsubsection{Cache Coherence and Consistency}
   % GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency.
