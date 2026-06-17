@@ -1,0 +1,40 @@
+Prüfungsstil
+- Gewichtung nach aufgewendeter Zeit des Themas.
+- 1. Aufgabe Multiple Choice
+- Berechnen/Abschätzen
+- Etwas zeichnen, e.g. Concurrency-Graph
+- Programmieraufgabe
+  - Review
+  - Codierter Lückentext
+  - C++
+  API würde gegeben werden
+    -> aber vielleicht steht nicht allzu viel dazu
+    -> Evtl. mehr nur Syntax ohne Erklärung gegeben (wenn in Praktikas schon behandelt)
+
+- Cache wird sicher mal an der Prüfung irgendwo vorkommen.
+- FreeRTOS
+  - Leistungsberechnungen, Roofline, Semaphore, Locking
+- AI
+- Speicher-Serialisierung-Cache
+
+-----------------------------------------------------------
+
+Prüfungsvorbereitung
+------------------------
+- Slides nochmals anschauen, ChatGPT als Lerninstrument nutzen.
+- Folien verstehen mit Selbststudium
+- Praktikas mit Lösungen/Prelabs
+  - Code diff
+  - Prelabs als Ersatz für alte Prüfungen
+- Diskussions-Forum nutzen
+
+-----------------------------------------------------------
+
+
+Ankündigungen: Wenn es irgendwelche Aenderungen geben würde.
+
+Cookbook; Es hat jetzt mehrere Versionen (am besten die letzte Version), in ausgedruckter Form wäre es erlaubt, bringt allerdings keinen grossen Vorteil (also das ist das Ziel).
+
+Taschenrechner: Grosser TR okay, aber nicht programmiert.
+
+----------------------------------------------------------
