@@ -1,11 +1,45 @@
 \section{Memory Management}
 
 \subsection{Memory Hierarchy}
-  \subsubsection{Hierarchy Levels}
+  \subsubsection{Overview}
   % GOAL V06 • You are familiar with the typical structure of a memory hierarchy, including cache and scratchpad memories.
+  % TODO: Könnte noch ausführlicher gestaltet werden, wenn noch Platz da.
+  \begin{minipage}[t]{0.58\linewidth}
+    \begin{itemize}
+      \item Embedded memory is a shared system resource
+      \item Memory hierarchy exploits locality to improve average memory access time
+      \item Trade-offs: Performance, capacity, cost, power
+    \end{itemize}
+    \textbf{Typical hierarchy:}
+    \begin{itemize}
+      \item CPU registers
+      \item L1/L2/L3 cache (split instruction/data caches)
+      \item Scratchpad memory (TCM)
+      \item Main memory
+      \item Secondary storage
+    \end{itemize}
+  \end{minipage}\hfill
+    \begin{minipage}[t]{0.38\linewidth}
+    \vspace{0pt}
+    \includegraphics[width=\linewidth]{images/PDF/MemoryHierarchy_typicalSetup.pdf}
+  \end{minipage}
+  
+  \subsubsection{Locality Principle}
+    \begin{itemize}
+      \item Spatial locality: Nearby addresses are likely to be accessed.
+    \end{itemize}
 
-  \subsubsection{Cache vs Scratchpad vs.~Main Memory}
-    % GOAL L07 • You can tell the difference between cache, scratchpad and main memory.
+  \subsubsection{Cache / Scratchpad / Main Memory}
+  % GOAL L07 • You can tell the difference between cache, scratchpad and main memory.
+  \begin{itemize}
+    \item Cache: Hardware-managed, transparent, fast access
+    \item Scratchpad / TCM (Tightly Coupled Memory): Software-managed, deterministic access, no cache, typically not accessible by DMA
+    \begin{itemize}
+      \item ITCM: Instruction-only memory, used for fast code execution
+      \item DTCM: Data memory, not accessible by DMA
+    \end{itemize}
+    \item Main Memory (SRAM/DRAM): Shared system RAM, slower than cache, accessed by CPU via cache or directly by DMA
+  \end{itemize}
 
 \subsection{Memory Protection}
 % GOAL L07 • You can use the memory protection unit to control access rights and prevent memory corruption.

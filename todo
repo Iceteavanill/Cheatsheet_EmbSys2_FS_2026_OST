@@ -69,13 +69,12 @@ GOAL L06 • You can apply watermarking to analyze memory usage.
 GOAL L06 • You can assess and estimate the memory usage of a task.
 
 <!-- V06 – Memory Management (I): Memory Hierarchy -->
-GOAL V06 • You are familiar with the typical structure of a memory hierarchy, including cache
-GOAL V06 and scratchpad memories.
+<!-- GOAL V06 • You are familiar with the typical structure of a memory hierarchy, including cache and scratchpad memories. -->
 GOAL V06 • You can describe the purpose of access levels and a memory protection unit.
 GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code. 
 
 <!-- Lab 07 – Access Levels, Memory Protection and Caching -->
-GOAL L07 • You can tell the difference between cache, scratchpad and main memory.
+<!-- GOAL L07 • You can tell the difference between cache, scratchpad and main memory. -->
 GOAL L07 • You can analyze code with regard to its cache friendliness.
 GOAL L07 • You can use the memory protection unit to control access rights and prevent memory corruption.
 GOAL L07 • You can employ Arm’s access levels to manage privileges of tasks and user programs in FreeRTOS.
