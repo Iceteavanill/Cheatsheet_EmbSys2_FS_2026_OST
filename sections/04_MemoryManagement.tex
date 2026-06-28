@@ -41,16 +41,46 @@
     \item Main Memory (SRAM/DRAM): Shared system RAM, slower than cache, accessed by CPU via cache or directly by DMA
   \end{itemize}
 
-\subsection{Memory Protection}
-% GOAL L07 • You can use the memory protection unit to control access rights and prevent memory corruption.
-% GOAL L07 • You can employ Arm’s access levels to manage privileges of tasks and user programs in FreeRTOS.
+\subsection{Memory Protection Unit (MPU)}
+  The MPU is a hardware unit integrated into the CPU that controls access to memory regions.
 
-\subsubsection{Memory Protection Unit (MPU)}
-% GOAL V06 • You can describe the purpose of access levels and a memory protection unit.
+  \begin{minipage}[t]{0.58\linewidth}
+    % GOAL V06 • You can describe the purpose of access levels and a memory protection unit.
+    \subsubsection{Purpose}
+    \begin{itemize}
+      \item Region-based memory protection
+      \item Access permissions: Read / Write / Execute
+      \item Privileged vs.~unprivileged access
+      \item Illegal access \textrightarrow \textcolor{red}{Memory Management Fault}
+      \item Prevents memory corruption and isolates OS/tasks
+    \end{itemize}
 
-\subsubsection{Access Levels and Privileges}
-\subsubsection{ARM Privilege Modes (FreeRTOS context)}
+    \subsubsection{Operating Modes \& Access Levels}
+    \begin{itemize}
+      \item \textbf{Handler mode:} Interrupts, always Privileged
+      \item \textbf{Thread mode:} Normal program execution
+      \item \textbf{Privileged:} Full CPU and memory access
+      \item \textbf{Unprivileged:} Restricted access according to MPU
+    \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.38\linewidth}
+    \subsubsection{FreeRTOS}
+    % GOAL L07 • You can employ Arm’s access levels to manage privileges of tasks and user programs in FreeRTOS.
+    \begin{itemize}
+      \item Kernel runs privileged
+      \item User tasks run unprivileged
+      \item System calls (SVC) request privileged kernel services
+      \item MPU protects kernel memory from user tasks
+    \end{itemize}
 
+    \subsubsection{MPU Regions}
+    % GOAL L07 • You can use the memory protection unit to control access rights and prevent memory corruption.
+    \begin{itemize}
+      \item Region size: power of 2
+      \item Minimum size: 32 bytes
+      \item Region base address aligned to its size
+    \end{itemize}
+  \end{minipage}
 
 \subsection{Caching}
   
