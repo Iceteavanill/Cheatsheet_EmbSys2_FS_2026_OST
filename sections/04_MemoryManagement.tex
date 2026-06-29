@@ -142,7 +142,7 @@
     \vspace{0.1cm}
 
     % GOAL V07 • You can explain the different cache types and their characteristics.
-    % TODO: Fulfill this goal; add more content (and pictures)
+    % TODO: add pictures
     \textbf{Cache Types and Structure} % CHECK whether this fits in here like that... % CHECK content
 
     % TODO: add image
@@ -181,29 +181,54 @@
   \subsubsection{Cache Accesses}
   % GOAL V07 • You understand the cache accesses (read, write).
 
-    \begin{enumerate}
-      \item Convert address to binary
-      \item Extract Tag / Index / Offset
-      \item Select line (or set)
-      \item Compare Tag
-      \item Hit / Miss
-    \end{enumerate}
-
+    \begin{minipage}[t]{0.34\columnwidth}
+      \begin{enumerate}
+        \item Convert address to binary
+        \item Extract Tag / Index / Offset
+        \item Select line (or set)
+        \item Compare Tag
+        \item \textcolor{codeGreen}{Hit} / \textcolor{red}{Miss}
+      \end{enumerate}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.62\columnwidth}
+      \begin{itemize}
+        \item \textcolor{codeGreen}{Read-hit:} Fast access form cache
+        \item \textcolor{red}{Read-miss:} Load full cache line
+        \item \textcolor{codeGreen}{Write-hit:} Depends on policy
+        \begin{itemize}
+          \item Write-trough: Update cache \& memory
+          \item Write-back: Update cache only (dirty bit set)
+        \end{itemize}
+        \item \textcolor{red}{Write-miss:} Write-allocate or no-write-allocate
+      \end{itemize}
+    \end{minipage}
+    
   \subsubsection{Replacement Policies}
   % GOAL V07 • You understand different cache replacement strategies.
+    \begin{itemize}
+      \item \textbf{LRU:} Replace least recently used line
+      \item \textbf{FIFO:} Replace oldest inserted line
+      \item \textbf{Random:} Random eviction
+      \item \textbf{Pseudo-LRU:} Hardware approximation of LRU (efficient)
+    \end{itemize}
 
   \subsubsection{Cache Performance}
   % GOAL V07 • You know how to assess the cache performance.
   % CHECK correctness of these formulas
-  \[\boxed{R_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{R_{miss}=1-R_{hit}} \quad \boxed{AMAT=T_{hit}+R_{miss}\cdot P_{miss}}\]
+  \[\boxed{R_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{R_{miss}= 1 - R_{hit}} \quad \boxed{AMAT=T_{hit}+R_{miss}\cdot T_{miss}}\]
 
   \subsubsection{Cache Coherence and Consistency}
   % GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency.
-
-  \subsection{Primary Storage}
-
-  \subsection{Secondary Storage}
-
+      \begin{itemize}
+        \item Coherence ensures consistency between caches and main memory
+        \item Problem: Same memory in multiple caches / DMA inconsistency
+        \item Solution:
+        \begin{itemize}
+          \item Invalidate cache lines
+          \item Clean (write back) dirty lines
+          \item Coherence protocols (e.g. MESI)
+        \end{itemize}
+      \end{itemize}
 
 \subsection{Flash Memory}
 % GOAL V08 • You know the basics of how flash memory works and how it can be used together with a file system.
