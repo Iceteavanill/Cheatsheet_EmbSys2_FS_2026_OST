@@ -136,8 +136,8 @@ GOAL V12 • You can distinguish Amdahl’s Law and Gustafson’s Law, and indep
 GOAL V12 • You can relate theoretical gains to hardware-centric constraints (memory vs. compute) according to the Roofline model.
 
 <!-- V12 – TinyML (I): Deep Learning Workflow -->
-GOAL V12 • You can characterize TinyML / Embedded AI / Edge AI and their specific benefits (compared to Cloud AI).
-GOAL V12 • You can explain the basic structure and functioning of a deep learning model (fully connected deep neural network, input/hidden/output layers, activation functions, biases and weights).
+<!-- GOAL V12 • You can characterize TinyML / Embedded AI / Edge AI and their specific benefits (compared to Cloud AI). -->
+<!-- GOAL V12 • You can explain the basic structure and functioning of a deep learning model (fully connected deep neural network, input/hidden/output layers, activation functions, biases and weights). -->
 GOAL V12 • You can make sense of the TinyML development workflow and its realization by the ST Edge AI Suite (STM32Cube.AI, model zoo, ST Edge AI Developer Cloud).
 
 <!-- Lab 12 – Deep Neural Networks for Microcontrollers -->

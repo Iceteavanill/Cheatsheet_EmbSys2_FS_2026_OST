@@ -1,6 +1,88 @@
 \section{Tiny ML}
+% GOAL V12 • You can characterize TinyML / Embedded AI / Edge AI and their specific benefits (compared to Cloud AI).
+
+Tiny ML = Embedded AI = Edge AI =\say{Integration of artificial intelligence directly into hardware and software of embedded systems}.
+Benefits : \textbf{B}andwidth, \textbf{L}atency, \textbf{E}conomics, \textbf{R}eliability, \textbf{P}rivacy
+
+\subsection{Deep Neural Network}
+% GOAL V12 • You can explain the basic structure and functioning of a deep learning model (fully connected deep neural network, input/hidden/output layers, activation functions, biases and weights).
+Layers: \textbf{input} (features), \textbf{hidden} (neurons), 
+\textbf{output} (classes/values), 
+plus \textbf{bias}. \emph{Depth} $=$ \#layers $-1$; 
+\emph{weight size} between layers $M,M{+}1$ $=$ neurons$_M\cdot$neurons$_{M+1}$. 
+A \textbf{weight} $w$ scales an input, a \textbf{bias} $b$ offsets the output. One neuron:
+% \[ z = \sum_i w_i x_i + b = \mathbf{W}^T\mathbf{x}, \qquad y = f(z). \]
+\includegraphics[width=\columnwidth]{images/PDF/dnn_neuron.pdf}
+\subsubsection{Propagation} 
+\textbf{Forward} (inference): $z^{[l]}=\mathbf{W}^{[l]T}\mathbf{x}+\mathbf{b}^{[l]}$, $a^{[l]}=g(z^{[l]})$. \textbf{Backward} (training): adjust weights/biases from the error.
+
+\begin{minipage}{0.4\columnwidth}
+    \textbf{Overfit} (high variance): too complex / too little data \textrightarrow{} large train--test gap. 
+    \textbf{Underfit} (high bias): too simple \textrightarrow{} high training error. 
+    \textbf{Optimum:} low train \emph{and} test error (regularization helps).
+\end{minipage}
+\begin{minipage}{0.6\columnwidth}
+    \includegraphics[width=\columnwidth]{images/under_optimum_overfit.png}
+\end{minipage}
+
 
 \subsection{Development Workflow}
+% GOAL V12 • You can make sense of the TinyML development workflow and its realization by the ST Edge AI Suite (STM32Cube.AI, model zoo, ST Edge AI Developer Cloud).
+Many manufacturers typically provide a device specific solution like STM32Cube.AI, model zoo, ST Edge AI Developer Cloud
+
+\definecolor{topfill}{RGB}{244,204,204}   % pink
+\definecolor{topbord}{RGB}{204,0,0}       % red
+\definecolor{midfill}{RGB}{217,226,243}   % light blue
+\definecolor{midbord}{RGB}{109,158,235}   % blue
+\definecolor{botfill}{RGB}{255,242,204}   % light yellow
+\definecolor{botbord}{RGB}{230,178,42}    % gold
+\definecolor{cmpfill}{RGB}{239,239,239}   % light gray
+\definecolor{cmpbord}{RGB}{150,150,150}
+\begin{minipage}{0.5\columnwidth}
+    \begin{enumerate}
+        \item {\color{botbord}Decide on a goal}
+        \item {\color{botbord}Collect a dataset}
+        \item {\color{botbord}Design a model architecture}
+        \item {\color{botbord}Train the model}
+        \item {\color{midbord} Convert the model}
+        \item {\color{topbord}Run inference (integrate model incl. pre-/post-processing)}
+        \item {\color{topbord}Evaluate and troubleshoot (experiment, iterate)}
+    \end{enumerate}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+\resizebox{\columnwidth}{!}{
+
+    \begin{tikzpicture}[font=\large]
+        
+        \def\W{10}      % stack width
+        
+        % ---- bottom layer : NN Training Framework (yellow) ----
+        \filldraw[fill=botfill,draw=botbord,line width=0.8pt] (0,0) rectangle (\W,1.55);
+        \node[align=center] at (\W/2,0.66)
+        {\textbf{NN Training Framework}\\(TensorFlow, Pytorch, \dots)};
+ 
+        % ---- middle layer : Model to Runtime Converters (blue) ----
+        \filldraw[fill=midfill,draw=midbord,line width=0.8pt] (0,1.55) rectangle (\W,2.95);
+        \node at (\W/2,2.30) {Model to Runtime Converters};
+        
+        % ---- top layer : Embedded NN Runtime (pink) ----
+  \filldraw[fill=topfill,draw=topbord,line width=1.1pt] (0,2.95) rectangle (\W,4.65);
+  \node[align=center] at (\W/2,3.80)
+        {\textbf{Embedded NN Runtime}\\(LiteRT, CMSIS NN, ExecuTorch, \dots)};
+        
+        % ---- overlapping callout : Model Compression (gray, rounded, shadow) ----
+        \node[draw=cmpbord,fill=cmpfill,rounded corners=4pt,line width=0.6pt,
+        align=center,minimum width=4.5cm,minimum height=1.0cm,
+        font=\normalsize,
+        drop shadow={shadow xshift=0.6mm,shadow yshift=-0.6mm,
+        fill=black,opacity=0.22}]
+        at (2.15,1.62)
+        {Model Compression\\(Quantization, Pruning, \dots)};
+        
+    \end{tikzpicture}    
+}
+\end{minipage}
+
 \subsection{Model Optimization}
 \subsubsection{Quantization}
 \subsubsection{Pruning}
