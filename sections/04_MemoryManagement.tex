@@ -161,11 +161,11 @@
     % \textbf{Address Structure} % NOTE is already included in images
     % \[\text{Index} = \cacheK, \quad \text{Offset} = \cacheI, \quad \text{Tag} = \cacheM-\cacheK-\cacheI\]
     
-    \begin{minipage}[t]{0.36\columnwidth}
+    \begin{minipage}[t]{0.3\columnwidth}
       \textbf{Cache Line}\\
       A cache line is a block of $2^{\cacheI}$ bytes copied from main memory.
     \end{minipage}\hfill
-    \begin{minipage}[t]{0.35\columnwidth}
+    \begin{minipage}[t]{0.34\columnwidth}
       \textbf{Cache Organization}
       \begin{itemize}
         \item Cache contains $2^{\cacheK}$ lines
@@ -173,9 +173,15 @@
         \item Entry: Tag + Valid + Data
       \end{itemize}
     \end{minipage}\hfill
-    \begin{minipage}[t]{0.23\columnwidth}
+    \begin{minipage}[t]{0.30\columnwidth}
       \textbf{Block Mapping}
-      \[\text{Block}=\left\lfloor \frac{\text{Address}}{2^{\cacheI}} \right\rfloor\]
+      % \[\text{Block}=\left\lfloor \frac{\text{Address}}{2^{\cacheI}} \right\rfloor\]
+      \vspace{-0.3cm}
+      \[\begin{array}{lcl}
+        \text{Block} = \lfloor \text{Address}/2^{\cacheI}\rfloor\\
+        \text{Set}   = \text{Block}\bmod 2^{\cacheK}\\
+        \text{Tag}   = \lfloor \text{Block}/2^{\cacheK}\rfloor
+      \end{array}\]
     \end{minipage}
 
     \vspace{0.2cm}
@@ -200,7 +206,7 @@
       \begin{enumerate}
         \item Convert address to binary
         \item Extract Tag / \pastelbox{cyan}{Index} / \pastelbox{green}{Offset}
-        \item Select line (or set)
+        \item \textcolor{gray}{Select line (or set)}
         \item Compare Tag
         \item \textcolor{codeGreen}{Hit} / \textcolor{red}{Miss}
       \end{enumerate}
