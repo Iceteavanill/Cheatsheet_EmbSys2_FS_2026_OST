@@ -138,7 +138,7 @@
 
     % TODO: Sinnvoll einbetten
     \textbf{Main Memory Size}\\
-    Given an address width of $\cacheM$ bits \textrightarrow~Main Memory Size = $2^{\cacheM}$ bytes.
+    Given an \pastelbox{orange}{address width} of $\cacheM$ bits \textrightarrow~Main Memory Size = $2^{\cacheM}$ bytes.
     \vspace{0.1cm}
 
     % GOAL V07 • You can explain the different cache types and their characteristics.
@@ -148,11 +148,11 @@
     % TODO: add image
     \begin{tabular}{llll}
       \toprule
-      \textbf{Type ($\dots$-way)} & \textbf{Address Format}   & \textbf{Characteristics}          & \textbf{Cache Size} \\
+      \textbf{Type ($\dots$-way)} & \textbf{Address Format}                                         & \textbf{Characteristics}          & \textbf{Cache Size} \\
       \midrule
-      Fully associative           & Tag $|$ Offset            & Any block $\rightarrow$ any line  & $2^{\cacheK+\cacheI}$           \\
-      Direct mapped ($1$)         & Tag $|$ Index $|$ Offset  & One block $\rightarrow$ one line  & $2^{\cacheK+\cacheI}$           \\
-      Set associative ($n$)       & Tag $|$ Set $|$ Offset    & One block $\rightarrow$ one set   & $n\cdot2^{\cacheK+\cacheI}$     \\
+      Fully associative           & Tag $|$ \pastelbox{green}{Offset}                               & Any block $\rightarrow$ any line  & $2^{\cacheK+\cacheI}$           \\
+      Direct mapped ($1$)         & Tag $|$ \pastelbox{cyan}{Index} $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one line  & $2^{\cacheK+\cacheI}$           \\
+      Set associative ($n$)       & Tag $|$ \pastelbox{cyan}{Set}   $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one set   & $n\cdot2^{\cacheK+\cacheI}$     \\
       \bottomrule
     \end{tabular}
 
