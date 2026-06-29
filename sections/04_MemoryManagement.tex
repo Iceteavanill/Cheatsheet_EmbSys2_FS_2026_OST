@@ -77,7 +77,7 @@
     \end{itemize}
   \end{minipage}
 
-\subsection{Caching} % TODO: Cross-check this subsection (Caching) + Vorgehensweise Uebungen hinzufügen!
+\subsection{Caching} % TODO: Cross-check this subsection (Caching) + Vorgehensweise Uebungen hinzufügen / Abgleichen, ob damit gut lösbar. Das kommt höchstwahrscheinlich and der Prüfung!
   \subsubsection{Locality}
     % GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code.
       \begin{itemize}
@@ -134,18 +134,11 @@
       \end{aligned}
       \]
   \end{minipage}
-  \vspace{0.2cm}
-
-    % TODO: Sinnvoll einbetten
-    \textbf{Main Memory Size}\\
-    Given an \pastelbox{orange}{address width} of $\cacheM$ bits \textrightarrow~Main Memory Size = $2^{\cacheM}$ bytes.
-    \vspace{0.1cm}
+  \vspace{0.2cm}  
 
     % GOAL V07 • You can explain the different cache types and their characteristics.
-    % TODO: add pictures
-    \textbf{Cache Types and Structure} % CHECK whether this fits in here like that... % CHECK content
+    \textbf{Cache Types and Structure}
 
-    % TODO: add image
     \begin{tabular}{llll}
       \toprule
       \textbf{Type ($\dots$-way)} & \textbf{Address Format}                                         & \textbf{Characteristics}          & \textbf{Cache Size} \\
@@ -157,10 +150,11 @@
     \end{tabular}
 
     \vspace{0.1cm}
-
-    % \textbf{Address Structure} % NOTE is already included in images
-    % \[\text{Index} = \cacheK, \quad \text{Offset} = \cacheI, \quad \text{Tag} = \cacheM-\cacheK-\cacheI\]
     
+    \textbf{Main Memory Size}\\
+    Given an \pastelbox{orange}{address width} of $\cacheM$ bits \textrightarrow~Main Memory Size = $2^{\cacheM}$ bytes.
+    \vspace{0.1cm}
+
     \begin{minipage}[t]{0.3\columnwidth}
       \textbf{Cache Line}\\
       A cache line is a block of $2^{\cacheI}$ bytes copied from main memory.
@@ -175,7 +169,6 @@
     \end{minipage}\hfill
     \begin{minipage}[t]{0.30\columnwidth}
       \textbf{Block Mapping}
-      % \[\text{Block}=\left\lfloor \frac{\text{Address}}{2^{\cacheI}} \right\rfloor\]
       \vspace{-0.3cm}
       \[\begin{array}{lcl}
         \text{Block} = \lfloor \text{Address}/2^{\cacheI}\rfloor\\
@@ -201,7 +194,6 @@
 
   \subsubsection{Cache Accesses}
   % GOAL V07 • You understand the cache accesses (read, write).
-
     \begin{minipage}[t]{0.36\columnwidth}
       \begin{enumerate}
         \item Convert address to binary
@@ -251,7 +243,7 @@
         \end{itemize}
       \end{itemize}
 
-\subsection{Flash Memory}
+\subsection{Flash Memory} % TODO: Maybe add an image and check if content is complete or can be shortened
 % GOAL V08 • You know the basics of how flash memory works and how it can be used together with a file system.
   
   \begin{itemize}
@@ -366,25 +358,28 @@
       \item Important: Always check return codes (robust embedded systems)
     \end{itemize}
 
-  \subsubsection{Embedded File Systems}    
-    \begin{itemize}
-      \item Embedded file systems are optimized for flash memory constraints:
+  \subsubsection{Embedded File Systems}
+  \begin{minipage}[t]{0.45\linewidth}
       \begin{itemize}
-        \item Limited write cycles
-        \item Erase-before-write requirements
-        \item Sector-based storage
+        \item Embedded file systems are optimized for flash memory constraints:
+        \begin{itemize}
+          \item Limited write cycles
+          \item Erase-before-write requirements
+          \item Sector-based storage
+        \end{itemize}
       \end{itemize}
-    \end{itemize}
-
-    \textbf{Common implementations:}    
-    \begin{itemize}
-      \item FatFS:
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.51\linewidth}
+      \textbf{Common implementations:}    
       \begin{itemize}
-        \item Designed for NOR flash
-        \item Built-in wear leveling
-        \item Power-loss resilient (save for embedded systems)
+        \item FatFS:
+        \begin{itemize}
+          \item Designed for NOR flash
+          \item Built-in wear leveling
+          \item Power-loss resilient (save for EmbSys)
+        \end{itemize}
       \end{itemize}
-    \end{itemize}
+  \end{minipage}
 
 
 \subsection{Serialization}
