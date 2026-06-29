@@ -158,8 +158,8 @@
 
     \vspace{0.1cm}
 
-    \textbf{Address Structure}
-    \[\text{Index} = \cacheK, \quad \text{Offset} = \cacheI, \quad \text{Tag} = \cacheM-\cacheK-\cacheI\]
+    % \textbf{Address Structure} % NOTE is already included in images
+    % \[\text{Index} = \cacheK, \quad \text{Offset} = \cacheI, \quad \text{Tag} = \cacheM-\cacheK-\cacheI\]
     
     \begin{minipage}[t]{0.36\columnwidth}
       \textbf{Cache Line}\\
@@ -196,16 +196,16 @@
   \subsubsection{Cache Accesses}
   % GOAL V07 • You understand the cache accesses (read, write).
 
-    \begin{minipage}[t]{0.34\columnwidth}
+    \begin{minipage}[t]{0.36\columnwidth}
       \begin{enumerate}
         \item Convert address to binary
-        \item Extract Tag / Index / Offset
+        \item Extract Tag / \pastelbox{cyan}{Index} / \pastelbox{green}{Offset}
         \item Select line (or set)
         \item Compare Tag
         \item \textcolor{codeGreen}{Hit} / \textcolor{red}{Miss}
       \end{enumerate}
     \end{minipage}\hfill
-    \begin{minipage}[t]{0.62\columnwidth}
+    \begin{minipage}[t]{0.6\columnwidth}
       \begin{itemize}
         \item \textcolor{codeGreen}{Read-hit:} Fast access form cache
         \item \textcolor{red}{Read-miss:} Load full cache line
