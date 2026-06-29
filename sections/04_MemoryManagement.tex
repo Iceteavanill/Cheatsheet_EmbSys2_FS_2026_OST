@@ -77,7 +77,7 @@
     \end{itemize}
   \end{minipage}
 
-\subsection{Caching}
+\subsection{Caching} % TODO: Cross-check this subsection (Caching) + Vorgehensweise Uebungen hinzufügen!
   \subsubsection{Locality}
     % GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code.
       \begin{itemize}
@@ -232,25 +232,138 @@
 
 \subsection{Flash Memory}
 % GOAL V08 • You know the basics of how flash memory works and how it can be used together with a file system.
+  
+  \begin{itemize}
+    \item Non-volatile memory (data persists without power)
+    \item Based on floating-gate MOSFET (FGMOS)
+    \item Types:
+    \begin{itemize}
+      \item NOR Flash: Random access, fast read, code storage
+      \item NAND Flash: Block-based access, high density, data storage (e.g. SD cards)
+    \end{itemize}
+    \item Key property: \textbf{erase-before-write}
+    \item Erase is \textbf{block/sector-based}, not byte-based
+    \item Limited write/erase cycles \textrightarrow~wear leveling required
+  \end{itemize}
 
   \subsubsection{Flash Structure}
   % GOAL L08 • You learn about the structure of flash memory (flash sectors) through hands-on experience.
+    \begin{itemize}
+      \item Flash is divided into \textbf{sectors / pages / blocks}
+      \item STM32H755 example:
+        \begin{itemize}
+          \item Sector size: \qty{128}{\kilo\byte} (internal flash)
+          \item Writing \qty{8}{\kilo\byte} \textrightarrow~only \textbf{1 sector must be erased}
+        \end{itemize}
+      \item Sector erase is required before any write Operations
+      \item File systems map logical data \textrightarrow~flash sectors
+    \end{itemize}
 
   \subsubsection{Flash Read/Write Operations}
   % GOAL L08 • You can read from and write to flash memory.
+    \begin{itemize}
+      \item Read: Byte/word access (depending on flash type, NOR supports random access)
+      \item Write: Only into erased memory
+      \item Sequence:
+        \begin{enumerate}
+          \item Erase sector/block
+          \item Program (write) data
+          \item Verify write (optional but recommended)
+        \end{enumerate}
+      \item External NOR Flash (e.g. MT25QL256):
+        \begin{itemize}
+          \item Requires command sequence (QSPI)
+          \item Read via dedicated read function (e.g. STR read)
+        \end{itemize}
+        \item Internal flash often accessed via HAL / driver functions
+    \end{itemize}
 
-  \subsubsection{RAM vs Flash Lifetime}
+  \subsubsection{RAM vs. Flash Lifetime}
   % GOAL L08 • You can understand the data lifetime difference between RAM and flash memory.
 
-  \subsubsection{Flash Sectors}
+  \begin{minipage}[t]{0.48\linewidth}
+    RAM:
+    \begin{itemize}
+        \item Volatile (lost on reset)
+        \item Unlimited write cycles (practically)
+        \item Fast access
+        \item Typical use: Firmware, persistent data
+      \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\linewidth}
+    Flash:
+    \begin{itemize}
+      \item Non-volatile (persistent storage)
+      \item Limited erase/write cycles
+      \item Slower write/erase than RAM
+      \item Typical use: Runtime variables
+    \end{itemize}
+  \end{minipage}
 
+  \subsubsection{Flash Sectors}
+  % NOTE: Lab relevance: STM32 + File system behavior
+    \begin{itemize}
+      \item Sector = smallest erase unit
+      \item Important constraint:
+        \begin{itemize}
+          \item Sector erase \textrightarrow~overwrite data
+        \end{itemize}
+      \item Example (STM32H755):
+        \begin{itemize}
+          \item Internal flash used for code + persistent variables
+          \item Sector-based storage (e.g. sector 7 used for reset counter)
+        \end{itemize}
+      \item External flash (MT25QL256):
+        \begin{itemize}
+          \item Organized in blocks/sectors
+          \item Used with file systems (LittleFS / FatFS)
+        \end{itemize}
+    \end{itemize}
 
 \subsection{File Systems}
 % GOAL L08 • You can make use of the basic functionalities of a file system.
 
   \subsubsection{Basic File System Operations}
+    \begin{itemize}
+      \item File system provides abstraction over raw storage (Flash/SD)
+      \item Typical workflow:
+    \end{itemize}
+    \begin{enumerate}
+      \item Mount file system (initialize structures, buffers)
+      \item Open file (f\_open)
+      \item Read / Write data (f\_read, f\_write)
+      \item Close file (f\_close)
+    \end{enumerate}
+    
+    \begin{itemize}
+      \item File system handles:
+        \begin{itemize}
+          \item Block allocation
+          \item Metadata Management
+          \item Error handling
+        \end{itemize}
+      \item Important: Always check return codes (robust embedded systems)
+    \end{itemize}
 
-  \subsubsection{Embedded File Systems}
+  \subsubsection{Embedded File Systems}    
+    \begin{itemize}
+      \item Embedded file systems are optimized for flash memory constraints:
+      \begin{itemize}
+        \item Limited write cycles
+        \item Erase-before-write requirements
+        \item Sector-based storage
+      \end{itemize}
+    \end{itemize}
+
+    \textbf{Common implementations:}    
+    \begin{itemize}
+      \item FatFS:
+      \begin{itemize}
+        \item Designed for NOR flash
+        \item Built-in wear leveling
+        \item Power-loss resilient (save for embedded systems)
+      \end{itemize}
+    \end{itemize}
 
 
 \subsection{Serialization}
