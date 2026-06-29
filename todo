@@ -148,7 +148,7 @@ GOAL L12 • You can alternatively use STM32Cube.AI to deploy deep neural networ
 
 <!-- V13 – TinyML (II): Model Optimization -->
 GOAL V13 • You can explain why and how model optimization leads to performance improvements, which are particularly important for TinyML.
-GOAL V13 • You can describe what quantization, pruning, knowledge distillation, and neural architecture search (NAS) conceptionally do with a neural network.
+<!-- GOAL V13 • You can describe what quantization, pruning, knowledge distillation, and neural architecture search (NAS) conceptionally do with a neural network. -->
 GOAL V13 • You can distinguish different number formats and quantization method types used in TinyML training and inference.
 
 <!-- Lab 13 – Model Quantization -->
@@ -159,7 +159,7 @@ GOAL L13 • You can deploy a neural network to an STM32 microcontroller.
 
 
 <!-- V14 – TinyML (III): Selected Applications -->
-GOAL V14 • You can explain the basic architecture of a Convolutional Neural Network (CNN)with its characteristic layers(conv, padding, pool, flatten).
+<!-- GOAL V14 • You can explain the basic architecture of a Convolutional Neural Network (CNN)with its characteristic layers(conv, padding, pool, flatten). -->
 GOAL V14 • You can contextualize the CNN network within the entire deep learning workflow, including preprocessing, post processing and its use in an embedded vision application and other typical application scenarios.
 
 <!-- Lab 14 –Embedded Vision -->

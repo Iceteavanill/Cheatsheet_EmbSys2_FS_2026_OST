@@ -84,8 +84,151 @@ Many manufacturers typically provide a device specific solution like STM32Cube.A
 \end{minipage}
 
 \subsection{Model Optimization}
-\subsubsection{Quantization}
+% GOAL V13 • You can explain why and how model optimization leads to performance improvements, which are particularly important for TinyML.
+Optimization is driven by hardware bounds (Roofline) and parallelism limits (Amdahl/Gustafson).
+\example{FCNN cost} 
+10 inputs, 20 hidden, 
+5 outputs, 
+8 B/value: weights $200+100=300$, 
+biases $20+5=25$ \textrightarrow{} $325$ params $=2600$\,B $\approx2.54$\,kB (fits a Cortex-M4 easily); 
+MACs $=N_\text{in}\cdot N_\text{out}=300$.
+\begin{ctabular}{ll}
+\textbf{Model optimization} & \textbf{Implementation optimization} \\ \hline
+quantization & operator fusion \\
+pruning & SIMD/vectorization \\
+distillation & CMSIS-NN \\
+NAS & DMA, NPU offloading \\
+\end{ctabular}
+
+\subsubsection{Quantization / Compression} 
+% GOAL V13 • You can distinguish different number formats and quantization method types used in TinyML training and inference.
+Reduces numerical precision of weights/activations
+(\texttt{float32}\textrightarrow{}\texttt{int8} $=4\times$ smaller) with minimal accuracy loss. 
+Formats: FP32/FP16/BF16 (BF16 keeps FP32's 8-bit exponent, trades mantissa), INT/Q-format fixed point.(BF=Brain floatingpoint)
+\begin{outline}
+  \1 \textbf{Symmetric:} $x_q=\text{round}(x/s)$. \textbf{Asymmetric (affine):} $x_q=\text{round}(x/s+z)$ with scale $s$ and zero-point $z$ mapping real $0$ to an integer.
+  \1 \textbf{Weights} are static; \textbf{activations} are dynamic and need calibration.
+  \1 \textbf{Clipping} saturates outliers to improve resolution; scale granularity can be layer-/channel-/block-wise.
+\end{outline}
+
 \subsubsection{Pruning}
-\subsubsection{Compression}
+removes redundant parameters \textrightarrow{} \textbf{sparse} matrices. 
+\textbf{Structured} (whole rows/channels: hardware-efficient, lower max sparsity) vs.
+\textbf{unstructured magnitude} pruning (individual smallest-$|w|$ weights: highest sparsity but needs sparse-matrix support).
+
+\subsubsection{Distillation \& NAS(Neural Architecture Search)} 
+% GOAL V13 • You can describe what quantization, pruning, knowledge distillation, and neural architecture search (NAS) conceptionally do with a neural network.
+\textbf{Knowledge distillation:} a small \emph{student model} mimics a large \emph{teacher model} via \emph{soft labels} (softmax with temperature $T$).
+
+\textbf{NAS:} \say{learning model architecture and parameters together}
+automated search over a space with a search strategy $+$ performance estimator (one-shot learns architecture $+$ weights jointly).
+
+\subsubsection{Metrics} 
+memory, latency, energy, accuracy, F1. From the confusion matrix: accuracy $\frac{TP+TN}{\text{all}}$, precision $\frac{TP}{TP+FP}$, recall $\frac{TP}{TP+FN}$,
+\[ F_1 = 2\,\frac{\text{precision}\cdot\text{recall}}{\text{precision}+\text{recall}} = \frac{2TP}{2TP+FP+FN}. \]
+
+\includegraphics[width=0.35\columnwidth]{images/PDF/precision_Accuracy.pdf}
+\includegraphics[width=0.65\columnwidth]{images/PDF/Accuracy_TinyML.pdf}
+
+
+
+\subsection{Convolutional Neural Networks}
+% GOAL V14 • You can contextualize the CNN network within the entire deep learning workflow, including preprocessing, post processing and its use in an embedded vision application and other typical application scenarios.
+% GOAL V14 • You can explain the basic architecture of a Convolutional Neural Network (CNN)with its characteristic layers(conv, padding, pool, flatten).
+CNN's are deep learning networks that are designed for grid structured data like pictures.
+\textbf{Key Idea:} Constrain the architecture to reduce the number of parameters by exploiting image properties:
+\begin{itemize}
+  \item Hidden layers stay \textbf{locally connected} (limited receptive field).
+  \item \textbf{Weight sharing} between hidden units (same kernel scanned over input).
+  \item Hidden layers may be \textbf{subsampled} (pooling).
+\end{itemize}
+\begin{tikzpicture}[scale=0.9]
+\def\bx#1#2#3#4#5{\draw[fill=#5,draw=black!60] (#1,#2) rectangle ++(#3,#4);}
+% input
+\bx{0}{0}{0.7}{2.0}{blue!20}; \node[below,scale=0.8] at (0.35,-0.1){$28{\times}28$};
+\node[above,scale=0.75] at (0.35,2.0){input};
+% conv1 feature maps (stacked)
+\foreach \k in {0,1,2}{\bx{1.4+0.12*\k}{0.3-0.12*\k}{0.55}{1.5}{green!25};}
+\node[below,scale=0.8] at (1.8,-0.1){$24{\times}24$}; \node[above,scale=0.75] at (1.8,2.0){conv};
+% pool1
+\foreach \k in {0,1,2}{\bx{2.7+0.12*\k}{0.55-0.12*\k}{0.4}{1.0}{orange!25};}
+\node[below,scale=0.8] at (3.0,-0.1){$12{\times}12$}; \node[above,scale=0.75] at (3.0,2.0){pool};
+% conv2
+\foreach \k in {0,1,2,3}{\bx{3.9+0.1*\k}{0.7-0.1*\k}{0.3}{0.7}{green!25};}
+\node[below,scale=0.8] at (4.2,-0.1){$8{\times}8$}; \node[above,scale=0.75] at (4.2,2.0){conv};
+% pool2
+\foreach \k in {0,1,2,3}{\bx{5.0+0.1*\k}{0.85-0.1*\k}{0.2}{0.4}{orange!25};}
+\node[below,scale=0.8] at (5.3,-0.1){$4{\times}4$};
+% FC vector
+\bx{6.1}{0.2}{0.18}{1.6}{red!20}; \node[above,scale=0.75] at (6.2,2.0){FC};
+% output 10
+\foreach \y in {0,1,...,4}{\node[circle,draw=red,fill=red!15,inner sep=1.5pt] at (6.9,0.35+0.35*\y){};}
+\node[below,scale=0.8] at (6.9,-0.1){$10$};
+\draw[-{Stealth},gray] (0.75,1.0)--(1.35,1.0);
+\draw[-{Stealth},gray] (2.0,1.0)--(2.65,1.0);
+\draw[-{Stealth},gray] (3.25,1.0)--(3.85,1.0);
+\draw[-{Stealth},gray] (4.5,1.0)--(4.95,1.0);
+\draw[-{Stealth},gray] (5.35,1.0)--(6.05,1.0);
+\draw[-{Stealth},gray] (6.3,1.0)--(6.75,1.0);
+\end{tikzpicture}
+\begin{outline}
+  \1 \textbf{Convolution:} $h_{ij}=\text{a}[\beta+\sum_{m,n}\omega_{mn}\,x_{i+m-2,j+n-2}]$; hyperparameters: kernel size $f$, stride $s$ (also subsamples), \#filters.
+  \1 \textbf{Padding:} a (zero) border lets the kernel reach edges and controls output size.
+  \1 \textbf{Pooling:} downsamples a window (max/average/global) \textrightarrow{} fewer parameters, translation robustness.
+  \1 \textbf{Flatten:} 2D maps \textrightarrow{} 1D vector for the final dense layers.
+\end{outline}
+% Pipeline: Conv \textrightarrow{} Pool \textrightarrow{} Conv \textrightarrow{} Pool \textrightarrow{} Flatten \textrightarrow{} Dense \textrightarrow{} Output.
+
+% \para{Softmax (post-processing)} maps logits $z$ to a probability distribution:
+% \[ \text{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}, \qquad \sum_i \text{softmax}(z)_i = 1. \]
+
+% \para{Applications} image classification, detection (e.g.\ \textbf{YOLO}), segmentation; audio (keyword spotting, scene detection); time series via 1D convolutions or \textbf{spectrograms} as 2D images. HW acceleration (STM32N6 Neural-ART) gives large speedups over a CPU core.
+
+% \para{Lab 14 --- MNIST on MCU} on-device \textbf{preprocessing} (downsample, normalize, format) \textrightarrow{} deploy a pruned CNN \textrightarrow{} \textbf{softmax} post-processing \textrightarrow{} verify the model fits SRAM/Flash while keeping accuracy.
+
+
+
 \subsection{Inference on Embedded Systems}
+
+\lstinputlisting{code/Ml_DL.c}
+
+
 \subsection{Applications}
+
+\begin{multicols}{2}
+    \begin{itemize}
+        \item Anomaly detection for predictive maintenance
+        \item Audio processing
+        \begin{itemize}
+            \item Keyword spotting / wakeword detection
+            \item Denoising / speech enhancement
+            \item Audio scene classification / sound event detection
+            \item Speech emotion recognition
+        \end{itemize}
+        \item Image processing / computer vision
+    \begin{itemize}
+        \item Object detection / face detection / presence sensing
+        \item Object recognition / instance segmentation
+        \item Object classification
+        \item People tracking
+        \item Human pose estimation (HPE)
+    \end{itemize}
+    \item Activity recognition, e.g. from IMU
+    \subitem Gesture recognition
+    \item Biosignal processing
+    \begin{itemize}
+        \item ECG
+        \item EMG
+        \item EEG 
+    \end{itemize}
+    \item Smart environmental sensing
+    \subitem Sensor fusion
+    \item Natural language understanding (NLP)
+    \begin{itemize}
+        \item Intent classification
+        \item Sentiment detection
+        \item Text-to-speech / Speech-to-text
+    \end{itemize}
+\end{itemize}
+\end{multicols}
+
