@@ -46,7 +46,7 @@
       \item Region-based memory protection
       \item Access permissions: Read / Write / Execute
       \item Privileged vs.~unprivileged access
-      \item Illegal access \textrightarrow \textcolor{red}{Memory Management Fault}
+      \item Illegal access \textrightarrow~\textcolor{red}{Memory Management Fault}
       \item Prevents memory corruption and isolates OS/tasks
     \end{itemize}
 
@@ -78,14 +78,32 @@
   \end{minipage}
 
 \subsection{Caching}
-  
   \subsubsection{Locality}
-  % GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code.
-  % GOAL L07 • You can analyze code with regard to its cache friendliness.
-  \begin{itemize}
-    \item Temporal: Recently accessed data will likely be reused.
-    \item Spatial: Nearby data will likely be reused.
-  \end{itemize}
+    % GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code.
+      \begin{itemize}
+        \item Temporal: Recently accessed data will likely be reused.
+        \item Spatial: Nearby addresses will likely be accessed.
+      \end{itemize}
+
+  \begin{minipage}[t]{0.68\linewidth}
+    \subsubsection{Cache-Friendly Code}
+    % GOAL L07 • You can analyze code with regard to its cache friendliness.
+      \begin{itemize}
+        \item C arrays use \textbf{row-major order}.
+        \item \textcolor{codeGreen}{Sequential (row-wise) transversal \textrightarrow~good spatial locality.}
+        \item \textcolor{red}{Column-wise / strided transversal \textrightarrow~many cache misses.}
+      \end{itemize}
+
+    \subsubsection{Cache Performance}
+      \begin{itemize}
+        \item Cache \textcolor{codeGreen}{hit} / \textcolor{red}{miss}: Requested data \textcolor{codeGreen}{found} / \textcolor{red}{not found}
+        \item \textcolor{red}{Miss types: Compulsory (cold) / Capacity / Conflict}
+      \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.28\linewidth}
+    \vspace{0pt}
+    \includegraphics[width=\linewidth]{images/PDF/Caches_RowMajorVsColumnMajor.pdf}
+  \end{minipage}
 
   \subsubsection{Cache Types}
     Cache memory is associative memory.
