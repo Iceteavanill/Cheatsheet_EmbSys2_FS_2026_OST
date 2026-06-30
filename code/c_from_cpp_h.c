@@ -11,12 +11,3 @@ int libfunc(int param);
 };
 #endif // (#ifdef __cplusplus)
 #endif // (#ifndef INCLUDE_LIB_H_)
-\end{lstlisting}
-\end{minipage}
-\begin{minipage}[t]{0.5\columnwidth}
-\begin{lstlisting}
-// LIB.c
-# include "LIB.h"
-int libfunc(int param){
-    return param & 1;
-}

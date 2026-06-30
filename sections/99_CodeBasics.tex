@@ -5,7 +5,10 @@
 To make a C library callable from C++ code the following template must be used:
 
 \begin{minipage}[t]{0.5\columnwidth}
-\lstinputlisting{code/cpp_from_c.cpp}
+\lstinputlisting{code/c_from_cpp_h.c}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+\lstinputlisting{code/c_from_cpp_c.c}
 Because the function is wrapped with \verb|extern|, nothing has to be done in the .c file.
 The compiler was already told that the function has the C calling conventions.
 \end{minipage}
@@ -19,8 +22,12 @@ Because this is only applied in C++, the compiler must adjust the naming scheme 
 \subsection{Calling C++ code from c applications}
 % GOAL L01 • You can write a C++ application and call it from C.
 If you want to call c++ code from a c application you must expose a pure c api:
-\lstinputlisting[firstline=5]{code/cpp_from_c.cpp}
-
+\begin{minipage}[t]{0.4\columnwidth}
+    \lstinputlisting[firstline=5]{code/cpp_from_c_h.cpp}
+\end{minipage}
+\begin{minipage}[t]{0.6\columnwidth}
+    \lstinputlisting[firstline=5]{code/cpp_from_c_c.cpp}
+\end{minipage}
 
 % -------------------------------------
 % TODO : Here are the coding tips from the last formula sheet. Maybe not relevant
