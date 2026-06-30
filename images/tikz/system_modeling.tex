@@ -1,0 +1,66 @@
+% ---- palette ----
+\definecolor{redbord}{RGB}{255,0,0}
+\definecolor{redfill}{RGB}{253,231,231}
+\definecolor{brownfill}{RGB}{150,131,125}
+\definecolor{purpfill}{RGB}{183,170,216}
+\definecolor{purpbord}{RGB}{128,110,180}
+\definecolor{salmfill}{RGB}{240,135,135}
+\definecolor{salmbord}{RGB}{197,90,90}
+\definecolor{grnfill}{RGB}{183,225,158}
+\definecolor{grnbord}{RGB}{122,170,90}
+\definecolor{boxgray}{RGB}{232,232,232}
+\definecolor{boxgrayb}{RGB}{140,140,140}
+\definecolor{cybgray}{RGB}{120,120,120}
+\definecolor{physred}{RGB}{132,38,38}
+\definecolor{linegray}{RGB}{120,120,120}
+
+\hfill\resizebox{0.5\columnwidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  arrow/.style={-{Stealth[length=3mm,width=2.6mm]},line width=1.1pt},
+]
+ 
+% ===== embedded system boundary (pink, red border) =====
+\node[rounded corners=11pt,draw=redbord,line width=1.8pt,fill=redfill,
+      minimum width=6.2cm,minimum height=3.7cm,anchor=south west] (esys) at (2.7,3.0){};
+ 
+% ===== physical-world process box (green) =====
+\node[rounded corners=9pt,draw=grnbord,line width=1pt,fill=grnfill,align=center,
+      minimum width=4.6cm,minimum height=1.3cm,font=\normalsize\bfseries] at (5.8,2.4)
+      {physical/biological/social\\processes};
+ 
+% ===== cyber / physical dividing line =====
+\draw[linegray,line width=1pt] (0.4,3.4)--(9.0,3.4);
+ 
+% ===== observing / influencing boxes (straddle the line) =====
+\node[draw=purpbord,line width=0.8pt,fill=purpfill,minimum width=1.7cm,
+      minimum height=0.62cm,inner sep=2pt] (obs) at (3.6,3.4){observing};
+\node[draw=salmbord,line width=0.8pt,fill=salmfill,minimum width=1.7cm,
+      minimum height=0.62cm,inner sep=2pt] (inf) at (8.0,3.4){influencing};
+ 
+% ===== computation core (brown) =====
+\node[rounded corners=7pt,fill=brownfill,text=white,align=center,
+      minimum width=1.9cm,minimum height=1.2cm,font=\normalsize] (core) at (5.8,5.1)
+      {reasoning\\deciding\\big data};
+ 
+% ===== flow arrows =====
+\draw[arrow] (obs.north) -- (3.6,5.1) -- (core.west);
+\draw[arrow] (core.east) -- (8.0,5.1) -- (inf.north);
+ 
+% ===== labels inside / around the embedded system =====
+\node[anchor=west,font=\large\bfseries,text=red] at (2.9,7.0) {Embedded System};
+\node[font=\large\bfseries] at (5.8,6.25) {Computation};
+\node[font=\large\bfseries] at (5.8,4.0) {Communication};
+ 
+% ===== world labels (left) =====
+\node[align=center,font=\bfseries,text=cybgray] at (1.45,3.95) {CYBER\\WORLD};
+\node[align=center,font=\bfseries,text=physred] at (1.55,2.85) {PHYSICAL\\WORLD};
+ 
+% ===== caption box (bottom, gray) =====
+\node[rounded corners=7pt,draw=boxgrayb,line width=0.8pt,fill=boxgray,align=center,
+      minimum width=8.0cm,minimum height=1.1cm,font=\normalsize\bfseries] at (5.2,0.7)
+      {Use feedback to influence the dynamics of the physical\\
+       world by taking smart decisions in the cyber world};
+ 
+\end{tikzpicture}
+}\hspace*{\fill}

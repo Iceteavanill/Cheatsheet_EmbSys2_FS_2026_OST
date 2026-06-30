@@ -3,7 +3,7 @@ The rest is not yet done or could be improved.
 
 
 <!-- GOAL V01 • You can describe what an embedded real-time system is, how it can be built and what challenges may arise in such systems. -->
-GOAL V01 • You gain a basic understanding of the modelling process and the system structure of the underlying embedded hardware and software layers (programmed in C/C++).
+<!-- GOAL V01 • You gain a basic understanding of the modelling process and the system structure of the underlying embedded hardware and software layers (programmed in C/C++). -->
 
 GOAL L01 • You can set up a C++ project in STM32CubeIDE from scratch.
 GOAL L01 • You can add libraries to your project and configure them properly.

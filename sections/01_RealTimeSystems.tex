@@ -1,6 +1,5 @@
 \section{Real time systems}
 % GOAL V01 • You can describe what an embedded real-time system is, how it can be built and what challenges may arise in such systems.
-
 \subsection{Characteristics of embedded systems}
 \begin{enumerate}
     \item \textbf{Interactivity}: They react via sensor input or actor output with the environment (event driven)
@@ -31,8 +30,10 @@ Core functions are:
     \includegraphics[width=\columnwidth]{images/PDF/System_OS.pdf}
 \end{minipage}
 
+\subsection{Modelling of an embedded system}
+% GOAL V01 • You gain a basic understanding of the modelling process and the system structure of the underlying embedded hardware and software layers (programmed in C/C++).
+\input{images/tikz/system_modeling}% TODO maybe add V1 slide 24
 
-% TODO v2
 \subsection{RTOS vs. Bare-Metal}
 % GOAL V02 • RTOS vs bare metal explanation
 
@@ -62,20 +63,7 @@ Core functions are:
 \end{itemize}
 
 
-\subsection{RTOS concepts and task management}
-% GOAL V02 • tasks/processes, states, context switch, scheduling, multitasking, FreeRTOS
-
-\subsubsection{Processes and tasks}
-% (from V02 RTOS task management)
-
-\subsubsection{Process states}
-
-\subsubsection{Context switching}
-
-\subsubsection{Scheduling and dispatching}
-
-\subsubsection{Multitasking and concurrency}
-% GOAL V02 • You can explain the principles of multitasking and concurrency.
+% \subsection{RTOS concepts and task management} TODO : needed?
 
 \subsubsection{FreeRTOS task management}
 % GOAL V02 • You can understand and utilize FreeRTOS to create and manage tasks.
@@ -86,7 +74,12 @@ Core functions are:
     \item Scheduler
     \begin{itemize}
         \item Algorithm that determines when, which task is executed
+        \item planning of processes only possible if usage is fully known, else it is \say{fancy guessing}
         \item Allows for multitasking
+    \end{itemize}
+    \item Dispatcher
+    \begin{itemize}
+        \item executes scheduled tasks
     \end{itemize}
     \item Objects
     \begin{itemize}
@@ -109,26 +102,30 @@ User mode (ring 1,2,3,4) does \textbf{not allow} execution of all instructions
 
 \subsection{Simple RTOS implementation}
 
-\begin{center}
-\includegraphics[width=0.6\columnwidth]{images/PDF/Scheduler.pdf}
-\end{center}
 
-When \verb|Addtaks| is called for a task, it is added to the queue.
-The Scheduler periodically checks if tasks are ready.
-If the task is ready to be called (Delay passed, sufficient priority), it is added to the dispatcher queue.
-The scheduler calls the dispatcher queue, which executes all queued tasks.
+\begin{minipage}{0.6\columnwidth}
+    \includegraphics[width=\columnwidth]{images/PDF/Scheduler.pdf}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+    When \verb|Addtaks| is called for a task, it is added to the queue.
+    The Scheduler periodically checks if tasks are ready.
+    If the task is ready to be called (Delay passed, sufficient priority), it is added to the dispatcher queue.
+    The scheduler calls the dispatcher queue, which executes all queued tasks.
+\end{minipage}
 
-\subsubsection{Scheduler}
 
-\subsubsection{Dispatcher}
+\subsubsection{Simple Scheduler and Dispatcher implementation}
 
 \begin{minipage}[t]{0.5\columnwidth}
+    Dispatcher header
     \lstinputlisting{code/Simple_Rtos_Dispatcher.hpp}
+    Dispatcher implementation
     \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
 \end{minipage}
 \begin{minipage}[t]{0.5\columnwidth}
+    Scheduler header
     \lstinputlisting{code/Simple_Rtos_Scheduler.hpp}
     The scheduler instantiates the dispatcher.
 \end{minipage}
-
+Dispatcher implementation (simple)
 \lstinputlisting{code/Simple_Rtos_Scheduler.cpp}

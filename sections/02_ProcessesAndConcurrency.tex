@@ -26,6 +26,7 @@ However, the context has to be saved.
 To minimize this overhead, it is important to minimize task switches when possible.
 
 \subsubsection{Steps for a context switch}
+% GOAL V02 • tasks/processes, states, context switch, scheduling, multitasking, FreeRTOS
 
 \begin{enumerate}
     \item Save the context of the interrupted process 1
@@ -74,6 +75,7 @@ A state transition may happen for the following reason:
 
 \subsection{Scheduling}
 % GOAL V02 • scheduling policies, scheduling problem, execution time, preemption
+% GOAL Lab 02 • You can understand the basics of a scheduler and a dispatcher, as well as how they relate to each other.
 
 Scheduling policies are different strategies to maximize some metrics (and improve system performance in):
 
@@ -149,6 +151,10 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
 \subsection{Inter-Process communication}
 % GOAL V03/V04/L04/L05 • IPC, mutex, semaphore, queues, deadlocks, priority inversion
 
+Inpterprocess communication is done via mutexes and semaphores.
+They can be taken (p operation) or released (v operation).
+Typically the semaphore (binary) is taken before entering a critical section and released after
+
 \subsubsection{Mutex}
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
     A mutex is \textbf{a locking mechanism} used to protect a shared resource.
@@ -156,6 +162,7 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
         \item Must be taken and released by the same task.
         \item Has an ``owner''.
         \item Is typically initialized in the unlocked state (i.e., token is available).
+        \item boolean valued
     \end{itemize}
 
 \subsubsection{Mutex from ISR}
@@ -177,5 +184,125 @@ extern "C" void button_pressed_callback_bin_sem(){
         \item Can be manipulated from different tasks; any can execute \texttt{give} and \texttt{take}.
         \item Has no ``owner''.
         \item At initialization it is typically empty (i.e., no available token).
+        \item Integer valued
     \end{itemize}
 
+\subsubsection{Semaphore vs. Mutex}
+\begin{tabular}{p{0.45\columnwidth} p{0.45\columnwidth}}
+\hline
+\textbf{Semaphore (signaling mechanism)} & \textbf{Mutex (locking mechanism)} \\
+\hline
+Binary: synchronization, mutual exclusion & Binary semaphore \emph{with} ownership \\
+Counting: resource management, event counting & \emph{and} priority-inheritance mechanism \\
+Any task/ISR may give or take & Only the owning task releases \\
+\hline
+\end{tabular}
+Use a mutex for higher safety when guarding a shared resource (ownership, recursive locking, task-deletion safety, priority-inversion avoidance).
+
+\subsubsection{Synchronize tasks using a Mutex}
+% GOAL L04 • You can synchronize multiple tasks with semaphores.
+% GOAL V04 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
+
+Using mutexes (or semaphores), tasks can be synchronized.
+
+
+
+\begin{minipage}{0.49\columnwidth}
+\textbf{correct}
+
+\begin{minipage}{0.49\columnwidth}
+Task a
+\begin{lstlisting}
+// statements
+aMutex.give()
+bMutex.take()
+// synchronized 
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.49\columnwidth}
+Task b
+\begin{lstlisting}
+// statements
+bMutex.give()
+aMutex.take()
+// synchronized
+\end{lstlisting}
+\end{minipage}
+\end{minipage}
+\begin{minipage}{0.49\columnwidth}
+\textbf{Incorrect (deadlock)}
+
+\begin{minipage}{0.49\columnwidth}
+Task a
+\begin{lstlisting}
+// statements
+bMutex.take()
+aMutex.give()
+// never reached
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{0.49\columnwidth}
+Task b
+\begin{lstlisting}
+// statements
+aMutex.take()
+bMutex.give()
+// never reached
+\end{lstlisting}
+\end{minipage}
+\end{minipage}
+
+\subsection{Priority inversion}
+% GOAL V04 • You can explain priority inversion and how it can be dealt with via resource access protocols.
+Under \emph{priority-based preemptive} scheduling, a low-priority task holding a resource blocks a higher-priority task (HPT).
+A resource-access protocol can prevent this.
+\subsubsection{Resource-access protocols}
+\begin{outline}
+  \1 \textbf{Priority Inheritance (PIP):} raise the LPT's priority to the HPT's while it holds the resource; bounds inversion (promotion is \emph{transitive} along the blocking chain). Does \emph{not} prevent deadlock from bad lock ordering.
+  \1 \textbf{Priority Ceiling (PCP):} the \emph{ceiling} of a resource is the highest priority of any task that may request it. A task inherits the ceiling on acquisition (or may only enter if its priority exceeds the system ceiling); on release its priority drops to the highest ceiling still held. \textbf{Prevents deadlock} by ordering resources.
+\end{outline}
+
+% If a lower priority task acquires a mutex that a higher priority task needs, the lower priority task is \say{upgraded} to the higher priority.
+% That way the higher priority task does stay blocked shorter, or it even circumvents a deadlock.
+
+
+\subsection{Message Queues}
+% GOAL V04 • You can explain how message queues and message or stream buffers/pipes work and how they are used (best practices).
+
+A \textbf{message queue} is a buffer-like kernel object through which tasks/ISRs exchange messages (with data), \textbf{decoupling} sender and receiver (they need not run simultaneously).
+A queue can be \textbf{Empty}, \textbf{Not Empty} or \textbf{Full}. 
+Sending to a full queue or receiving from an empty one can \textbf{block} the caller.
+\subsubsection{Data vs. pointer}
+\begin{ctabular}{p{0.46\linewidth}p{0.46\linewidth}}
+\textbf{By value (copy)} & \textbf{By reference (pointer)} \\ \hline
+two copies (sender\textrightarrow{}queue\textrightarrow{}receiver); good for \emph{small} messages. & queue holds a pointer to a shared buffer; good for \emph{large} messages. \\
+\end{ctabular}
+
+\subsection{Pipes \& Buffers}
+\textbf{Pipes} provide \emph{unstructured} byte exchange and synchronization: the reader blocks when empty, the writer when full. A \textbf{select} operation blocks on a condition over one or several pipes. FreeRTOS has no pipes; alternatives: \textbf{queues}, \textbf{stream buffers} (single reader/writer byte stream, e.g.\ ISR\textrightarrow{}task or core-to-core) and \textbf{message buffers} (discrete variable-length messages on top of stream buffers).
+
+\subsection{Locks vs.\ Lock-Free}
+Queues are a quasi lock-free instrument: transferring data ownership avoids explicit locks. 
+A gatekeeper task with sole ownership of a resource (no locking), or a shared memory pool passed by reference can serve as the sole handler of critical structures.
+
+\subsection{Deadlocks}
+A \textbf{deadlock} permanently blocks threads because their resource needs can never be satisfied (possible whenever the RTOS shares resources and a thread may hold several).
+
+\subsubsection{Coffman conditions}
+All four must hold for a deadlock:
+\begin{ctabular}{ll}
+Mutual exclusion & resource used by one task at a time \\
+No preemption & freed only by its holder \\
+Hold and wait & holds some, waits for more \\
+Circular wait & cyclic chain of holders/requesters \\
+\end{ctabular}
+
+\subsubsection{Prevention} 
+Negate one condition:
+\begin{outline}
+  \1 \textbf{No preemption:} release held resources if a new request is denied, then re-request all together.
+  \1 \textbf{Hold and wait:} request \emph{all} resources at once.
+  \1 \textbf{Circular wait:} acquire resources in one global \textbf{ascending order} (\emph{forward strategy}).
+\end{outline}
+Mutual exclusion is usually not eliminable. 
+Assess deadlock risk over \emph{all} processes together, not pairwise.
