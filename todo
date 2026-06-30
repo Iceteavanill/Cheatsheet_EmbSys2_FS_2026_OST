@@ -80,10 +80,11 @@ GOAL L06 • You can assess and estimate the memory usage of a task.
 <!-- GOAL L07 • You can employ Arm’s access levels to manage privileges of tasks and user programs in FreeRTOS. -->
 
 <!-- V07 – Memory Management (II): Caching -->
-GOAL V07 • You can explain the different cache types and their characteristics.
-GOAL V07 • You understand the cache accesses (read, write) and different cache replacement strategies.
-GOAL V07 • You know how to assess the cache performance.
-GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency.
+<!-- TODOs that may be fullfilled -->
+<!-- GOAL V07 • You can explain the different cache types and their characteristics.
+<!-- GOAL V07 • You understand the cache accesses (read, write) and different cache replacement strategies. -->
+<!-- GOAL V07 • You know how to assess the cache performance. -->
+<!-- GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency. -->
 
 <!-- V08 – Memory Management (III): Primary & Secondary Storage -->
 GOAL V08 • You know the basics of how flash memory works and how it can be used together

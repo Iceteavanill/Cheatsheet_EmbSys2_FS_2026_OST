@@ -136,8 +136,8 @@
   \end{minipage}
   \vspace{0.2cm}  
 
-    % GOAL V07 • You can explain the different cache types and their characteristics.
     \textbf{Cache Types and Structure}
+    % GOAL V07 • You can explain the different cache types and their characteristics.
 
     \begin{tabular}{llll}
       \toprule
@@ -179,19 +179,6 @@
     \end{minipage}
 
     \vspace{0.2cm}
-    % \begin{minipage}[t]{0.33\columnwidth}
-    %   \textbf{Fully associative}\vfill
-    %   \includegraphics[width=\linewidth]{images/PDF/Cache_Vollassioziativ.pdf}
-    % \end{minipage}\hfill
-    % \begin{minipage}[t]{0.33\columnwidth}
-    %   \textbf{Direct mapped}\vfill
-    %   \includegraphics[width=\linewidth]{images/PDF/Cache_Einwegassioziativ.pdf}
-    % \end{minipage}\hfill
-    % \begin{minipage}[t]{0.33\columnwidth}
-    %   \textbf{Set associative} (2-way)\vfill
-    %   \includegraphics[width=\linewidth]{images/PDF/Cache_Zweiwegassioziativ.pdf}
-    % \end{minipage}
-
     \begin{minipage}[t]{0.48\columnwidth}
       \textbf{Fully associative}\vfill
       \includegraphics[width=\linewidth]{images/PDF/Cache_Vollassioziativ.pdf}
@@ -211,7 +198,7 @@
     \end{minipage}
 
   \subsubsection{Cache Accesses}
-  % GOAL V07 • You understand the cache accesses (read, write).
+    % GOAL V07 • You understand the cache accesses (read, write) and different cache replacement strategies.
     \begin{minipage}[t]{0.36\columnwidth}
       \begin{enumerate}
         \item Convert address to binary
@@ -227,39 +214,93 @@
         \item \textcolor{red}{Read-miss:} Load full cache line
         \item \textcolor{codeGreen}{Write-hit:} Depends on policy
         \begin{itemize}
-          \item Write-trough: Update cache \& memory
+          \item Write-through: Update cache \& memory
           \item Write-back: Update cache only (dirty bit set)
         \end{itemize}
         \item \textcolor{red}{Write-miss:} Write-allocate or no-write-allocate
       \end{itemize}
+      \textbf{Typical combinations:}
+      \begin{itemize}
+        \item Write-back + Write-allocate\\ \textrightarrow~maximize write \textcolor{codeGreen}{hits}
+        \item Write-through + No-Write-allocate\\ \textrightarrow~allocation gives no performance gain 
+      \end{itemize}
     \end{minipage}
-    
+
   \subsubsection{Replacement Policies}
-  % GOAL V07 • You understand different cache replacement strategies.
+  % GOAL V07 • You understand the cache accesses (read, write) and different cache replacement strategies.
     \begin{itemize}
-      \item \textbf{LRU:} Replace least recently used line
-      \item \textbf{FIFO:} Replace oldest inserted line
-      \item \textbf{Random:} Random eviction
-      \item \textbf{Pseudo-LRU:} Hardware approximation of LRU (efficient)
+      \item \textbf{LRU (Least Recently Used):} Replace least recently used line.
+        Assumes entries unused for a long time are unlikely to be used again soon.
+      \item \textbf{Random:} Random (or pseudo-random) eviction.
+        For large caches (e.g., $n \geq 4$ ways), gives results comparable to LRU.
+      \item \textbf{FIFO:} Replace oldest inserted line.
+      \item \textbf{LFU (Least Frequently Used):} Replace the least frequently used line.
+      \item \textbf{Pseudo-LRU:} Hardware approximation of LRU, used because true LRU is expensive to implement (e.g., 3 history bits per cache line set, as in the Intel 486 \qty{8}{\kilo\byte} 4-way set-associative L1 cache).
     \end{itemize}
+
+  % TODO - brauchen wir das?: Pseudo-LRU Diagramme gem. V07, Slide 18
+  
+  % CHECK if needed: Cache Controller FSM (Slide 24) — pure diagram in the lecture, no accompanying text.
 
   \subsubsection{Cache Performance}
   % GOAL V07 • You know how to assess the cache performance.
-  % CHECK correctness of these formulas
-  \[\boxed{R_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{R_{miss}= 1 - R_{hit}} \quad \boxed{AMAT=T_{hit}+R_{miss}\cdot T_{miss}}\]
+    Single-level cache:
+    \[\boxed{r_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{r_{miss}= 1 - r_{hit}} \quad \boxed{T_{eff}=T_{hit}+r_{miss}\cdot A_{miss}}\]
+
+    Two-level cache hierarchy (L1 + L2):
+    \[
+      \boxed{T_{eff} = T_{Hit\text{-}L1} + r_{Miss\text{-}L1} \cdot \left( T_{Hit\text{-}L2} + r_{Miss\text{-}L2} \cdot A_{Miss\text{-}L2} \right)}
+      \quad
+      \boxed{\begin{aligned}
+        r_{Miss\text{-}L1} &= 1 - r_{Hit\text{-}L1} \\
+        r_{Miss\text{-}L2} &= 1 - r_{Hit\text{-}L2}
+      \end{aligned}}
+    \]
+
+    \textbf{Influencing factors:} cache size, line length, associativity ($n$), DMA block vs.\ line length, bus bandwidth, software support.
+
+    \textbf{Limitations:}
+    \begin{itemize}
+      \item \textcolor{codeGreen}{Hit} only from 2\textsuperscript{nd} access onward
+      \item \textcolor{red}{Read-miss} loads full line (mitigated by bursts)
+      \item Writing saves no time (write-through) or needs later write-back
+      \item Full cache \textrightarrow\ replacement algorithm needed (usually Pseudo-LRU)
+      \item I/O space must not be cached
+      \item Only main memory accesses are sped up, not registers/ALU
+    \end{itemize}
 
   \subsubsection{Cache Coherence and Consistency}
   % GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency.
+    \textbf{Coherence:} caches \& main memory must agree on shared data; occurs in multi-CPU \emph{and} single-CPU multi-level-cache systems.
+
+    \begin{minipage}[t]{0.6\columnwidth}
+      \textbf{Issues:} 
       \begin{itemize}
-        \item Coherence ensures consistency between caches and main memory
-        \item Problem: Same memory in multiple caches / DMA inconsistency
-        \item Solution:
-        \begin{itemize}
-          \item Invalidate cache lines
-          \item Clean (write back) dirty lines
-          \item Coherence protocols (e.g. MESI)
-        \end{itemize}
+        \item \textcolor{orange}{DMA writes to SRAM} \textrightarrow\ \textbf{invalidate} line
+        \item \textcolor{orange}{DMA reads from SRAM} \textrightarrow\ \textbf{clean} (write-back)\\line
+        \item \textcolor{orange}{CPU0--CPU1 write-through} \textrightarrow\ write propagation
+        \item \textcolor{orange}{CPU0--CPU1 write-back} \textrightarrow\ write serialization
       \end{itemize}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.36\columnwidth}
+      \textbf{Solutions:}
+      \begin{enumerate}
+        \item Don't cache shared data\\(slower)
+        \item All caches write-through\\+ bus snooping
+        \item Coherence protocol\\(e.g.\ \textbf{MESI})
+      \end{enumerate}
+    \end{minipage}
+
+    \paragraph{MESI Protocol}
+    \small
+    \begin{tabular}{@{}lll@{}}
+      \textbf{M} & \textbf{(= Modified)}  & only here, dirty; exclusive R/W, no memory update \\
+      \textbf{E} & \textbf{(= Exclusive)} & only here, clean; exclusive read; write $\rightarrow$ M \\
+      \textbf{S} & \textbf{(= Shared)}    & in multiple caches, consistent; write $\rightarrow$ E, others $\rightarrow$ I \\
+      \textbf{I} & \textbf{(= Invalid)}   & stale/empty; reload $\rightarrow$ S (WT) or E (WB) \\
+    \end{tabular}
+
+    % CHECK: MESI-Diagram needed?
 
 \subsection{Flash Memory} % TODO: Maybe add an image and check if content is complete or can be shortened
 % GOAL V08 • You know the basics of how flash memory works and how it can be used together with a file system.
