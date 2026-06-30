@@ -10,11 +10,13 @@ Layers: \textbf{input} (features), \textbf{hidden} (neurons),
 \textbf{output} (classes/values), 
 plus \textbf{bias}. \emph{Depth} $=$ \#layers $-1$; 
 \emph{weight size} between layers $M,M{+}1$ $=$ neurons$_M\cdot$neurons$_{M+1}$. 
-A \textbf{weight} $w$ scales an input, a \textbf{bias} $b$ offsets the output. One neuron:
+A \textbf{weight} $w$ scales an input, a \textbf{bias} $b$ offsets the output.
 % \[ z = \sum_i w_i x_i + b = \mathbf{W}^T\mathbf{x}, \qquad y = f(z). \]
+
 \includegraphics[width=\columnwidth]{images/PDF/dnn_neuron.pdf}
 \subsubsection{Propagation} 
-\textbf{Forward} (inference): $z^{[l]}=\mathbf{W}^{[l]T}\mathbf{x}+\mathbf{b}^{[l]}$, $a^{[l]}=g(z^{[l]})$. \textbf{Backward} (training): adjust weights/biases from the error.
+\textbf{Forward} (inference): $z^{[l]}=\mathbf{W}^{[l]T}\mathbf{x}+\mathbf{b}^{[l]}$, $a^{[l]}=g(z^{[l]})$. 
+\textbf{Backward} (training): adjust weights/biases from the error.
 
 \begin{minipage}{0.4\columnwidth}
     \textbf{Overfit} (high variance): too complex / too little data \textrightarrow{} large train--test gap. 
