@@ -142,7 +142,7 @@ CNN's are deep learning networks that are designed for grid structured data like
   \item \textbf{Weight sharing} between hidden units (same kernel scanned over input).
   \item Hidden layers may be \textbf{subsampled} (pooling).
 \end{itemize}
-\begin{tikzpicture}[scale=0.9]
+\hfill\begin{tikzpicture}[scale=0.9]
 \def\bx#1#2#3#4#5{\draw[fill=#5,draw=black!60] (#1,#2) rectangle ++(#3,#4);}
 % input
 \bx{0}{0}{0.7}{2.0}{blue!20}; \node[below,scale=0.8] at (0.35,-0.1){$28{\times}28$};
@@ -170,7 +170,7 @@ CNN's are deep learning networks that are designed for grid structured data like
 \draw[-{Stealth},gray] (4.5,1.0)--(4.95,1.0);
 \draw[-{Stealth},gray] (5.35,1.0)--(6.05,1.0);
 \draw[-{Stealth},gray] (6.3,1.0)--(6.75,1.0);
-\end{tikzpicture}
+\end{tikzpicture}\hspace*{\fill}
 \begin{outline}
   \1 \textbf{Convolution:} $h_{ij}=\text{a}[\beta+\sum_{m,n}\omega_{mn}\,x_{i+m-2,j+n-2}]$; hyperparameters: kernel size $f$, stride $s$ (also subsamples), \#filters.
   \1 \textbf{Padding:} a (zero) border lets the kernel reach edges and controls output size.
