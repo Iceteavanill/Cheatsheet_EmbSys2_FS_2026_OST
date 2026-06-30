@@ -43,10 +43,10 @@ GOAL L04 • You can analyze tasks and other FreeRTOS objects (e.g., semaphore, 
 GOAL L04 • You can combine semaphores and mutexes to create a safe access pattern.
 
 <!-- V04 – Concurrency (II): Locks vs. Lock-Free -->
-GOAL V04 • You can explain how message queues and message or stream buffers/pipes work and how they are used (best practices).
-GOAL V04 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
-GOAL V04 • You know what a deadlock is and why it can occur.
-GOAL V04 • You can explain priority inversion and how it can be dealt with via resource access protocols.
+<!-- GOAL V04 • You can explain how message queues and message or stream buffers/pipes work and how they are used (best practices). -->
+<!-- GOAL V04 • You can implement IPC concepts with these RTOS objects in FreeRTOS. -->
+<!-- GOAL V04 • You know what a deadlock is and why it can occur. -->
+<!-- GOAL V04 • You can explain priority inversion and how it can be dealt with via resource access protocols. -->
 
 <!-- Lab 05: Priority Inversion, Deadlocks and Queues -->
 GOAL L05 • You can recognize and prevent deadlocks in a system design.
