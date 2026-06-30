@@ -178,19 +178,29 @@
     \end{minipage}
 
     \vspace{0.2cm}
-    \begin{minipage}[t]{0.33\columnwidth}
+    % \begin{minipage}[t]{0.33\columnwidth}
+    %   \textbf{Fully associative}\vfill
+    %   \includegraphics[width=\linewidth]{images/PDF/Cache_Vollassioziativ.pdf}
+    % \end{minipage}\hfill
+    % \begin{minipage}[t]{0.33\columnwidth}
+    %   \textbf{Direct mapped}\vfill
+    %   \includegraphics[width=\linewidth]{images/PDF/Cache_Einwegassioziativ.pdf}
+    % \end{minipage}\hfill
+    % \begin{minipage}[t]{0.33\columnwidth}
+    %   \textbf{Set associative} (2-way)\vfill
+    %   \includegraphics[width=\linewidth]{images/PDF/Cache_Zweiwegassioziativ.pdf}
+    % \end{minipage}
+
+    \begin{minipage}[t]{0.48\columnwidth}
       \textbf{Fully associative}\vfill
       \includegraphics[width=\linewidth]{images/PDF/Cache_Vollassioziativ.pdf}
     \end{minipage}\hfill
-    \begin{minipage}[t]{0.33\columnwidth}
+    \begin{minipage}[t]{0.48\columnwidth}
       \textbf{Direct mapped}\vfill
       \includegraphics[width=\linewidth]{images/PDF/Cache_Einwegassioziativ.pdf}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.33\columnwidth}
-      \textbf{Set associative} (2-way)\vfill
-      \includegraphics[width=\linewidth]{images/PDF/Cache_Zweiwegassioziativ.pdf}
     \end{minipage}
-
+    \textbf{Set associative} (2-way)\vfill
+    \includegraphics[width=0.8\linewidth]{images/PDF/Cache_Zweiwegassioziativ.pdf}
 
   \subsubsection{Cache Accesses}
   % GOAL V07 • You understand the cache accesses (read, write).
@@ -198,7 +208,7 @@
       \begin{enumerate}
         \item Convert address to binary
         \item Extract Tag / \pastelbox{cyan}{Index} / \pastelbox{green}{Offset}
-        \item \textcolor{gray}{Select line (or set)}
+        \item Select line (or set)
         \item Compare Tag
         \item \textcolor{codeGreen}{Hit} / \textcolor{red}{Miss}
       \end{enumerate}
