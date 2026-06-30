@@ -18,6 +18,7 @@ Gefundene Fehler bitte per Issue melden.
 Einige Inhalte wurden aus den Unterrichtsmaterialien entnommen.
 Auch wurde die Vorlesung auf eine bestehende Zusammenfassung von Simone Stitz, Laurin Heitzer und Marco Stauber aufgebaut.
 Einige Inhalte (gekennzeichnet) wurden übernommen.
+Einige inhalte wurden von stackoverflow kopiert.
 
 ## Template
 

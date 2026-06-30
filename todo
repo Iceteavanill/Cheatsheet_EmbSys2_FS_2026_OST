@@ -8,7 +8,7 @@ GOAL V01 • You gain a basic understanding of the modelling process and the sys
 GOAL L01 • You can set up a C++ project in STM32CubeIDE from scratch.
 GOAL L01 • You can add libraries to your project and configure them properly.
 <!-- GOAL L01 • You can write C code that is callable from C++. -->
-GOAL L01 • You can write a C++ application and call it from C.
+<!-- GOAL L01 • You can write a C++ application and call it from C. -->
 GOAL L01 • You understand the general structure of a C++ project.
 
 

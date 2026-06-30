@@ -5,30 +5,7 @@
 To make a C library callable from C++ code the following template must be used:
 
 \begin{minipage}[t]{0.5\columnwidth}
-\begin{lstlisting}
-// LIB.h
-#ifndef INCLUDE_LIB_H_ // includeguards
-#define INCLUDE_LIB_H_
-#ifdef __cplusplus // check if c++ compiler
-extern "C"{ // Wrap all code with "extern"
-#endif
-
-int libfunc(int param);
-// ...
-#ifdef __cplusplus
-};
-#endif // (#ifdef __cplusplus)
-#endif // (#ifndef INCLUDE_LIB_H_)
-\end{lstlisting}
-\end{minipage}
-\begin{minipage}[t]{0.5\columnwidth}
-\begin{lstlisting}
-// LIB.c
-# include "LIB.h"
-int libfunc(int param){
-    return param & 1;
-}
-\end{lstlisting}
+\lstinputlisting{code/cpp_from_c.cpp}
 Because the function is wrapped with \verb|extern|, nothing has to be done in the .c file.
 The compiler was already told that the function has the C calling conventions.
 \end{minipage}
@@ -38,6 +15,12 @@ The compiler was already told that the function has the C calling conventions.
 Name mangling roughly means that the function name is altered in the compiling step.
 That is done to resolve namespace issues if 2 functions have the same name but different namespaces.
 Because this is only applied in C++, the compiler must adjust the naming scheme if a C library should be called.
+
+\subsection{Calling C++ code from c applications}
+% GOAL L01 • You can write a C++ application and call it from C.
+If you want to call c++ code from a c application you must expose a pure c api:
+\lstinputlisting[firstline=5]{code/cpp_from_c.cpp}
+
 
 % -------------------------------------
 % TODO : Here are the coding tips from the last formula sheet. Maybe not relevant
