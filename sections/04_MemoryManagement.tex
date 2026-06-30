@@ -456,39 +456,205 @@
   % GOAL V09 • You can understand why serialization is needed, how it works conceptually, and describe different serialization formats for embedded use cases.
   % GOAL L09 • You know the purpose and use cases of serialization.
 
+    \includegraphics[width=0.7\linewidth]{images/PDF/Serialization_mainPrinciple.pdf}
+
+    % Use cases:
+    \begin{itemize}
+      \item Communication between devices (via UART, SPI, network)
+      \item Persistent storage (flash, SD card)
+      \item Cross-platform / cross-language data exchange
+    \end{itemize}
+
   \subsubsection{Serialization and Deserialization Process}
   % GOAL L09 • You understand how data is serialized and deserialized.
 
-  \subsubsection{Serialization Formats}
+    \begin{itemize}
+      \item \textbf{Serialization}: Encode an in-memory data structure into a byte stream/text according to a defined schema/grammar (e.g. BNF).
+      \item \textbf{Deserialization}: Parse the byte stream/text using the same schema/grammar and reconstruct the data structure. % (or, for zero-copy formats, provide accessor functions that interpret the buffer directly without full reconstruction).
+      \item Serialization defines \emph{representation}; a \textbf{protocol} defines \emph{transmission} (e.g. framing, message boundaries).
+      A protocol usually operates ``underneath'' the serialization layer. % (e.g. OSI layer 4 vs. layer 6).
+    \end{itemize}
 
-  \subsubsection{FlatBuffers (Embedded Usage)}
+    % Typical embedded process:
+    \begin{enumerate}
+      \item Define a grammar/schema for the message format.
+      \item Implement a parser (deserializer) for incoming data, with error handling for malformed input.
+      \item Implement a serializer that writes outgoing data fields according to the schema.
+      \item Wrap messages with a transport-layer protocol (e.g. length-prefix) if message boundaries are not otherwise delimited.
+    \end{enumerate}
+
+  % TODO: insert the CommandInterface::ProcessCommand() code (Lab 09, Sections 2.2/2.3) showing the text-based parser/serializer for the {r:<number>} command and {d:<number>,<float>} data messages.
+
+  \subsubsection{Serialization Formats}
+    The efficiency (size, parsing speed, memory overhead) depends entirely on the chosen \emph{format}.
+    \begin{center}
+      \begin{tabular}{lp{3.8cm}p{3.8cm}}
+        \toprule
+        \textbf{Format} & \textbf{Advantage}                                                                                                                                      & \textbf{Disadvantage}                                                                                                                   \\ \midrule
+        CSV             & Simple, text-based, tabular, widely supported                                                                                                           & Limited to flat data; no native support for hierarchical/nested structures                                                              \\ \midrule % (e.g. directly importable into Excel)
+        JSON            & Flexible text format; supports dynamic, hierarchical/nested payloads; human-readable                                                                    & Relatively high serialization/deserialization overhead due to verbose text representation; inefficient for constrained embedded systems \\ \midrule
+        FlatBuffers     & Very memory-efficient, fast binary format; zero-copy deserialization (no parsing or object reconstruction needed); cross-language compatible via schema & Rather complex; poor human readability/debuggability; requires a predefined, shared schema (less flexible/dynamic)                      \\ \bottomrule
+      \end{tabular}
+    \end{center}
+
+  \subsubsection{FlatBuffers (Embedded Usage)} % TODO shorten this!
   % GOAL L09 • You know how to use the FlatBuffers serialization library.
+
+    \begin{itemize}
+      \item Is a binary serialization library.
+      \item A schema (\texttt{.fbs}) defines message \texttt{table}s, from which language-specific code is generated.
+      \item Supports \textbf{zero-copy} access: fields are read directly from the buffer without full deserialization, reducing memory usage and CPU overhead.
+      \item \textbf{union} allows different message types to share one interface; an implicit type tag identifies the contained message.
+
+        % Example schema pattern:
+\begin{lstlisting}
+namespace CommunicationObjects;
+
+table CommandMessage { number:int; }
+table DataMessage    { timestamp:int; temperature:float; }
+
+union Payload { CommandMessage, DataMessage }
+
+table Message { message:Payload; }
+
+root_type Message;\end{lstlisting}
+
+      \item Workflow on the microcontroller: Build the FlatBuffer object (using the generated builder API) $\rightarrow$ obtain the resulting byte buffer $\rightarrow$ send it via the transport protocol. On reception: pass the byte buffer to the generated root accessor $\rightarrow$ read fields directly (zero-copy).
+    \end{itemize}
+
+  % TODO: insert the FlatBuffers serialization/deserialization code from Lab 09, Section 2.4 (CommandInterface::ProcessCommand() FlatBuffers variant), including the Flatbuffers builder calls and the GetMessage()/root accessor calls.
 
   \subsubsection{Format Selection Criteria}
   % GOAL L09 • You can select an appropriate serialization format given a program’s requirements.
+
+  Decision factors:
+  \begin{itemize}
+    \item \textbf{Target audience / tooling}: if non-technical users or third-party software (e.g. Excel) must consume the data directly, prefer a simple, human-readable, widely supported format like \textbf{CSV} (e.g. medical datalogger example: CSV chosen so medical staff can import data directly without custom tooling).
+    \item \textbf{Structural complexity}: flat/tabular data $\rightarrow$ CSV; nested/hierarchical/dynamic data $\rightarrow$ JSON (or FlatBuffers if also resource-constrained).
+    \item \textbf{Resource constraints (RAM/CPU/bandwidth)}: highly constrained embedded systems with frequent (de)serialization and tight real-time requirements $\rightarrow$ \textbf{FlatBuffers} (binary, zero-copy).
+    \item \textbf{Cross-language interoperability}: if the same schema must be used by firmware and several other languages (PC tools, web apps) $\rightarrow$ FlatBuffers' schema-driven code generation is advantageous.
+    \item \textbf{Debuggability during development}: text formats (CSV/JSON) are easier to inspect manually (e.g. over a terminal) than binary formats.
+  \end{itemize}
+
+  % TODO: if there is a specific exam-style decision table or worked example provided in lecture slides, insert it here.
 
 
 \subsection{BNF Grammar}
 % GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted.
 
+% TODO: Cross check with Lecture!
   \subsubsection{BNF Syntax}
+    Backus-Naur Form (BNF) is a notation for describing context-free grammars. A grammar consists of:
+      \begin{itemize}
+        \item \textbf{Terminals}: Literal symbols/characters that appear in the final string (e.g. \texttt{'a'}, \texttt{','}, \texttt{'\{'}).
+        \item \textbf{Non-terminals}: Placeholders written as \texttt{<name>}, which are recursively expanded using production rules.
+        \item \textbf{Production rule}: \texttt{<symbol> ::= expression}, read as "a \texttt{<symbol>} can be replaced by \texttt{expression}".
+        \item \textbf{Alternation} \texttt{|}: separates alternative productions (logical OR).
+        \item \textbf{Concatenation}: Sequence of terminals/non-terminals next to each other (logical AND / sequence).
+        \item \textbf{Recursion}: A non-terminal may (directly or indirectly) refer to itself, enabling repetition of arbitrary length (e.g. lists, numbers of arbitrary digit count).
+      \end{itemize}
 
-  \subsubsection{Structured Data Representation}
+      General template:
+      \[\texttt{<A>} ::= \texttt{<B>} \;\texttt{<C>} \;|\; \texttt{<B>} \, \texttt{','} \, \texttt{<A>}\]
+      This reads: an $A$ is either a $B$ followed by a $C$, \emph{or} a $B$ followed by a comma followed by another $A$ (recursive, allows arbitrarily long comma-separated lists).
 
+% TODO: Cross check with Lecture!
+    \subsubsection{Structured Data Representation}
+      To check whether a data stream is \emph{deserializable} according to a BNF:
+      \begin{enumerate}
+        \item Start at the root non-terminal (e.g. \texttt{<message>}).
+        \item Try to match the input stream against one of the alternative productions, left to right.
+        \item Recursively expand non-terminals until only terminals remain, consuming input symbols accordingly.
+        \item If the entire input is consumed and matches exactly one valid derivation, the stream is deserializable; otherwise it is malformed (parser should raise/signal an error).
+      \end{enumerate}
 
+      Practical parsing/serialization notes (cf. Lab 09):
+      \begin{itemize}
+        \item A \textbf{protocol} (e.g. length-prefixing) operates "underneath" serialization — it tells the receiver how many bytes a message consists of (OSI layer 4), while the BNF/serialization format defines how the bytes are structured and interpreted (OSI layer 6).
+        \item Text-based formats (CSV, JSON) are simple/human-readable but verbose (more parsing/transmission overhead); binary formats (FlatBuffers) are compact and fast (zero-copy deserialization) but not human-readable.
+        \item Common digit/number/string sub-grammars:
+        \[
+          \texttt{<digit>} ::= \texttt{'0'} \,|\, \texttt{'1'} \,|\, \dots \,|\, \texttt{'9'}
+        \]
+        \[
+          \texttt{<number>} ::= \texttt{<digit>} \,|\, \texttt{<digit>}\,\texttt{<number>}
+        \]
+      \end{itemize}
+
+  % TODO: insert the read/parse-command code snippet from Lab 09, Section 2.2 (CommandInterface::ProcessCommand parser for the {r:<number>} grammar) here as a concrete BNF-to-C example.
+
+% TODO: Cross check with Lecture!
 \subsection{Virtual Memory}
 % GOAL V09 • You can explain the concept of virtual memory, its prerequisites, and how/why it is used.
 
   \subsubsection{Concept of Virtual Memory}
+  Virtual memory decouples the address space seen by a program (\emph{virtual address space}) from the physical RAM address space (\emph{physical address space}). Each process operates as if it has its own large, contiguous, private memory; a hardware Memory Management Unit (MMU) translates virtual addresses to physical addresses at run time.
+
+  Goals/benefits:
+  \begin{itemize}
+    \item \textbf{Isolation}: one process cannot directly access another process's physical memory $\Rightarrow$ improved security/stability (similar in spirit to MPU-based task isolation seen in Lab 07, but virtual memory is a full address-translation mechanism, not just region-based access control).
+    \item \textbf{Abstraction}: programs can be linked/compiled assuming a fixed virtual address layout, independent of where they are actually loaded in physical RAM.
+    \item \textbf{Overcommitment}: total virtual memory of all processes can exceed physical RAM size (unused/inactive pages can be swapped to secondary storage, e.g. disk/flash).
+    \item \textbf{Simplifies memory management}: avoids external fragmentation of physical memory, since virtual contiguous memory need not be physically contiguous.
+  \end{itemize}
 
   \subsubsection{Use Cases and Requirements}
+  Prerequisites for virtual memory:
+  \begin{itemize}
+    \item Hardware MMU capable of address translation (table-based, e.g. page tables) and triggering faults on invalid access (\emph{page fault}).
+    \item An operating system component to manage page tables, handle page faults, and (optionally) swap pages to/from secondary storage.
+    \item Sufficient secondary storage if overcommitment/swapping is desired.
+  \end{itemize}
+  Typical use cases: general-purpose OSes (desktop/server) running multiple untrusted processes; \emph{not} typically used on small microcontrollers (e.g. Cortex-M class, as used throughout this course), which instead rely on simpler mechanisms such as the MPU for protection without full address translation, due to cost/complexity/real-time constraints.
 
+  % TODO: if your course uses a specific MMU example/code snippet (not present in these labs), insert it here.
 
+% TODO: Cross check with Lecture!
 \subsection{Paging}
 % GOAL V09 • You can understand the basics of address transformations and explain specifically how the page transformation works.
 
   \subsubsection{Address Translation}
+    A virtual address (VA) is split into:
+    \[VA = \underbrace{\text{Virtual Page Number (VPN)}}_{\text{high-order bits}} \;\|\; \underbrace{\text{Page Offset}}_{\text{low-order bits}}\]
+    The number of offset bits is determined by the page size:
+    \[\text{offset bits} = \log_2(\text{page size})\]
+    e.g. for a 4 KiB page size: $\log_2(4096) = 12$ offset bits.
+
+    Translation steps:
+    \begin{enumerate}
+      \item Extract VPN from the virtual address.
+      \item Look up VPN in the page table $\rightarrow$ obtain corresponding Physical Frame Number (PFN).
+      \item Concatenate PFN with the (unchanged) page offset to form the physical address:
+      \[PA = PFN \;\|\; \text{Page Offset}\]
+      \item If no valid mapping exists (page table entry invalid / not present), the MMU raises a \emph{page fault} exception, handled by the OS (e.g. load page from disk, or terminate process on illegal access).
+    \end{enumerate}
 
   \subsubsection{Page Tables}
+    \begin{itemize}
+      \item A \textbf{page table} maps VPNs to PFNs, one entry per page (\emph{Page Table Entry}, PTE).
+      \item Each PTE typically contains: PFN, valid/present bit, access permissions (read/write/execute), dirty bit, accessed bit, cacheability attributes.
+      \item Single-level (flat) page tables can be very large; \textbf{multi-level (hierarchical) page tables} split the VPN into several indices, each indexing into a different table level, so unused regions of the address space need no table entries — saving memory.
+      \item A \textbf{Translation Lookaside Buffer (TLB)} caches recent VPN$\to$PFN translations to avoid the cost of walking page tables on every memory access.
+    \end{itemize}
 
   \subsubsection{Page Transformation Mechanism}
+    Example (single-level page table), given:
+    \begin{itemize}
+      \item Virtual address width: $V$ bits
+      \item Page size: $P$ bytes $\Rightarrow$ offset width $= \log_2 P$ bits
+      \item Number of virtual pages: $2^{V - \log_2 P}$
+    \end{itemize}
+    Number of page table entries required:
+    \[\#\text{PTE} = 2^{(V - \log_2 P)}\]
+    Total page table size (if entry size $= E$ bytes):
+    \[\text{Table Size} = \#\text{PTE} \times E\]
+
+    Worked example pattern (fill in with given numbers in an exam question):
+    \begin{enumerate}
+      \item Determine page size $\Rightarrow$ offset bits.
+      \item Subtract offset bits from total VA width $\Rightarrow$ VPN bits.
+      \item $2^{\text{VPN bits}}$ gives the number of page table entries (and hence max. number of pages addressable).
+      \item Multiply by PTE size to get total page table memory footprint.
+    \end{enumerate}
+
+    % TODO: no paging/MMU code example exists in the provided labs (the course's MCUs use MPU-based protection, not full paging/MMU) — if the lecture slides provide a worked numeric example or pseudocode for page table walking, insert it here.
