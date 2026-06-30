@@ -304,14 +304,14 @@
 
 \subsection{Flash Memory} % TODO: Maybe add an image and check if content is complete or can be shortened
 % GOAL V08 • You know the basics of how flash memory works and how it can be used together with a file system.
-  
+
   \begin{itemize}
     \item Non-volatile memory (data persists without power)
     \item Based on floating-gate MOSFET (FGMOS)
     \item Types:
     \begin{itemize}
-      \item NOR Flash: Random access, fast read, code storage
-      \item NAND Flash: Block-based access, high density, data storage (e.g. SD cards)
+      \item \textbf{NOR Flash:} Random access, fast read, code storage
+      \item \textbf{NAND Flash:} Block-based access, fast write, high density, data storage (e.g. SD cards)
     \end{itemize}
     \item Key property: \textbf{erase-before-write}
     \item Erase is \textbf{block/sector-based}, not byte-based
@@ -320,6 +320,13 @@
 
   \subsubsection{Flash Structure}
   % GOAL L08 • You learn about the structure of flash memory (flash sectors) through hands-on experience.
+    \begin{minipage}[t]{0.7\columnwidth}
+      \includegraphics[width=\linewidth]{images/PDF/Flash_BlockNotation.pdf}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.28\columnwidth}
+      \includegraphics[width=\linewidth]{images/Flash_SRAM.png}
+    \end{minipage}
+
     \begin{itemize}
       \item Flash is divided into \textbf{sectors / pages / blocks}
       \item STM32H755 example:
@@ -331,6 +338,28 @@
       \item File systems map logical data \textrightarrow~flash sectors
     \end{itemize}
 
+  \begin{minipage}[t]{0.38\linewidth}
+  \subsubsection{Flash Sectors}
+  % NOTE: Lab relevance: STM32 + File system behavior
+    \begin{itemize}
+      \item Sector = smallest erase unit
+      \item Important constraint:
+        \begin{itemize}
+          \item Sector erase \textrightarrow~overwrite data
+        \end{itemize}
+      \item Example (STM32H755):
+        \begin{itemize}
+          \item Internal flash used for code\\+ persistent variables
+          \item Sector-based storage (e.g.\\sector 7 used for reset counter)
+        \end{itemize}
+      \item External flash (MT25QL256):
+        \begin{itemize}
+          \item Organized in blocks/sectors
+          \item Used with file systems\\(LittleFS / FatFS)
+        \end{itemize}
+    \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.58\linewidth}
   \subsubsection{Flash Read/Write Operations}
   % GOAL L08 • You can read from and write to flash memory.
     \begin{itemize}
@@ -349,64 +378,34 @@
         \end{itemize}
         \item Internal flash often accessed via HAL / driver functions
     \end{itemize}
+  \end{minipage}
 
   \subsubsection{RAM vs. Flash Lifetime}
   % GOAL L08 • You can understand the data lifetime difference between RAM and flash memory.
-
-  \begin{minipage}[t]{0.48\linewidth}
-    RAM:
-    \begin{itemize}
-        \item Volatile (lost on reset)
-        \item Unlimited write cycles (practically)
-        \item Fast access
+    \begin{minipage}[t]{0.48\linewidth}
+      RAM:
+      \begin{itemize}
+          \item Volatile (lost on reset)
+          \item Unlimited write cycles (practically)
+          \item Fast access
+          \item Typical use: Runtime variables
+        \end{itemize}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.48\linewidth}
+      Flash:
+      \begin{itemize}
+        \item Non-volatile (persistent storage)
+        \item Limited erase/write cycles
+        \item Slower write/erase than RAM
         \item Typical use: Firmware, persistent data
       \end{itemize}
-  \end{minipage}\hfill
-  \begin{minipage}[t]{0.48\linewidth}
-    Flash:
-    \begin{itemize}
-      \item Non-volatile (persistent storage)
-      \item Limited erase/write cycles
-      \item Slower write/erase than RAM
-      \item Typical use: Runtime variables
-    \end{itemize}
-  \end{minipage}
-
-  \subsubsection{Flash Sectors}
-  % NOTE: Lab relevance: STM32 + File system behavior
-    \begin{itemize}
-      \item Sector = smallest erase unit
-      \item Important constraint:
-        \begin{itemize}
-          \item Sector erase \textrightarrow~overwrite data
-        \end{itemize}
-      \item Example (STM32H755):
-        \begin{itemize}
-          \item Internal flash used for code + persistent variables
-          \item Sector-based storage (e.g. sector 7 used for reset counter)
-        \end{itemize}
-      \item External flash (MT25QL256):
-        \begin{itemize}
-          \item Organized in blocks/sectors
-          \item Used with file systems (LittleFS / FatFS)
-        \end{itemize}
-    \end{itemize}
+    \end{minipage}
 
 \subsection{File Systems}
 % GOAL L08 • You can make use of the basic functionalities of a file system.
+  A file system is a software layer that abstracts raw storage (Flash/SD) and manages how data is stored and retrieved.
 
-  \subsubsection{Basic File System Operations}
-    \begin{itemize}
-      \item File system provides abstraction over raw storage (Flash/SD)
-      \item Typical workflow:
-    \end{itemize}
-    \begin{enumerate}
-      \item Mount file system (initialize structures, buffers)
-      \item Open file (f\_open)
-      \item Read / Write data (f\_read, f\_write)
-      \item Close file (f\_close)
-    \end{enumerate}
-    
+  \begin{minipage}[t]{0.48\linewidth}
     \begin{itemize}
       \item File system handles:
         \begin{itemize}
@@ -416,30 +415,40 @@
         \end{itemize}
       \item Important: Always check return codes (robust embedded systems)
     \end{itemize}
-
-  \subsubsection{Embedded File Systems}
-  \begin{minipage}[t]{0.45\linewidth}
-      \begin{itemize}
-        \item Embedded file systems are optimized for flash memory constraints:
-        \begin{itemize}
-          \item Limited write cycles
-          \item Erase-before-write requirements
-          \item Sector-based storage
-        \end{itemize}
-      \end{itemize}
   \end{minipage}\hfill
-  \begin{minipage}[t]{0.51\linewidth}
-      \textbf{Common implementations:}    
-      \begin{itemize}
-        \item FatFS:
-        \begin{itemize}
-          \item Designed for NOR flash
-          \item Built-in wear leveling
-          \item Power-loss resilient (save for EmbSys)
-        \end{itemize}
-      \end{itemize}
+  \begin{minipage}[t]{0.48\linewidth}
+    \textbf{Common libraries:}\\
+    \begin{tabular}{ll}
+      \textbf{FatFS}    & SD cards, PC-compatible \\
+      \textbf{LittleFS} & NOR flash, power-fail safe,\\
+                        & wear leveling, small footprint
+    \end{tabular}
   \end{minipage}
 
+  \begin{minipage}[t]{0.48\linewidth}
+    \subsubsection{Basic File System Operations}
+      \begin{enumerate}
+        \item Initialize the storage
+        \item Mount file system (ready for use; initializes basic buffers of file system)
+        \item If \textcolor{red}{mount fails}: Format file system \textrightarrow\ mount again
+        \item Open file (f\_open)
+        \item Read / Write data (f\_read, f\_write)
+        \item Close file (f\_close)
+      \end{enumerate}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\linewidth}
+    \subsubsection{Embedded File Systems}
+      \begin{itemize}
+        \item Optimized for flash memory constraints:
+        \begin{itemize}
+          \item Limited write/erase cycles
+          \item Erase-before-write
+          \item Sector-based storage
+          \item Wear leveling
+          \item Power-loss resilient
+        \end{itemize}
+      \end{itemize}
+    \end{minipage}
 
 \subsection{Serialization}
 

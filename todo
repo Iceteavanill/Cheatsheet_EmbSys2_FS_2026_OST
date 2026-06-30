@@ -87,14 +87,13 @@ GOAL L06 • You can assess and estimate the memory usage of a task.
 <!-- GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency. -->
 
 <!-- V08 – Memory Management (III): Primary & Secondary Storage -->
-GOAL V08 • You know the basics of how flash memory works and how it can be used together
-with a file system.
+<!-- GOAL V08 • You know the basics of how flash memory works and how it can be used together with a file system. -->
 
 <!-- Lab 08 – Flash Memory and File Systems -->
-GOAL L08• You learn about the structure of flash memory (flash sectors) through hands-on experience.
-GOAL L08• You can read from and write to flash memory.
-GOAL L08• You can understand the data lifetime difference between RAM and flash memory.
-GOAL L08• You can make use of the basic functionalities of a file system.
+<!-- GOAL L08• You learn about the structure of flash memory (flash sectors) through hands-on experience. -->
+<!-- GOAL L08• You can read from and write to flash memory. -->
+<!-- GOAL L08• You can understand the data lifetime difference between RAM and flash memory. -->
+<!-- GOAL L08• You can make use of the basic functionalities of a file system. -->
 GOAL L08• You know the memory model of a microcontroller and how to find the different memory locations.
 
 <!-- V09 – Memory Management (III): Primary & Secondary Storage (cont’d) -->
