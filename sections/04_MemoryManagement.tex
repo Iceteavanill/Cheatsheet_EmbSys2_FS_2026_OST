@@ -163,7 +163,8 @@
       \textbf{Cache Organization}
       \begin{itemize}
         \item Cache contains $2^{\cacheK}$ lines
-        \item Cache size: $2^{\cacheK+\cacheI}$
+        \item Cache size: $2^{\cacheK+\cacheI}$\\
+        For $n$-way: $n \cdot 2^{k+i}$
         \item Entry: Tag + Valid + Data
       \end{itemize}
     \end{minipage}\hfill
@@ -199,8 +200,15 @@
       \textbf{Direct mapped}\vfill
       \includegraphics[width=\linewidth]{images/PDF/Cache_Einwegassioziativ.pdf}
     \end{minipage}
-    \textbf{Set associative} (2-way)\vfill
-    \includegraphics[width=0.8\linewidth]{images/PDF/Cache_Zweiwegassioziativ.pdf}
+
+    \begin{minipage}[t]{0.58\columnwidth}
+      \textbf{Set associative} (2-way)\vfill
+      \includegraphics[width=\linewidth]{images/PDF/Cache_Zweiwegassioziativ.pdf}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.38\columnwidth}
+      \textbf{Naming Convention}\vfill
+      \includegraphics[width=\linewidth]{images/PDF/Cache_NamingConvention.pdf}
+    \end{minipage}
 
   \subsubsection{Cache Accesses}
   % GOAL V07 • You understand the cache accesses (read, write).
