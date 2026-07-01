@@ -563,7 +563,7 @@
 \subsection{Virtual Memory}
 % GOAL V09 • You can explain the concept of virtual memory, its prerequisites, and how/why it is used.
 
-  \subsubsection{Concept of Virtual Memory}
+  \subsubsection{Concept}
   \begin{center}
     \includegraphics[width=0.8\linewidth]{images/PDF/VirtualMemory_Concept.pdf}
   \end{center}
@@ -590,18 +590,28 @@
 % GOAL V09 • You can understand the basics of address transformations and explain specifically how the page transformation works.
 
   \subsubsection{Address Translation}
-    \begin{enumerate}
-      \item Extract \textbf{Virtual Page Number (VPN)} from \textbf{Virtual Address (VA)}.
-            \[\text{VA} = \underbrace{\text{VPN}}_{\text{high-order bits}} \;\|\; \underbrace{\text{Page Offset}}_{\text{low-order bits}}\]
-      \item Look up VPN in the page table $\rightarrow$ obtain corresponding \textbf{Physical Frame Number (PFN)}.
-      \item Concatenate PFN with the (unchanged) page offset to form the physical address:
-      \[\text{PA} = \text{PFN} \;\|\; \text{Page Offset}\]
-      The number of \textbf{offset bits} is determined by the page size:
-      \[\text{offset bits} = \log_2(\text{page size})\]
-      e.g. for a \qty{4}{KiB} page size: $\log_2(4096) = 12$ offset bits.
+    \begin{center}
+      \includegraphics[width=\linewidth]{images/PDF/Paging_AddressTranslation.pdf}
+    \end{center}
 
-      \item \textcolor{red}{Invalid mapping} (page table entry invalid / not present) $\rightarrow$ MMU raises a \emph{page fault}; handled by the OS (e.g. load page from disk, or terminate process on illegal access).
-    \end{enumerate}
+    Page size $= 2^k$ bytes \textrightarrow~Offset bits $= k = \log_2(\text{page size})$
+
+    Example: $\qty{4}{KiB} = 4096 = 2^{12}$ bytes \textrightarrow~Offset $= 12$ bits
+    
+    \textcolor{red}{Invalid page table entry} $\rightarrow$ MMU raises a \emph{page fault} $\rightarrow$ OS handles fault
+    
+    % \begin{enumerate}
+    %   \item Extract \textbf{Virtual Page Number (VPN)} from \textbf{Virtual Address (VA)}.
+    %         \[\text{VA} = \underbrace{\text{VPN}}_{\text{high-order bits}} \;\|\; \underbrace{\text{Page Offset}}_{\text{low-order bits}}\]
+    %   \item Look up VPN in the page table $\rightarrow$ obtain corresponding \textbf{Physical Frame Number (PFN)}.
+    %   \item Concatenate PFN with the (unchanged) page offset to form the physical address:
+    %   \[\text{PA} = \text{PFN} \;\|\; \text{Page Offset}\]
+    %   The number of \textbf{offset bits} is determined by the page size:
+    %   \[\text{offset bits} = \log_2(\text{page size})\]
+    %   e.g. for a \qty{4}{KiB} page size: $\log_2(4096) = 12$ offset bits.
+
+    %   \item \textcolor{red}{Invalid mapping} (page table entry invalid / not present) $\rightarrow$ MMU raises a \emph{page fault}; handled by the OS (e.g. load page from disk, or terminate process on illegal access).
+    % \end{enumerate}
 
   \subsubsection{Page Tables}
     \begin{itemize}
