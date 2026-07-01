@@ -1,8 +1,8 @@
 \section{Code Basics}
 
-\subsection{Calling C library code from C++ applications}
+\subsection{Calling C library code from \CC{} applications}
 % GOAL L01 • You can write C code that is callable from C++.
-To make a C library callable from C++ code the following template must be used:
+To make a C library callable from \CC{} code the following template must be used:
 
 \begin{minipage}[t]{0.5\columnwidth}
 \lstinputlisting{code/c_from_cpp_h.c}
@@ -17,11 +17,11 @@ The compiler was already told that the function has the C calling conventions.
 
 Name mangling roughly means that the function name is altered in the compiling step.
 That is done to resolve namespace issues if 2 functions have the same name but different namespaces.
-Because this is only applied in C++, the compiler must adjust the naming scheme if a C library should be called.
+Because this is only applied in \CC{}, the compiler must adjust the naming scheme if a C library should be called.
 
-\subsection{Calling C++ code from c applications}
+\subsection{Calling \CC{} code from c applications}
 % GOAL L01 • You can write a C++ application and call it from C.
-If you want to call c++ code from a c application you must expose a pure c api:
+If you want to call \CC{} code from a C application you must expose a pure c api:
 \begin{minipage}[t]{0.4\columnwidth}
     \lstinputlisting[firstline=5]{code/cpp_from_c_h.cpp}
 \end{minipage}
