@@ -97,16 +97,16 @@ GOAL L06 • You can assess and estimate the memory usage of a task.
 GOAL L08• You know the memory model of a microcontroller and how to find the different memory locations.
 
 <!-- V09 – Memory Management (III): Primary & Secondary Storage (cont’d) -->
-GOAL V09 • You can understand why serialization is needed, how it works conceptually, and describe different serialization formats for embedded use cases.
-GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted.
+<!-- GOAL V09 • You can understand why serialization is needed, how it works conceptually, and describe different serialization formats for embedded use cases. -->
+<!-- GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted. -->
 GOAL V09 • You can understand the basics of address transformations and explain specifically how the page transformation works.
-GOAL V09 • You can explain the concept of virtual memory, its prerequisites, and how/why it is used.
+<!-- GOAL V09 • You can explain the concept of virtual memory, its prerequisites, and how/why it is used. -->
 
 <!-- Lab 09 – Serialization and Deserialization -->
-GOAL L09 • You know the purpose and use cases of serialization.
-GOAL L09 • You understand how data is serialized and deserialized.
-GOAL L09 • You can select an appropriate serialization format given a program’s requirements.
-GOAL L09 • You know how to use the FlatBuffers serialization library.
+<!-- GOAL L09 • You know the purpose and use cases of serialization. -->
+<!-- GOAL L09 • You understand how data is serialized and deserialized. -->
+<!-- GOAL L09 • You can select an appropriate serialization format given a program’s requirements. -->
+<!-- GOAL L09 • You know how to use the FlatBuffers serialization library. -->
 
 <!-- V10 – Parallelism (I): SIMD Architectures -->
 <!-- GOAL V10 • You can explain how SIMD instructions lead to improved performance of applications like signal processing, machine learning or real-time data handling on microcontrollers. -->
