@@ -109,21 +109,20 @@ GOAL L09 • You can select an appropriate serialization format given a program�
 GOAL L09 • You know how to use the FlatBuffers serialization library.
 
 <!-- V10 – Parallelism (I): SIMD Architectures -->
-GOAL V10 • You can explain how SIMD instructions lead to improved performance of applications like signal processing, machine learning or real-time data handling on microcontrollers.
+<!-- GOAL V10 • You can explain how SIMD instructions lead to improved performance of applications like signal processing, machine learning or real-time data handling on microcontrollers. -->
 
 <!-- Lab 10 – DSP/SIMD Instructions -->
-GOAL L10 • You can utilize SIMD instructions to speed up basic matrix and vector calculations.
-GOAL L10 • You can apply the concepts of loop unrolling and partial loop unrolling.
+<!-- GOAL L10 • You can utilize SIMD instructions to speed up basic matrix and vector calculations. -->
+<!-- GOAL L10 • You can apply the concepts of loop unrolling and partial loop unrolling. -->
 GOAL L10 • You can use a cycle counter to analyze the speed of a function.
-GOAL L10 • You can work with the CMSIS-Core and CMSIS DSP library on Arm Cortex microcontrollers
-to realize the vector and matrix operations.
+<!-- GOAL L10 • You can work with the CMSIS-Core and CMSIS DSP library on Arm Cortex microcontrollers to realize the vector and matrix operations. -->
 
 <!-- V11 – Parallelism (II): Pipelined & Multi-Processor Architecture -->
 GOAL V11 • You can understand the concepts behind instruction-level parallelism (ILP) and thread-level parallelism (TLP), and set the two into context.
-GOAL V11 • You can explain how pipelining and its variations like superscalar or VLIW architectures work.
-GOAL V11 • You can assess challenges associated with pipelines like hazards and describe possible solutions.
-GOAL V11 • You can describe and classify computing platforms according to their (potentially different) architectural characteristics using Flynn’s taxonomy.
-GOAL V11 • You can recognize the specific type of a multi-processor architecture and name the underlying mechanisms and primitives.
+<!-- GOAL V11 • You can explain how pipelining and its variations like superscalar or VLIW architectures work. -->
+<!-- GOAL V11 • You can assess challenges associated with pipelines like hazards and describe possible solutions. -->
+<!-- GOAL V11 • You can describe and classify computing platforms according to their (potentially different) architectural characteristics using Flynn’s taxonomy. -->
+<!-- GOAL V11 • You can recognize the specific type of a multi-processor architecture and name the underlying mechanisms and primitives. -->
 
 <!-- Lab 11 – Heterogeneous Multiprocessing -->
 GOAL L11 • You can outline how FreeRTOS is run on a heterogeneous multiprocessor system.

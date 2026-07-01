@@ -1,14 +1,106 @@
 \section{Parallelism}
 
-\subsection{SIMD Architectures}
+\subsection{Levels of Parallelism}
+A single processor at ever-higher clock hits limits (complexity, power), so efficiency comes from parallelism:
+\begin{outline}
+  \1 \textbf{ILP} (instruction-level): overlap instruction stages (pipelining, superscalar, VLIW) --- gains at the same clock.
+  \1 \textbf{TLP} (thread-level): several concurrent threads (own stack/registers/PC) when one program lacks independent instructions.
+  \1 \textbf{DLP} (data-level) \textrightarrow{} \textbf{SIMD}: one instruction for many data elements. 
+  \textbf{MIMD} \textrightarrow{} multiple instructions for multiple data (more efficient than SIMD) 
+\end{outline}
+
+\subsection{SIMD (single instruction, multiple data)}
 % GOAL V10 • You can explain how SIMD instructions lead to improved performance of applications like signal processing, machine learning or real-time data handling on microcontrollers.
 
-\subsection{Vector and Matrix Operations}
+\begin{minipage}[t]{0.48\linewidth}
+    \vspace*{0pt}
+    Data is stacked in a single register because the register can fit multiple data elements (1 32 bit register can fit 4 8 bit data elements).
+    An operation is made on all of them in parallel in a single instruction.
+    The ALU can configure \textbf{lanes} for individual data paths, depending on the width and ALU capabilities.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.5\linewidth}
+    \vspace*{0pt}
+    \includegraphics[width=\columnwidth]{images/PDF/adder_groups_simd.pdf}
+\end{minipage}
+% GOAL L10 • You can apply the concepts of loop unrolling and partial loop unrolling.
+
+Note: \textbf{Loop unrolling} replicates the body (e.g.\ 4 MACs/iter) to cut loop-overhead per useful op.
+\emph{partial} unrolling handles a remainder separately.
+\subsubsection{Code implementation example of a dotproduct}
 % GOAL L10 • You can utilize SIMD instructions to speed up basic matrix and vector calculations.
 % GOAL L10 • You can work with the CMSIS-Core and CMSIS DSP library on Arm Cortex microcontrollers to realize the vector and matrix operations.
+\lstinputlisting[lastline=1]{code/simd.cpp}
 
-\subsection{Loop Optimization}
-% GOAL L10 • You can apply the concepts of loop unrolling and partial loop unrolling.
+\begin{minipage}[t]{0.4\linewidth}
+    \lstinputlisting[linerange=2-5]{code/simd.cpp}
+    This implementation is simple but slow.
+    The SIMD however needs some casts to acquire the separate memory blocks
+\end{minipage}
+\begin{minipage}[t]{0.6\linewidth}
+    \lstinputlisting[linerange=7-15]{code/simd.cpp}
+\end{minipage}
+\begin{lstlisting}
+}
+\end{lstlisting}
+
+\subsection{Pipelining}
+% GOAL V11 • You can explain how pipelining and its variations like superscalar or VLIW architectures work.
+
+Split a task into \textbf{stages} processed in overlap (assembly line). 
+\begin{itemize}
+    \item \textbf{Fetch:} Load instruction from program memory
+    \item \textbf{Decode:} decode instruction, load address and operand from registers
+    \item \textbf{Execute:} Execute task of instruction or calculate address for following memory access
+    \item \textbf{Memory Access:} Access memory (inkl. Cache) if used in instruction, else it is skipped
+    \item \textbf{Write Back:} Write back to registers 
+\end{itemize}
+\textbf{Pipeline registers} hold data between stages (transparent to the user). Ideal: one finished instruction \emph{per cycle}. 
+\[ \text{Speedup} = \frac{\text{CPI unpipelined}}{1 + \text{stall cycles per instruction}} = \frac{\text{Pipeline depth}}{1 + \text{stall cycles per instruction}} \]
+Limits: bus access times, pipeline-register delay, hazards.
+
+\includegraphics[width=\columnwidth]{images/PDF/pipeline.pdf}
+
+\subsection{Pipeline Hazards}
+% GOAL V11 • You can assess challenges associated with pipelines like hazards and describe possible solutions.
+Three types: \textbf{structural} (resource conflicts), \textbf{data}, \textbf{control}.
+\begin{outline}
+  \1 \textbf{Data:} \emph{RAW} (read-after-write, the true/most common dependency --- solved by \textbf{data forwarding} or compiler scheduling), \emph{WAW} (write order, compiler), \emph{WAR} (anti-dependency, relevant out-of-order).
+  \1 \textbf{Control:} branches (\(\sim\)20\% of ops, \(\sim\)66\% of conditional ones taken). 
+  Solutions: \emph{look-ahead resolution} (compute target in parallel), \emph{delay slot}, \emph{branch prediction}.
+\end{outline}
+Interrupts/exceptions are handled by saving state \textrightarrow{} ISR \textrightarrow{} resume (extra HW, watch delays).
+
+\subsection{Superscalar \& VLIW}
+\textbf{Superscalar:} duplicated functional units issue $>1$ instruction/cycle ($\text{CPI}<1$); 
+abandons strict Von-Neumann order \textrightarrow{} \textbf{out-of-order} execution, shifting focus from \emph{instruction} to 
+\emph{result} sequentiality (hazards more severe, solve at compile time). \textbf{Superpipeline:} finer, shorter stages at higher clock (mixes exist). 
+\textbf{VLIW:} several operations packed in one long instruction word, scheduled by the \textbf{compiler} (avoids hazards, simplifies runtime HW). 
+\textbf{Hyper-threading (SMT):} hardware multithreading $+$ superscalar pipelining (combines TLP $+$ ILP).
+
+\subsection{Flynn's Taxonomy}{Klassierung nach Flynn}
+% GOAL V11 • You can describe and classify computing platforms according to their (potentially different) architectural characteristics using Flynn’s taxonomy.
+% GOAL V11 • You can recognize the specific type of a multi-processor architecture and name the underlying mechanisms and primitives.
+% \begin{ctabular}{l|cc}
+%  & \textbf{single data} & \textbf{multiple data} \\ \hline
+% \textbf{single instr.} & SISD & SIMD \\
+% \textbf{multiple instr.} & MISD & MIMD \\
+% \end{ctabular}
+\includegraphics[width=\columnwidth]{images/PDF/flynn.pdf}
+
+\textbf{SISD:} Von-Neumann / Harvard. 
+\textbf{SIMD:} vector/array processors. 
+\textbf{MISD:} no real machines (akin to systolic arrays). 
+\textbf{MIMD:} multiprocessors, GPUs (multi-threaded SIMD), NPU/TPU. 
+\textbf{Von-Neumann bottleneck:} one bus for instructions $+$ data; 
+\textbf{Harvard} (separate I/D buses or caches) relieves it.
+
+
+\subsection{Multiprocessors (MIMD)}
+\begin{outline}
+  \1 \textbf{Coupling:} \emph{tightly coupled} (shared memory) vs.\ \emph{loosely coupled} (message passing over fast networks).
+  \1 \textbf{Task division:} \textbf{AMP} (one master controls others, own address space per CPU) vs.\ \textbf{SMP} (every CPU can do any task, shared address space).
+  \1 \textbf{UMA} (uniform access via bus) vs.\ \textbf{NUMA} (local memory per CPU, different access times).
+\end{outline}
 
 \subsection{Performance Analysis}
 % GOAL L10 • You can use a cycle counter to analyze the speed of a function.
