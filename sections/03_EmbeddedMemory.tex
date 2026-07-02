@@ -65,7 +65,7 @@
     \midrule
     \textbf{Memory allocation}  & at compile time             & at runtime (heap) \\ \midrule
     \textbf{Heap usage}         & No                          & FreeRTOS heap\\ && (\texttt{pvPortMalloc} / \texttt{new}) \\ \midrule
-    \textbf{Deterministic?}     & Yes                         & No (allocation overhead) \\
+    \textbf{Deterministic}      & Yes                         & No (allocation overhead) \\
     \textbf{Memory size}        & Fixed                       & Flexible \\
     \textbf{Memory risks}       & No fragmentation            & Fragmentation possible \\ \midrule
     \textbf{Example (C++)}      & \texttt{\small RedTaskClass task(...);} & \texttt{\small RedTaskClass* task = new RedTaskClass(...);} \\
