@@ -22,7 +22,29 @@
 % GOAL V05 • You are familiar with the memory model and memory map as typically used in a microcontroller.
 % GOAL L08 • You know the memory model of a microcontroller and how to find the different memory locations.
 
-\subsection{Memory Characteristics}
+  \begin{minipage}[t]{0.58\linewidth}
+    Memory locations are determined from the microcontroller reference manual (Memory Map chapter) or development tools (e.g. STM32CubeIDE linker map / build analyzer).
+  
+    Cortex-M systems use a flat 32-bit address space ($2^{32} = \qty{4}{GiB}$) with memory-mapped Flash, RAM, and peripheral regions.
+    External memories (e.g. QSPI Flash) are also mapped into the address space via the memory map.
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.38\linewidth}
+    \vspace{0pt}
+    \includegraphics[width=\linewidth]{images/PDF/EmbeddedMemory_MemoryMapCortexM.pdf}
+  \end{minipage}
+
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Section} & \textbf{Location} & \textbf{Content} \\ \midrule
+      \texttt{.text}   & Flash & Code, constants (\texttt{const}) \\
+      \texttt{.rodata} & Flash & Read-only data \\
+      \texttt{.data}   & RAM (init from Flash) & Initialized global/static variables \\
+      \texttt{.bss}    & RAM & Zero-initialized global/static variables \\
+      Heap             & RAM $\uparrow$ & Dynamic allocation (\texttt{new}/\texttt{pvPortMalloc}) \\
+      Stack            & RAM $\downarrow$ & Local variables, function calls \\ \bottomrule
+    \end{tabular}
+  \end{center}
 
 \subsection{FreeRTOS Memory Model}
 % GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks and heap implementations.
