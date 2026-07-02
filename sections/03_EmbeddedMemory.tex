@@ -49,21 +49,31 @@
 \subsection{FreeRTOS Memory Model}
 % GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks and heap implementations.
 % GOAL L06 • You can understand where and how a task is placed in memory.
-% GOAL L06 • You can use FreeRTOS with and without heap.
 % GOAL L06 • You can assess and estimate the memory usage of a task.
 
   \subsubsection{Task Stack and Heap Usage}
 
   \subsubsection{Memory Placement of Tasks}
 
-  \subsubsection{Static vs Heap-based Allocation (FreeRTOS context)}
-
 \subsection{Static and Dynamic Allocation}
 % GOAL L06 • You can explain the pros and cons of static/dynamic allocation.
+% GOAL L06 • You can use FreeRTOS with and without heap.
 
   \subsubsection{Static Allocation}
+    \begin{itemize}
+        \item Memory is allocated at compile time with fixed size and location.
+        \item No heap required $\rightarrow$ deterministic timing and predictable memory usage.
+        \item Suitable for real-time and safety-critical systems.
+        \item Less flexible: Memory size cannot change during runtime.
+    \end{itemize}
 
   \subsubsection{Dynamic Allocation}
+    \begin{itemize}
+        \item Memory is allocated and released during runtime from the heap.
+        \item C: \texttt{malloc/free} \quad C++: \texttt{new/delete} \quad FreeRTOS: \texttt{pvPortMalloc/vPortFree}.
+        \item Flexible and efficient when memory requirements vary.
+        \item Allocation/deallocation $\Rightarrow$ runtime overhead, memory usage is less predictable
+    \end{itemize}
 
 \subsection{Fragmentation}
 % GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
