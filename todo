@@ -99,7 +99,7 @@ GOAL L08• You know the memory model of a microcontroller and how to find the d
 <!-- V09 – Memory Management (III): Primary & Secondary Storage (cont’d) -->
 <!-- GOAL V09 • You can understand why serialization is needed, how it works conceptually, and describe different serialization formats for embedded use cases. -->
 <!-- GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted. -->
-GOAL V09 • You can understand the basics of address transformations and explain specifically how the page transformation works.
+<!-- GOAL V09 • You can understand the basics of address transformations and explain specifically how the page transformation works. -->
 <!-- GOAL V09 • You can explain the concept of virtual memory, its prerequisites, and how/why it is used. -->
 
 <!-- Lab 09 – Serialization and Deserialization -->
