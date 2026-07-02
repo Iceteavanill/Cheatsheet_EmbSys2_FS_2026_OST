@@ -23,7 +23,7 @@
 % GOAL L08 • You know the memory model of a microcontroller and how to find the different memory locations.
 
   \begin{minipage}[t]{0.58\linewidth}
-    Memory locations are determined from the microcontroller reference manual (Memory Map chapter) or development tools (e.g. STM32CubeIDE linker map / build analyzer).
+    Memory locations are defined by the microcontroller memory map and can be found in the reference manual (Memory Map chapter) or development tools (e.g. STM32CubeIDE Build Analyzer / linker map).
   
     Cortex-M systems use a flat 32-bit address space ($2^{32} = \qty{4}{GiB}$) with memory-mapped Flash, RAM, and peripheral regions.
     External memories (e.g. QSPI Flash) are also mapped into the address space via the memory map.
