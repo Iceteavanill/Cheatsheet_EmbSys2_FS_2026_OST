@@ -383,7 +383,7 @@
   \subsubsection{RAM vs. Flash Lifetime}
   % GOAL L08 • You can understand the data lifetime difference between RAM and flash memory.
     \begin{minipage}[t]{0.48\linewidth}
-      RAM:
+      \textbf{RAM:}
       \begin{itemize}
           \item Volatile (lost on reset)
           \item Unlimited write cycles (practically)
@@ -392,7 +392,7 @@
         \end{itemize}
     \end{minipage}\hfill
     \begin{minipage}[t]{0.48\linewidth}
-      Flash:
+      \textbf{Flash:}
       \begin{itemize}
         \item Non-volatile (persistent storage)
         \item Limited erase/write cycles
@@ -521,11 +521,10 @@
       \item \textbf{union}: Multiple message types share one interface; an implicit type tag identifies the active variant.
       \item \textbf{Workflow}: Build FlatBuffer object via generated builder API $\rightarrow$ obtain byte buffer $\rightarrow$ transmit via protocol.
                               On reception: pass buffer to root accessor $\rightarrow$ read fields zero-copy.
-
-    \lstinputlisting{code/Serialization_FlatBuffer_SchemaPattern.cpp}
-    \vspace{-0.2cm}
-    \lstinputlisting{code/Serialization_Parser_FlatBuffer.cpp}
   \end{itemize}
+  \lstinputlisting{code/Serialization_FlatBuffer_SchemaPattern.cpp}
+  \vspace{-0.2cm}
+  \lstinputlisting{code/Serialization_Parser_FlatBuffer.cpp}
 
 \subsection{BNF Grammar}
 % GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted.
@@ -567,7 +566,7 @@
   \begin{center}
     \includegraphics[width=0.8\linewidth]{images/PDF/VirtualMemory_Concept.pdf}
   \end{center}
-  \vspace{-0.3cm}
+  \vspace{-0.25cm}
 
   % Decouples the \emph{virtual address space} (seen by a program) from the \emph{physical address space} (RAM).\\
   % A hardware \textbf{MMU} translates virtual $\rightarrow$ physical addresses at run time.
@@ -594,49 +593,36 @@
       \includegraphics[width=\linewidth]{images/PDF/Paging_AddressTranslation.pdf}
     \end{center}
 
-    Page size $= 2^k$ bytes \textrightarrow~Offset bits $= k = \log_2(\text{page size})$
-
-    Example: $\qty{4}{KiB} = 4096 = 2^{12}$ bytes \textrightarrow~Offset $= 12$ bits
-    
-    \textcolor{red}{Invalid page table entry} $\rightarrow$ MMU raises a \emph{page fault} $\rightarrow$ OS handles fault
-    
-    % \begin{enumerate}
-    %   \item Extract \textbf{Virtual Page Number (VPN)} from \textbf{Virtual Address (VA)}.
-    %         \[\text{VA} = \underbrace{\text{VPN}}_{\text{high-order bits}} \;\|\; \underbrace{\text{Page Offset}}_{\text{low-order bits}}\]
-    %   \item Look up VPN in the page table $\rightarrow$ obtain corresponding \textbf{Physical Frame Number (PFN)}.
-    %   \item Concatenate PFN with the (unchanged) page offset to form the physical address:
-    %   \[\text{PA} = \text{PFN} \;\|\; \text{Page Offset}\]
-    %   The number of \textbf{offset bits} is determined by the page size:
-    %   \[\text{offset bits} = \log_2(\text{page size})\]
-    %   e.g. for a \qty{4}{KiB} page size: $\log_2(4096) = 12$ offset bits.
-
-    %   \item \textcolor{red}{Invalid mapping} (page table entry invalid / not present) $\rightarrow$ MMU raises a \emph{page fault}; handled by the OS (e.g. load page from disk, or terminate process on illegal access).
-    % \end{enumerate}
-
   \subsubsection{Page Tables}
+    Map VPN $\rightarrow$ PFN via \textbf{Page Table Entries (PTEs)}.
+    \textbf{PTE} fields: PFN, valid/present bit, access permissions (read/write/execute), dirty/accessed bit, cacheability.
     \begin{itemize}
-      \item A \textbf{page table} maps VPNs $\rightarrow$ PFNs via \textbf{Page Table Entries (PTEs)}.
-      \item Each PTE typically contains: PFN, valid/present bit, access permissions (read/write/execute), dirty bit, accessed bit, cacheability attributes.
-      \item Single-level (flat) page tables can be very large; \textbf{multi-level (hierarchical) page tables} split the VPN into several indices, each indexing into a different table level, so unused regions of the address space need no table entries — saving memory.
-      \item A \textbf{Translation Lookaside Buffer (TLB)} caches recent VPN$\to$PFN translations to avoid the cost of walking page tables on every memory access.
+      \item \textbf{Multi-level:} Allocate only needed levels $\rightarrow$ less memory.
+      \item \textbf{Translation Lookaside Buffer (TLB):} Caches VPN $\rightarrow$ PFN.\\
+      \textcolor{codeGreen}{TLB hit:} direct translation, \textcolor{red}{TLB miss:} page-table walk + update.
     \end{itemize}
 
-  \subsubsection{Page Transformation Mechanism}
-    Example (single-level page table), given:
-    \begin{itemize}
-      \item Virtual address width: $V$ bits
-      \item Page size: $P$ bytes $\Rightarrow$ offset width $= \log_2 P$ bits
-      \item Number of virtual pages: $2^{V - \log_2 P}$
-    \end{itemize}
-    Number of page table entries required:
-    \[\#\text{PTE} = 2^{(V - \log_2 P)}\]
-    Total page table size (if entry size $= E$ bytes):
-    \[\text{Table Size} = \#\text{PTE} \times E\]
+    \textcolor{red}{Invalid page table entry} $\rightarrow$ MMU raises \emph{page fault} $\rightarrow$ OS handles fault
 
-    Worked example pattern (fill in with given numbers in an exam question):
-    \begin{enumerate}
-      \item Determine page size $\Rightarrow$ offset bits.
-      \item Subtract offset bits from total VA width $\Rightarrow$ VPN bits.
-      \item $2^{\text{VPN bits}}$ gives the number of page table entries (and hence max. number of pages addressable).
-      \item Multiply by PTE size to get total page table memory footprint.
-    \end{enumerate}
+  
+  \subsubsection{Useful Relations}
+    For a virtual address width $V$, page size $P=2^k$ bytes and page table entry size $E$:
+
+    \[
+    \begin{aligned}
+    \text{Offset bits}      &= \log_2(P) = k \\
+    \text{VPN bits}         &= V - \log_2(P) \\
+    \#\text{Virtual Pages}  &= \#\text{PTE} = 2^{\,V-\log_2(P)} \\
+    \text{Page Table Size}  &= \#\text{PTE} \times E
+    \end{aligned}
+    \]
+
+    \textcolor{gray}{Example: $P=\qty{4}{KiB}=2^{12}$ bytes $\Rightarrow$ Offset $=12$ bits.}
+
+  \subsubsection{Segmentation vs.\ Paging}
+    \begin{itemize}
+        \item \textbf{Paging}: fixed-size pages, no external fragmentation.
+        \item \textbf{Segmentation}: variable-size regions (code/data/stack), may cause external fragmentation.
+    \end{itemize}
+
+
