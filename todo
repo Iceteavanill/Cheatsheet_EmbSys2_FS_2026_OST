@@ -56,7 +56,7 @@ GOAL L05 • You can use message queues and buffers for inter-process communicat
 GOAL L05 • You can make use of a tracing and visualizing tool like Percepio Tracealyzer for system analysis.
 
 <!-- V05 – Embedded Memory -->
-<!-- GOAL V05 • You are familiar with the basic types of embedded memory, the memory modeland memory map as typically used in a microcontroller. -->
+<!-- GOAL V05 • You are familiar with the basic types of embedded memory, the memory model and memory map as typically used in a microcontroller. -->
 GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks and heap implementations.
 GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
 
@@ -94,7 +94,7 @@ GOAL L06 • You can assess and estimate the memory usage of a task.
 <!-- GOAL L08• You can read from and write to flash memory. -->
 <!-- GOAL L08• You can understand the data lifetime difference between RAM and flash memory. -->
 <!-- GOAL L08• You can make use of the basic functionalities of a file system. -->
-GOAL L08• You know the memory model of a microcontroller and how to find the different memory locations.
+<!-- GOAL L08• You know the memory model of a microcontroller and how to find the different memory locations. -->
 
 <!-- V09 – Memory Management (III): Primary & Secondary Storage (cont’d) -->
 <!-- GOAL V09 • You can understand why serialization is needed, how it works conceptually, and describe different serialization formats for embedded use cases. -->
