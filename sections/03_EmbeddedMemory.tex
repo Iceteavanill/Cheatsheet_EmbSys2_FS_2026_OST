@@ -56,24 +56,53 @@
   \subsubsection{Memory Placement of Tasks}
 
 \subsection{Static and Dynamic Allocation}
-% GOAL L06 • You can explain the pros and cons of static/dynamic allocation.
-% GOAL L06 • You can use FreeRTOS with and without heap.
+  % GOAL L06 • You can explain the pros and cons of static/dynamic allocation.
+  % GOAL L06 • You can use FreeRTOS with and without heap.
 
+  \begin{tabular}{p{0.2\linewidth} p{0.3\linewidth} p{0.3\linewidth}}
+    \toprule
+    \textbf{Aspect}             & \textbf{Static Allocation}  & \textbf{Dynamic Allocation} \\
+    \midrule
+    \textbf{Memory allocation}  & at compile time             & at runtime (heap) \\ \midrule
+    \textbf{Heap usage}         & No                          & FreeRTOS heap\\ && (\texttt{pvPortMalloc} / \texttt{new}) \\ \midrule
+    \textbf{Deterministic?}     & Yes                         & No (allocation overhead) \\
+    \textbf{Memory size}        & Fixed                       & Flexible \\
+    \textbf{Memory risks}       & No fragmentation            & Fragmentation possible \\
+
+    Example (C++)
+    & \texttt{\small RedTaskClass task(...);}
+    & \texttt{\small RedTaskClass* task = new RedTaskClass(...);} \\
+
+    \bottomrule
+  \end{tabular}
+
+  \begin{minipage}[t]{0.48\linewidth}
   \subsubsection{Static Allocation}
     \begin{itemize}
         \item Memory is allocated at compile time with fixed size and location.
-        \item No heap required $\rightarrow$ deterministic timing and predictable memory usage.
+        \item \textbf{No heap} required $\rightarrow$ deterministic timing and predictable memory usage.
         \item Suitable for real-time and safety-critical systems.
         \item Less flexible: Memory size cannot change during runtime.
     \end{itemize}
 
+    \begin{lstlisting}
+    RedTaskClass task(...);
+    \end{lstlisting}
+
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\linewidth}
   \subsubsection{Dynamic Allocation}
     \begin{itemize}
-        \item Memory is allocated and released during runtime from the heap.
+        \item Memory is allocated and released during runtime from the \textbf{heap}.
         \item C: \texttt{malloc/free} \quad C++: \texttt{new/delete} \quad FreeRTOS: \texttt{pvPortMalloc/vPortFree}.
         \item Flexible and efficient when memory requirements vary.
         \item Allocation/deallocation $\Rightarrow$ runtime overhead, memory usage is less predictable
     \end{itemize}
+
+    \begin{lstlisting}
+      RedTaskClass *task = new RedTaskClass(...);
+    \end{lstlisting}
+  \end{minipage}
 
 \subsection{Fragmentation}
 % GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
