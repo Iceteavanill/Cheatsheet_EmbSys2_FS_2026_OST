@@ -52,35 +52,39 @@
 % GOAL L06 • You can assess and estimate the memory usage of a task.
 
   \subsubsection{Task Stack and Heap Usage}
-  \begin{itemize}
-    \item Each FreeRTOS task consists of:
+  
+  % TODO: Das noch als Bild einpflegen -> Minipage mit Text Links, Bild rechts.
+  
+  \begin{minipage}[t]{0.6\linewidth}
+    \vspace{0pt}
     \begin{itemize}
-        \item a \textbf{stack} (local variables, context) % TODO: Evtl. in Bild einbetten
-        \item a \textbf{Task Control Block (TCB)}
+      \item Each FreeRTOS task consists of:
+      \begin{itemize}
+          \item a \textbf{stack} (local variables, context) % TODO: Evtl. in Bild einbetten-> bild evtl zu überladen dann?
+          \item a \textbf{Task Control Block (TCB)}
+      \end{itemize}
+  
+      \item With dynamic allocation:
+      \begin{itemize}
+          \item Stack + TCB are allocated from the \textbf{FreeRTOS heap (ucHeap)}
+          \item Allocation via \texttt{pvPortMalloc}
+      \end{itemize}
+  
+      \item Stack usage can be estimated using:
+      \begin{itemize}
+          \item \texttt{uxTaskGetStackHighWaterMark()}
+      \end{itemize}
     \end{itemize}
+  
+      \begin{itemize}
+          \item FreeRTOS heap is a static array (\texttt{ucHeap}) % TODO: Evtl. direkt in Grafik rein bringen -> bild evtl zu überladen dann?
+          \item Used for tasks, queues, semaphores
+      \end{itemize}
 
-    \item With dynamic allocation:
-    \begin{itemize}
-        \item Stack + TCB are allocated from the \textbf{FreeRTOS heap (ucHeap)}
-        \item Allocation via \texttt{pvPortMalloc}
-    \end{itemize}
-
-    % CHECK: Weglassen?
-    % \item Stack usage can be estimated using:
-    % \begin{itemize}
-    %     \item \texttt{uxTaskGetStackHighWaterMark()}
-    % \end{itemize}
-  \end{itemize}
-
-    \begin{itemize}
-        \item FreeRTOS heap is a static array (\texttt{ucHeap}) % TODO: Evtl. direkt in Grafik rein bringen
-        \item Used for tasks, queues, semaphores
-        \item Memory hierarchy:
-    \end{itemize}
-
-    % TODO: Das noch als Bild einpflegen -> Minipage mit Text Links, Bild rechts.
-  \begin{center}
-  \begin{tikzpicture}[node distance=1.2cm]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.38\linewidth}
+  \vspace{0pt}
+  \begin{tikzpicture}[node distance=1cm]
 
   \node (task) [draw, rectangle] {Task};
 
@@ -100,9 +104,13 @@
   \draw[->] (heap) -- (bss);
 
   \end{tikzpicture}
-  \end{center}
+\end{minipage}
 
 
+
+\subsubsection{Heap implementations}
+
+\includegraphics[width=\columnwidth]{images/PDF/heaps.pdf}
 
 \subsection{Static and Dynamic Allocation}
   % GOAL L06 • You can explain the pros and cons of static/dynamic allocation.
