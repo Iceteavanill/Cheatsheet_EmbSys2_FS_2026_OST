@@ -56,7 +56,7 @@ GOAL L05 • You can use message queues and buffers for inter-process communicat
 GOAL L05 • You can make use of a tracing and visualizing tool like Percepio Tracealyzer for system analysis.
 
 <!-- V05 – Embedded Memory -->
-GOAL V05 • You are familiar with the basic types of embedded memory, the memory modeland memory map as typically used in a microcontroller.
+<!-- GOAL V05 • You are familiar with the basic types of embedded memory, the memory modeland memory map as typically used in a microcontroller. -->
 GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks and heap implementations.
 GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
 

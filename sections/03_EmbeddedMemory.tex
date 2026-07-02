@@ -2,12 +2,27 @@
 
 \subsection{Memory Types}
 % GOAL V05 • You are familiar with the basic types of embedded memory.
+  \vspace{-0.1cm}
+  \begin{center}
+    \begin{tabular}{llll}
+      \toprule
+      \textbf{Type} & \textbf{Volatile} & \textbf{Writable}   & \textbf{Typical Use} \\ \midrule
+      SRAM          & yes               & yes                 & Cache, Stack, Heap, Variables \\
+      DRAM          & yes               & yes                 & Main memory (typ.\ external) \\
+      ROM           & no                & no                  & Boot code, Constants \\
+      Flash         & no                & yes (block/sector erase) & Program code, Persistent data \\
+      EEPROM        & no                & yes (byte-wise write)    & Configuration, Calibration data \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{-0.1cm}
+  \textit{SRAM is fast, requires no refresh; DRAM is denser, cheaper, and requires periodic refresh.}
 
 \subsection{Memory Model and Memory Map}
 % GOAL V05 • You are familiar with the memory model and memory map as typically used in a microcontroller.
 % GOAL L08 • You know the memory model of a microcontroller and how to find the different memory locations.
 
-  \subsection{Memory Characteristics}
+\subsection{Memory Characteristics}
 
 \subsection{FreeRTOS Memory Model}
 % GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks and heap implementations.
