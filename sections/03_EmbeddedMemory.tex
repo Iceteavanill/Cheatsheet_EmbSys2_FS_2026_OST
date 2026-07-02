@@ -79,11 +79,37 @@
 % GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
 % GOAL L06 • You can describe what memory fragmentation is.
 
+\begin{minipage}[t]{0.73\linewidth}
   \subsubsection{Internal Fragmentation}
-
+  
+  If a reserved block is \textbf{larger} than the \textbf{actually used} data.
+  The unused space inside the block is wasted.
+  
   \subsubsection{External Fragmentation}
+  Free memory is split into many small \textbf{non-contiguous} blocks.
+  Total free space maybe sufficient, but no single block is large enough for a request.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.25\linewidth}
+  \vspace{0pt}
+  \includegraphics[width=\linewidth]{images/PDF/fragmentation.pdf}
+\end{minipage}
 
-  \subsubsection{Memory Coalescing and Free Space Management}
+The external memory fragmentation can be calculated By
+\[
+\text{External Memory Fragmentation (in percent)}
+=
+1
+-
+\frac{\text{size of biggest free memory block}}{\text{Size of total free memory}}
+\]
+where the value $0$ means all free memory is in one contiguous block (no fragmentation) and values approaching $1$ indicate severe fragmentation.
+A \textit{lower} fragmentation is better.
+
+\subsubsection{Memory Coalescing and Free Space Management}
+
+Free space is tracked with a \textbf{free list}.
+If 2 neighbouring blocks are free, they can be united to one single large empty block \textrightarrow{} coalescing.
+This reduces \emph{external} fragmentation.
 
 \subsection{Memory Analysis}
 % GOAL L06 • You can apply watermarking to analyze memory usage.

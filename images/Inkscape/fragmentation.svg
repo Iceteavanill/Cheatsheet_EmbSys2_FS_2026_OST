@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="42.18502mm"
+   height="55.250004mm"
+   viewBox="0 0 42.18502 55.250004"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="fragmentation.svg"
+   inkscape:export-filename="..\PDF\fragmentation.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="3.1168847"
+     inkscape:cx="149.34784"
+     inkscape:cy="138.43952"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="2552"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="-79.874996"
+       originy="-54.874999"
+       spacingx="0.99999998"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-79.875,-54.874998)">
+    <rect
+       style="fill:#56db45;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect3"
+       width="29.999998"
+       height="19.999998"
+       x="80"
+       y="55" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect3-3"
+       width="30.000002"
+       height="9.9999971"
+       x="80"
+       y="80" />
+    <rect
+       style="fill:#d761e9;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect3-3-9"
+       width="30"
+       height="4.9999976"
+       x="80"
+       y="75" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect4"
+       width="29.999998"
+       height="4.9999995"
+       x="80"
+       y="94.999992" />
+    <rect
+       style="fill:#56db45;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect4-2"
+       width="29.999998"
+       height="4.9999995"
+       x="80"
+       y="90" />
+    <rect
+       style="fill:#56db45;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect4-4"
+       width="29.999998"
+       height="4.9999995"
+       x="80"
+       y="100" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="rect4-8"
+       width="29.999998"
+       height="4.9999995"
+       x="80"
+       y="105" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 111,54.999998 c 5.00001,0 1e-5,12 5,12.570142 -4.99999,1.429858 0,12.429858 -5,12.429858"
+       id="path5"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 111,89.999997 c 5,0 0,9 5,10 -5,0.999993 0,9.999993 -5,10.000003"
+       id="path5-8"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="95.090233"
+       y="103.59385"
+       id="text5-7-7"><tspan
+         sodipodi:role="line"
+         id="tspan5-6-6"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="95.090233"
+         y="103.59385">Allocated &amp; used</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="94.920036"
+       y="108.53368"
+       id="text5-7-2-7"><tspan
+         sodipodi:role="line"
+         id="tspan5-6-2-9"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="94.920036"
+         y="108.53368">Free</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="94.920036"
+       y="98.533676"
+       id="text5-7-2-7-9"><tspan
+         sodipodi:role="line"
+         id="tspan5-6-2-9-0"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="94.920036"
+         y="98.533676">Free</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="95.090233"
+       y="66.093842"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="95.090233"
+         y="66.093842">Allocated &amp; used</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="-67.447174"
+       y="118.34932"
+       id="text5-6"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan5-0"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="-67.447174"
+         y="118.34932">Internal</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="-67.447174"
+         y="121.35427"
+         id="tspan7">fragmentation</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="-99.947174"
+       y="118.34932"
+       id="text5-6-4"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan5-0-9"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="-99.947174"
+         y="118.34932">External</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="-99.947174"
+         y="121.35427"
+         id="tspan6">fragmentation</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="95.090233"
+       y="93.593842"
+       id="text5-7"><tspan
+         sodipodi:role="line"
+         id="tspan5-6"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="95.090233"
+         y="93.593842">Allocated &amp; used</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="94.920036"
+       y="86.033684"
+       id="text5-7-2"><tspan
+         sodipodi:role="line"
+         id="tspan5-6-2"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="94.920036"
+         y="86.033684">Free</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:3.00495px;line-height:1;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       x="95.090233"
+       y="78.593842"
+       id="text5-1"><tspan
+         sodipodi:role="line"
+         id="tspan5-7"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25;stroke-dasharray:none"
+         x="95.090233"
+         y="78.593842">Allocated &amp; UNused</tspan></text>
+  </g>
+</svg>
