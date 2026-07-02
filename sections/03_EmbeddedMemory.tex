@@ -78,6 +78,22 @@
 \subsection{Memory Analysis}
 % GOAL L06 • You can apply watermarking to analyze memory usage.
 
-  \subsubsection{Stack Watermarking}
+To analyse heap memory usage, \textbf{watermarking} can be used.
+During allocation, the heap implementation marks the allocated memory segment with an identifier.
+This lets one visualize the heap usage.
+Allocated but unused areas can be visually found by examining the memory contents.
 
-  \subsubsection{Memory Usage Estimation}
+\subsubsection{Memory Usage Estimation}
+
+The memory usage of a task is not very clear and depends on many factors.
+Mainly, it is unknown how big the stack grows
+\begin{itemize}
+  \item The function call nesting depth
+  \item The number and size of function scope variable declarations
+  \item The number of function parameters
+  \item The processor architecture
+  \item \dots
+\end{itemize}
+To estimate the typical memory usage, an arbitrary stack size can be used at first.
+RTOS keeps track of minimum free stack size of a task.
+If it shrinks to zero during runtime, not enough memory for the stack is allocated. 
