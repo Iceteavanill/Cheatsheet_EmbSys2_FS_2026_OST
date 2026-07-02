@@ -167,7 +167,7 @@ Typically the semaphore (binary) is taken before entering a critical section and
     \end{itemize}
 
 \subsubsection{Mutex from ISR}
-
+\label{Mutex_From_ISR}
 When a Mutex is given, a previously blocked task might become unblocked.
 To remove additional overhead, the current executed task can directly be set to the now ready task without waiting for an additional systick:
 \begin{lstlisting}

@@ -95,12 +95,27 @@ abandons strict Von-Neumann order \textrightarrow{} \textbf{out-of-order} execut
 \textbf{Harvard} (separate I/D buses or caches) relieves it.
 
 
-\subsection{Multiprocessors (MIMD)}% TODO maybe uf homogen / heterogen igah -> interrupt uf anderem core
+\subsection{Multiprocessors (MIMD)}
 \begin{outline}
   \1 \textbf{Coupling:} \emph{tightly coupled} (shared memory) vs.\ \emph{loosely coupled} (message passing over fast networks).
   \1 \textbf{Task division:} \textbf{AMP} (one master controls others, own address space per CPU) vs.\ \textbf{SMP} (every CPU can do any task, shared address space).
   \1 \textbf{UMA} (uniform access via bus) vs.\ \textbf{NUMA} (local memory per CPU, different access times).
 \end{outline}
+
+\subsubsection{RTOS on heterogeneous Multiprocessors}
+% GOAL L11 • You can outline how FreeRTOS is run on a heterogeneous multiprocessor system.
+% GOAL L11 • You can describe how the different synchronization primitives are implemented to work with multiple CPU cores.
+
+On a \textbf{homogenous} multiprocessor (like the Raspi Pico), a singe RTOS instance with a shared task pool can be used.
+Typical sync principles can be used like spinlocks or atomic operations.
+
+On a \textbf{heterogeneous} multiprocessor (like the STM32 H755), each CPU has its own RTOS instance with \textbf{independent scheduling}.
+Shared memory can be used to exchange data.
+Hardware semaphores (\textbf{HSEM}) must be used for shared access.
+Some interrupt lines are available between the two CPUs, which can be used to sync the processors (see \ref{Mutex_From_ISR}).
+(Shared memory can still be used).
+
+% TODO: maybe add NPUs, TPU's
 
 \subsection{Performance Analysis}
 % GOAL L10 • You can use a cycle counter to analyze the speed of a function.
@@ -157,7 +172,7 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
 
 \subsubsection{Derivation of Speed-up}
 
-\begin{minipage}[t]{0.48\linewidth}
+\begin{minipage}[t]{0.38\linewidth}
     \vspace*{0pt}
     \textit{Notation:} 
 
@@ -169,9 +184,11 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
 
     $s$ sequential part
 
-    $p$ parallel part with $(s+p)\cdot A = A$, so $s+p=1$, $p=1-s$.
+    $p$ parallel part with $(s+p)\cdot A = A$, 
+    
+    so $s+p=1$, $p=1-s$.
 \end{minipage}\hfill
-\begin{minipage}[t]{0.5\linewidth}
+\begin{minipage}[t]{0.6\linewidth}
     \vspace*{0pt}
     \begin{align*}
     T_m &= T_s + T_p = \frac{s\cdot A}{L_{\text{SISD}}} + \frac{p\cdot A}{n\cdot L_{\text{SISD}}} = \frac{A}{L_{\text{SISD}}}\left(s+\frac{p}{n}\right)\\

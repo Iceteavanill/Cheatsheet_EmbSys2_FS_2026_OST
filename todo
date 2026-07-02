@@ -125,7 +125,7 @@ GOAL V11 • You can understand the concepts behind instruction-level parallelis
 <!-- GOAL V11 • You can recognize the specific type of a multi-processor architecture and name the underlying mechanisms and primitives. -->
 
 <!-- Lab 11 – Heterogeneous Multiprocessing -->
-GOAL L11 • You can outline how FreeRTOS is run on a heterogeneous multiprocessor system.
+<!-- GOAL L11 • You can outline how FreeRTOS is run on a heterogeneous multiprocessor system. -->
 GOAL L11 • You can describe how the different synchronization primitives are implemented to work with multiple CPU cores.
 GOAL L11 • You can use these primitives to synchronize multiple cores.
 GOAL L11 • You can send data between two cores in a synchronized manner.
