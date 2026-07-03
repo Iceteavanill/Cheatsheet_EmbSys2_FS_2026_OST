@@ -83,10 +83,12 @@
     \begin{tabular}{p{0.12\linewidth} p{0.79\linewidth}}
 \toprule
 \textbf{Scheduler}  & $\bullet$ Algorithm that determines when which task is executed\\
-                    & $\bullet$ Planning of processes only possible if usage is fully known; otherwise it is \say{fancy guessing} \\
+                    & $\bullet$ Planning of processes only possible if usage is fully known; \\
+                    & \textcolor{white}{$\bullet$} otherwise it is \say{fancy guessing} \\
                     & $\bullet$ Allows multitasking \\ \midrule
 \textbf{Dispatcher} & $\bullet$ Executes the scheduled tasks by performing context switches. \\ \midrule
-\textbf{Objects}    & $\bullet$ Kernel constructs that function as an API, e.g. tasks, semaphores, message queues, \dots \\ \midrule
+\textbf{Objects}    & $\bullet$ Kernel constructs that function as an API, e.g. tasks, semaphores, \\
+                    & \textcolor{white}{$\bullet$} message queues, \dots \\ \midrule
 \textbf{Services}   & $\bullet$ Timing, interrupt handling, resource management (e.g. file systems). \\
 \bottomrule
 \end{tabular}
@@ -129,7 +131,7 @@ An OS typically provides at least two privilege levels:
     \item \textbf{Unprivileged mode}: restricted access; used for user applications.
 \end{itemize}
 
-On ARM systems, these two modes are commonly used to separate kernel and user execution.
+On ARM systems, these 2 modes are commonly used to separate kernel and user execution.
 
 \subsection{Simple RTOS implementation}
 
