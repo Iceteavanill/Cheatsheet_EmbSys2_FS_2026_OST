@@ -166,19 +166,7 @@ Typically the semaphore (binary) is taken before entering a critical section and
         \item boolean valued
     \end{itemize}
 
-\subsubsection{Semaphore change in ISR}
-\label{Mutex_From_ISR}
-When a semaphore is given, a previously blocked task might become unblocked.
-To remove additional overhead, the current executed task can directly be set to the now ready task without waiting for an additional systick:
-\begin{lstlisting}
-extern "C" void button_pressed_callback_bin_sem(){
-	portBASE_TYPE higher_task_unblocked = pdFALSE;
-	buttonPressedSemHandle->give_ISR(higher_task_unblocked);
-	portYIELD_FROM_ISR( higher_task_unblocked );
-}
-\end{lstlisting}
-
-\subsubsection{Semaphore}
+    \subsubsection{Semaphore}
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
     A semaphore is \textbf{a signaling mechanism} used to notify a waiting task that it can proceed.
     \begin{itemize}
@@ -187,6 +175,18 @@ extern "C" void button_pressed_callback_bin_sem(){
         \item At initialization it is typically empty (i.e., no available token).
         \item Integer valued
     \end{itemize}
+    
+    \subsubsection{Semaphore change in ISR}
+    \label{Mutex_From_ISR}
+    When a semaphore is given, a previously blocked task might become unblocked.
+    To remove additional overhead, the current executed task can directly be set to the now ready task without waiting for an additional systick:
+    \begin{lstlisting}
+    extern "C" void button_pressed_callback_bin_sem(){
+        portBASE_TYPE higher_task_unblocked = pdFALSE;
+        buttonPressedSemHandle->give_ISR(higher_task_unblocked);
+        portYIELD_FROM_ISR( higher_task_unblocked );
+    }
+    \end{lstlisting}
 
 \subsubsection{Semaphore vs. Mutex}
 \begin{tabular}{p{0.45\columnwidth} p{0.45\columnwidth}}
