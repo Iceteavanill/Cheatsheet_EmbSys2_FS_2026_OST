@@ -11,7 +11,7 @@ for (int i = 0; i < HIDDEN_NODES; i++) {
     z1[i] = relu(z1[i]);
 }
 
-/*Calculate layer 2. This layer calculates the value of each node of the seccond hidden layer. This requires the arrays "bias2" and "weight2" and the result array of the first hidden layer. */
+/*Calculate layer 2. This layer calculates the value of each node of the second hidden layer. This requires the arrays "bias2" and "weight2" and the result array of the first hidden layer. */
 float z2[HIDDEN_NODES];
 for (int i = 0; i < HIDDEN_NODES; i++) {
     z2[i] = bias2[i];

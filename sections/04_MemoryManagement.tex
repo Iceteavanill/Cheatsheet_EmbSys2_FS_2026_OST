@@ -90,8 +90,8 @@
     % GOAL L07 • You can analyze code with regard to its cache friendliness.
       \begin{itemize}
         \item C arrays use \textbf{row-major order}.
-        \item \textcolor{codeGreen}{Sequential (row-wise) transversal \textrightarrow~good spatial locality.}
-        \item \textcolor{red}{Column-wise / strided transversal \textrightarrow~many cache misses.}
+        \item \textcolor{codeGreen}{Sequential (row-wise) traversal \textrightarrow~good spatial locality.}
+        \item \textcolor{red}{Column-wise / strided traversal \textrightarrow~many cache misses.}
       \end{itemize}
 
     \subsubsection{Cache Performance}
@@ -298,7 +298,7 @@ $T_{eff}$ = mean acces time (s or \#clocks), $T_{Hit}$ = cache access time (s or
     \begin{tabular}{@{}lll@{}}
       \textbf{M} & \textbf{(= Modified)}  & only here, dirty; exclusive R/W, no memory update \\
       \textbf{E} & \textbf{(= Exclusive)} & only here, clean; exclusive read; write $\rightarrow$ M \\
-      \textbf{S} & \textbf{(= Shared)}    & in multiple caches, consistent; write $\rightarrow$ E, others $\rightarrow$ I \\
+      \textbf{S} & \textbf{(= Shared)}    & in multiple caches, consistent; write $\rightarrow$ M, others $\rightarrow$ I \\
       \textbf{I} & \textbf{(= Invalid)}   & stale/empty; reload $\rightarrow$ S (WT) or E (WB) \\
     \end{tabular}
 
@@ -580,7 +580,7 @@ $T_{eff}$ = mean acces time (s or \#clocks), $T_{Hit}$ = cache access time (s or
     \item \textbf{No external fragmentation}: Virtually contiguous memory need not be physically contiguous.
   \end{itemize}
 
-  \subsubsection{Prequisites \& Use Cases}
+  \subsubsection{Prerequisites \& Use Cases}
   \begin{itemize}
     \item Requires MMU (address translation, page faults) and OS support (page tables, fault handling, optional swapping).
     \item Used in general-purpose OSes (desktop/server) with multiple processes.

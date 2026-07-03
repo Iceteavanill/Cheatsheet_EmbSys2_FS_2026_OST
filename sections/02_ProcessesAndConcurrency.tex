@@ -142,7 +142,7 @@ A occurs every 6s, B every 9 and C every 3s.
 With preemptive scheduling, more context switches occur, but higher priority tasks are always executed on time.
 
 All modern OS's use preemptive scheduling, this however has the consequence that task execution is less predictive.
-In general the \emph{save bet} is to use none-preemptive scheduling.
+In general the \emph{save bet} is to use non-preemptive scheduling.
 
 \textbf{Scheduling of FreeRTOS}
 
@@ -152,7 +152,7 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
 \subsection{Inter-Process communication}
 % GOAL V03/V04/L04/L05 • IPC, mutex, semaphore, queues, deadlocks, priority inversion
 
-Inpterprocess communication is done via mutexes and semaphores.
+Interprocess communication is done via mutexes and semaphores.
 They can be taken (p operation) or released (v operation).
 Typically the semaphore (binary) is taken before entering a critical section and released after
 
@@ -166,9 +166,9 @@ Typically the semaphore (binary) is taken before entering a critical section and
         \item boolean valued
     \end{itemize}
 
-\subsubsection{Mutex from ISR}
+\subsubsection{Semaphore change in ISR}
 \label{Mutex_From_ISR}
-When a Mutex is given, a previously blocked task might become unblocked.
+When a semaphore is given, a previously blocked task might become unblocked.
 To remove additional overhead, the current executed task can directly be set to the now ready task without waiting for an additional systick:
 \begin{lstlisting}
 extern "C" void button_pressed_callback_bin_sem(){
@@ -200,7 +200,7 @@ Any task/ISR may give or take & Only the owning task releases \\
 \end{tabular}
 Use a mutex for higher safety when guarding a shared resource (ownership, recursive locking, task-deletion safety, priority-inversion avoidance).
 
-\subsubsection{Synchronize tasks using a Mutex}
+\subsubsection{Synchronize tasks using a Semaphore}
 % GOAL L04 • You can synchronize multiple tasks with semaphores.
 % GOAL V04 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
 

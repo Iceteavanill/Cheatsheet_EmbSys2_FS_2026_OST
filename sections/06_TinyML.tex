@@ -93,7 +93,7 @@ Optimization is driven by hardware bounds (Roofline) and parallelism limits (Amd
 5 outputs, 
 8 B/value: weights $200+100=300$, 
 biases $20+5=25$ \textrightarrow{} $325$ params $=2600$\,B $\approx2.54$\,kB (fits a Cortex-M4 easily); 
-MACs $=N_\text{in}\cdot N_\text{out}=300$.
+MACs $=N_\text{in}\cdot N_\text{out}= 10\cdot 29 + 20 \cdot 5= 300$.
 \begin{ctabular}{ll}
 \textbf{Model optimization} & \textbf{Implementation optimization} \\ \hline
 quantization & operator fusion \\

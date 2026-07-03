@@ -107,7 +107,7 @@ User mode (ring 1,2,3,4) does \textbf{not allow} execution of all instructions
     \includegraphics[width=\columnwidth]{images/PDF/Scheduler.pdf}
 \end{minipage}
 \begin{minipage}{0.4\columnwidth}
-    When \verb|Addtaks| is called for a task, it is added to the queue.
+    When \verb|Addtask| is called for a task, it is added to the queue.
     The Scheduler periodically checks if tasks are ready.
     If the task is ready to be called (Delay passed, sufficient priority), it is added to the dispatcher queue.
     The scheduler calls the dispatcher queue, which executes all queued tasks.

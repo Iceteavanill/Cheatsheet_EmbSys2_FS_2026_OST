@@ -2,7 +2,7 @@
 #include "Scheduler.hpp"
 #include "Dispatcher.hpp"
 #include "Task.hpp"
-#include "stn32g4xx_hal.h"
+#include "stm32g4xx_hal.h"
 
 void Scheduler::AddTask(ITask* task, uint32_t delay_tick) {
 	// The delay is relative to the current tick. The absolute time is needed for the task scheduling.
@@ -20,7 +20,7 @@ void Scheduler::RemoveTask(ITask *task){
 void Scheduler::Run() {
     for(auto task : delayQueue){
         if(task->GetScheduledTime() < HAL_GetTick()){
-            dispatcher.AddTask(task):
+            dispatcher.AddTask(task);
             RemoveTask(task);
         }
     }
