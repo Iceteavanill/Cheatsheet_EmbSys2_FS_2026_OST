@@ -13,18 +13,19 @@
 \subsection{Real time systems definition}
 
 \begin{minipage}{0.5\columnwidth}
-Real time systems are computing systems that \textbf{must} react within precise time constraints to events in the environment.
-They are also characterized by a deadline.
-Rather than being fast, a real time computing system is \textbf{predictable}.
-Even in a worst case event where workload is the largest, they do not violate timing constraints.
-Generally operating systems are used when multiple tasks have to be done simultaneously.
-Core functions are:
-\begin{itemize}
-    \item Parallel processes and interprocess communication
-    \item Abstract and provide driver for periphery
-    \item Memory management, file systems
-    \item General utilities (Clock, Math, Multi user)
-\end{itemize}
+    Real time systems are computing systems that \textbf{must} react within precise time constraints to events in the environment.
+    They are characterized by deadlines.
+    The key property is not maximum speed, but \textbf{predictability}.
+    Even under worst-case workload conditions, timing constraints must not be violated.
+
+    In contrast, general-purpose operating systems are used when multiple tasks must be executed simultaneously.
+    Core functions are:
+    \begin{itemize}
+        \item Parallel processes and interprocess communication
+        \item Abstract and provide driver for periphery
+        \item Memory management, file systems
+        \item System services (clock, math, multi user)
+    \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
     \includegraphics[width=\columnwidth]{images/PDF/System_OS.pdf}
