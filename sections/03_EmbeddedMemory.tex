@@ -53,14 +53,12 @@
 
   \subsubsection{Task Stack and Heap Usage}
   
-  % TODO: Das noch als Bild einpflegen -> Minipage mit Text Links, Bild rechts.
-  
   \begin{minipage}[t]{0.6\linewidth}
     \vspace{0pt}
     \begin{itemize}
       \item Each FreeRTOS task consists of:
       \begin{itemize}
-          \item a \textbf{stack} (local variables, context) % TODO: Evtl. in Bild einbetten-> bild evtl zu überladen dann?
+          \item a \textbf{stack} (local variables, context)
           \item a \textbf{Task Control Block (TCB)}
       \end{itemize}
   
@@ -72,12 +70,12 @@
   
       \item Stack usage can be estimated using:
       \begin{itemize}
-          \item \texttt{uxTaskGetStackHighWaterMark()}
+        \item \texttt{uxTaskGetStackHighWaterMark()} returns the minimum unused stack space (words).
       \end{itemize}
     \end{itemize}
   
       \begin{itemize}
-          \item FreeRTOS heap is a static array (\texttt{ucHeap}) % TODO: Evtl. direkt in Grafik rein bringen -> bild evtl zu überladen dann?
+          \item FreeRTOS heap is a static array (\texttt{ucHeap})
           \item Used for tasks, queues, semaphores
       \end{itemize}
 
@@ -107,12 +105,23 @@
 \end{minipage}
 
 
-
 \subsubsection{Heap implementations}
 
 Heap implementation 1 to 5 are provided by FreeRTOS.
 
 \includegraphics[width=\columnwidth]{images/PDF/heaps.pdf}
+
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Heap implementation} & \textbf{Key feature} \\
+  \midrule
+  \textbf{heap\_1} & \texttt{malloc} only (no \texttt{free}) \\
+  \textbf{heap\_2} & \texttt{malloc}/\texttt{free} \\
+  \textbf{heap\_3} & Wrapper for standard C allocator \\
+  \textbf{heap\_4} & Coalescing allocator (recommended) \\
+  \textbf{heap\_5} & Multiple memory regions \\
+  \bottomrule
+\end{tabular}
 
 \subsection{Static and Dynamic Allocation}
   % GOAL L06 • You can explain the pros and cons of static/dynamic allocation.

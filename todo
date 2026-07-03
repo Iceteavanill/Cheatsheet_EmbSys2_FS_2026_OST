@@ -61,12 +61,12 @@ GOAL V05 • You can describe the memory usage regarding FreeRTOS task stacks an
 GOAL V05 • You can explain internal / external fragmentation and coalescing / free-space management.
 
 <!-- Lab 06 –FreeRTOS Memory Model -->
-GOAL L06 • You can understand where and how a task is placed in memory.
-GOAL L06 • You can use FreeRTOS with and without heap.
+<!-- GOAL L06 • You can understand where and how a task is placed in memory. -->
+<!-- GOAL L06 • You can use FreeRTOS with and without heap. -->
 <!-- GOAL L06 • You can explain the pros and cons of static/dynamic allocation. -->
 GOAL L06 • You can describe what memory fragmentation is.
 GOAL L06 • You can apply watermarking to analyze memory usage.
-GOAL L06 • You can assess and estimate the memory usage of a task.
+<!-- GOAL L06 • You can assess and estimate the memory usage of a task. -->
 
 <!-- V06 – Memory Management (I): Memory Hierarchy -->
 <!-- GOAL V06 • You are familiar with the typical structure of a memory hierarchy, including cache and scratchpad memories. -->
