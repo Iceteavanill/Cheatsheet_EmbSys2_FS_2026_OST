@@ -6,7 +6,7 @@ A single processor at ever-higher clock hits limits (complexity, power), so effi
   \1 \textbf{ILP} (instruction-level): overlap instruction stages (pipelining, superscalar, VLIW) --- gains at the same clock.
   \1 \textbf{TLP} (thread-level): several concurrent threads (own stack/registers/PC) when one program lacks independent instructions.
   \1 \textbf{DLP} (data-level) \textrightarrow{} \textbf{SIMD}: one instruction for many data elements. 
-  \textbf{MIMD} \textrightarrow{} multiple instructions for multiple data (more efficient than SIMD) 
+  \textbf{MIMD} \textrightarrow{} multiple instructions for multiple data (can be more efficient than SIMD for large datasets) 
 \end{outline}
 
 \subsection{SIMD (single instruction, multiple data)}
@@ -208,7 +208,7 @@ Serial part \qty{10}{\percent}\textrightarrow$s=0.1$, parallel part \qty{90}{\pe
     \item[$n=1$] $S = \frac{1}{(0.1+\frac{0.9}{1})} = 1$, efficiency = $\frac{1}{1} = \qty{100}{\percent}$
     \item[$n=4$] $S = \frac{1}{(0.1+\frac{0.9}{4})} \approx 3.08$, efficiency = $\frac{3.08}{4} = \qty{77}{\percent}$
     \item[$n=15$] $S = \frac{1}{(0.1+\frac{0.9}{15})} \approx 6.25$, efficiency = $\frac{6.25}{15} = \qty{41.7}{\percent}$
-    \item[$n=\infty$] $S = \lim_{n\rightarrow\infty}\frac{1}{(0.1+\frac{0.9}{\infty})} = 10$, efficiency = $\lim_{n\rightarrow\infty}\frac{6.25}{\infty} = \qty{0}{\percent}$
+    \item[$n=\infty$] $S = \lim_{n\rightarrow\infty}\frac{1}{(0.1+\frac{0.9}{\infty})} = 10$, efficiency = $\lim_{n\rightarrow\infty}\frac{10}{\infty} = \qty{0}{\percent}$
 \end{description}
 
 \example{Multiple parallel parts}

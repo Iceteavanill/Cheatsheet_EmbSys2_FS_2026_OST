@@ -32,7 +32,7 @@ To minimize this overhead, it is important to minimize task switches when possib
     \item Save the context of the interrupted process 1
     \item Change the status of process 1 to \emph{Ready} or \emph{Waiting} (depending on the reason for the interruption)
     \item Selection of the process 2 to be activated by the scheduler
-    \item Change the status of process 2 from \emph{Waiting} to \emph{Ready}
+    \item Change the status of process 2 from \emph{Ready} to \emph{running}
     \item Restoring the (saved) context of process 2 by loading the processor registers
 \end{enumerate}
 
@@ -142,7 +142,7 @@ A occurs every 6s, B every 9 and C every 3s.
 With preemptive scheduling, more context switches occur, but higher priority tasks are always executed on time.
 
 All modern OS's use preemptive scheduling, this however has the consequence that task execution is less predictive.
-In general the \emph{save bet} is to use non-preemptive scheduling.
+In general the \emph{safe bet} is to use non-preemptive scheduling.
 
 \textbf{Scheduling of FreeRTOS}
 
@@ -172,7 +172,7 @@ When a semaphore is given, a previously blocked task might become unblocked.
 To remove additional overhead, the current executed task can directly be set to the now ready task without waiting for an additional systick:
 \begin{lstlisting}
 extern "C" void button_pressed_callback_bin_sem(){
-	portBASE_TYPE higher_task_unblocked;
+	portBASE_TYPE higher_task_unblocked = pdFALSE;
 	buttonPressedSemHandle->give_ISR(higher_task_unblocked);
 	portYIELD_FROM_ISR( higher_task_unblocked );
 }
@@ -204,9 +204,7 @@ Use a mutex for higher safety when guarding a shared resource (ownership, recurs
 % GOAL L04 • You can synchronize multiple tasks with semaphores.
 % GOAL V04 • You can implement IPC concepts with these RTOS objects in FreeRTOS.
 
-Using mutexes (or semaphores), tasks can be synchronized.
-
-
+Using semaphores, tasks can be synchronized by releasing the semaphore when done and waiting for the other to be released.
 
 \begin{minipage}{0.49\columnwidth}
 \textbf{correct}

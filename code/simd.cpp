@@ -11,7 +11,7 @@ void vector_dot_product(const int16_t *pSrc1, const int16_t *pSrc2, int32_t *pDe
 		*pDest = __SMLAD(pS1Vec[i], pS2Vec[i], *pDest);
 	}// Do the rest with iterative loop, if length is not a factor of 2.
 	for(size_t i=len&(~0b1U); i<len; ++i){
-		*pDest += (uint32_t)(pSrc1[i]) * (uint32_t)(pSrc2[i]);
+		*pDest += (int32_t)(pSrc1[i]) * (int32_t)(pSrc2[i]);
 	}
 }
 // TODO : Maybe make it more compact by removing all the consts

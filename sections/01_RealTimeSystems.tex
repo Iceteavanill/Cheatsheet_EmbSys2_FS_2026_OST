@@ -95,10 +95,9 @@ Core functions are:
 \subsubsection{Execution modes and privilege levels}
 Another important mechanism is the execution mode.
 An OS has at least 2 privilege levels / modes for executing instructions.
-The different modes are called \textbf{rings}.
-Kernel mode (ring 0) allows for execution of all instructions.
-User mode (ring 1,2,3,4) does \textbf{not allow} execution of all instructions
-
+For ARM  these break down to privileged and unprivileged mode.
+Privileged mode allows for execution of all instructions.
+Unprivileged mode does \textbf{not allow} execution of all instructions and is ment for unknown user applications
 
 \subsection{Simple RTOS implementation}
 
@@ -127,5 +126,5 @@ User mode (ring 1,2,3,4) does \textbf{not allow} execution of all instructions
     \lstinputlisting{code/Simple_Rtos_Scheduler.hpp}
     The scheduler instantiates the dispatcher.
 \end{minipage}
-Dispatcher implementation (simple)
+Scheduler implementation (simple)
 \lstinputlisting{code/Simple_Rtos_Scheduler.cpp}

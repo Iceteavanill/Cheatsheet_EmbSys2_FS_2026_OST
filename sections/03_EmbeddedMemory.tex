@@ -37,8 +37,8 @@
     \begin{tabular}{lll}
       \toprule
       \textbf{Section} & \textbf{Location} & \textbf{Content} \\ \midrule
-      \texttt{.text}   & Flash & Code, constants (\texttt{const}) \\
-      \texttt{.rodata} & Flash & Read-only data \\
+      \texttt{.text}   & Flash & executable code \\
+      \texttt{.rodata} & Flash & Read-only data, constants (\texttt{const}) \\
       \texttt{.data}   & RAM (init from Flash) & Initialized global/static variables \\
       \texttt{.bss}    & RAM & Zero-initialized global/static variables \\
       Heap             & RAM $\uparrow$ & Dynamic allocation (\texttt{new}/\texttt{pvPortMalloc}) \\
@@ -109,6 +109,8 @@
 
 
 \subsubsection{Heap implementations}
+
+Heap implementation 1 to 5 are provided by FreeRTOS.
 
 \includegraphics[width=\columnwidth]{images/PDF/heaps.pdf}
 
