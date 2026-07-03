@@ -322,23 +322,24 @@ $T_{eff}$ = mean acces time (s or \#clocks), $T_{Hit}$ = cache access time (s or
 
   \subsubsection{Flash Structure}
   % GOAL L08 • You learn about the structure of flash memory (flash sectors) through hands-on experience.
-    \begin{minipage}[t]{0.7\columnwidth}
+    \begin{minipage}[t]{0.55\columnwidth}
+      \vspace*{0pt}
       \includegraphics[width=\linewidth]{images/PDF/Flash_BlockNotation.pdf}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.28\columnwidth}
-      \includegraphics[width=\linewidth]{images/Flash_SRAM.png}
+      \begin{itemize}
+        \item Flash is divided into \textbf{sectors / pages / blocks}
+        \item STM32H755 example:
+          \begin{itemize}
+            \item Sector size: \qty{128}{\kilo\byte} (internal flash)
+            \item Writing \qty{8}{\kilo\byte} \textrightarrow~only \textbf{1 sector must be erased}
+          \end{itemize}
+        \item Sector erase is required before any write Operations
+        \item File systems map logical data \textrightarrow~flash sectors
+      \end{itemize}
+    \end{minipage}\hfil
+    \begin{minipage}[t]{0.43\columnwidth}
+      \vspace*{0pt}
+      \includegraphics[width=\linewidth]{images/PDF/sram_diagram.pdf}
     \end{minipage}
-
-    \begin{itemize}
-      \item Flash is divided into \textbf{sectors / pages / blocks}
-      \item STM32H755 example:
-        \begin{itemize}
-          \item Sector size: \qty{128}{\kilo\byte} (internal flash)
-          \item Writing \qty{8}{\kilo\byte} \textrightarrow~only \textbf{1 sector must be erased}
-        \end{itemize}
-      \item Sector erase is required before any write Operations
-      \item File systems map logical data \textrightarrow~flash sectors
-    \end{itemize}
 
   \begin{minipage}[t]{0.38\linewidth}
   \subsubsection{Flash Sectors}
