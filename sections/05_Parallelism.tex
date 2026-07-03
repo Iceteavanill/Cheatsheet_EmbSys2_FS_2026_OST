@@ -117,7 +117,7 @@ Some interrupt lines are available between the two CPUs, which can be used to sy
 
 % TODO: maybe add NPUs, TPU's
 
-\subsection{Performance Analysis}
+\subsection{Performance Analysis \& improvements}{extends section \ref{sec:execution_time}}
 % GOAL L10 • You can use a cycle counter to analyze the speed of a function.
 
 % The execution time of a program can be calculated with
@@ -131,9 +131,9 @@ Some interrupt lines are available between the two CPUs, which can be used to sy
 % \frac{\text{Seconds}}{\text{Clock cycle}}.
 % \]
 % Note : clockcycles per instruction varies from \textbf{CISC} to \textbf{RISK}. Typically, a mean value is used.
-See section \ref{sec:execution_time} for base model.
+% See  for base model.
 
-\subsubsection{Improvements in execution time}
+% \subsubsection{Improvements in execution time}
 \[
 T_{\text{App}} 
 = 
@@ -149,8 +149,9 @@ T_{\text{App}}
 \mathrm{CPI}\cdot
 \mathrm{TPC}
 \]
-\begin{center}
-\begin{tabular}{p{0.07\linewidth}p{0.49\linewidth}p{0.3\linewidth}}
+\begin{tikzpicture}
+\node[inner sep=0pt] (tab) {%
+\begin{tabular}{p{0.07\linewidth}p{0.42\linewidth}p{0.3\linewidth}}
 \hline
 \textbf{factor} & \textbf{meaning / parallel form} & \textbf{limit} \\
 \hline
@@ -160,8 +161,18 @@ IPO & Instructions per Operation (ILP, VLIW); 1 (CISC), $<1$ (VLIW) & Compiler t
 CPI & Clocks per Instruction (ILP superscalar, HW) & memory access, ILP \\
 TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \\
 \hline
-\end{tabular}
-\end{center}
+\end{tabular}%
+};
+
+\draw[-{Triangle}, thick, red] ([xshift=0.3cm, yshift=-0.3cm]tab.east) -- ++(0,1.6cm)
+    node[midway, right, rotate=90, anchor=south, red] {\footnotesize potential};
+
+\node[rotate=90, anchor=center] at ($(tab.east)+(0.45cm,0)$) {\footnotesize Speedup};
+
+\draw[-{Triangle}, thick, blue] ([xshift=0.6cm, yshift=0.3cm]tab.east) -- ++(0,-1.6cm)
+    node[midway, right, rotate=-90, anchor=south, blue] {\footnotesize Less  potential};
+
+\end{tikzpicture}
 
 \subsection{Amdahl's Law (strong scaling), fixed problem size}
 \begin{itemize}
