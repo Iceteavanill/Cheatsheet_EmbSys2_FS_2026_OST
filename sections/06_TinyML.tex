@@ -15,7 +15,8 @@ A \textbf{weight} $w$ scales an input, a \textbf{bias} $b$ offsets the output.
 
 \includegraphics[width=\columnwidth]{images/PDF/dnn_neuron.pdf}
 \subsubsection{Propagation} 
-\textbf{Forward} (inference): $z^{[l]}=\mathbf{W}^{[l]T}\mathbf{x}+\mathbf{b}^{[l]}$, $a^{[l]}=g(z^{[l]})$. 
+\textbf{Forward} (inference): $z^{[l]}=\mathbf{W}^{[l]T}\mathbf{a}^{[l-1]}+\mathbf{b}^{[l]}$, $a^{[l]}=g(z^{[l]}), with $($a^{0}=x$). 
+
 \textbf{Backward} (training): adjust weights/biases from the error.
 
 \begin{minipage}{0.4\columnwidth}
