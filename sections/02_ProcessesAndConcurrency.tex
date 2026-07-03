@@ -152,9 +152,10 @@ The scheduling of FreeRTOS executes tasks with the highest priority and then sha
 \subsection{Inter-Process communication}
 % GOAL V03/V04/L04/L05 • IPC, mutex, semaphore, queues, deadlocks, priority inversion
 
-Interprocess communication is done via mutexes and semaphores.
+Interprocess communication and signaling is done via mutexes and semaphores.
 They can be taken (p~operation) or released (v~operation).
-Typically the semaphore (binary) is taken before entering a critical section and released after
+Typically, the semaphore is taken before entering a critical section and released after.
+
 
 \subsubsection{Mutex}
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
@@ -213,8 +214,8 @@ Using semaphores, tasks can be synchronized by releasing the semaphore when done
 Task a
 \begin{lstlisting}
 // statements
-aMutex.give()
-bMutex.take()
+aSemaphore.give()
+bSemaphore.take()
 // synchronized 
 \end{lstlisting}
 \end{minipage}
@@ -222,8 +223,8 @@ bMutex.take()
 Task b
 \begin{lstlisting}
 // statements
-bMutex.give()
-aMutex.take()
+bSemaphore.give()
+aSemaphore.take()
 // synchronized
 \end{lstlisting}
 \end{minipage}
@@ -235,8 +236,8 @@ aMutex.take()
 Task a
 \begin{lstlisting}
 // statements
-bMutex.take()
-aMutex.give()
+bSemaphore.take()
+aSemaphore.give()
 // never reached
 \end{lstlisting}
 \end{minipage}
@@ -244,8 +245,8 @@ aMutex.give()
 Task b
 \begin{lstlisting}
 // statements
-aMutex.take()
-bMutex.give()
+aSemaphore.take()
+bSemaphore.give()
 // never reached
 \end{lstlisting}
 \end{minipage}
