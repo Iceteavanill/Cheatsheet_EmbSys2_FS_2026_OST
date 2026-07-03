@@ -6,7 +6,7 @@ void Dispatcher::AddTask(ITask* task) {
 void Dispatcher::Run() {
 	// Execute all tasks in order
 	for (auto task : readyQueue) {
-		task->Work();
+		task->Work(); // not on a monday :)
 	}
 	readyQueue.clear(); // clear queue
 }

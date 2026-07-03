@@ -1,15 +1,12 @@
-
 #include "Scheduler.hpp"
 #include "Dispatcher.hpp"
 #include "Task.hpp"
 #include "stm32g4xx_hal.h"
 
-void Scheduler::AddTask(ITask* task, uint32_t delay_tick) {
-	// The delay is relative to the current tick. The absolute time is needed for the task scheduling.
-	uint32_t time = HAL_GetTick() + delay_tick;
+void Scheduler::AddTask(ITask* task, uint32_t delayTck) {
+	uint32_t time = HAL_GetTick() + delayTck;// get absolute time (for sheduling) + delay
 	task->SetScheduledTime(time);
-	// Push ScheduledTask in queue.
-	delayQueue.push_back(task);
+	delayQueue.push_back(task);// Push ScheduledTask in queue.
 }
 
 void Scheduler::RemoveTask(ITask *task){
@@ -18,11 +15,14 @@ void Scheduler::RemoveTask(ITask *task){
 }
 
 void Scheduler::Run() {
-    for(auto task : delayQueue){
-        if(task->GetScheduledTime() < HAL_GetTick()){
+    for (size_t i = 0; i < delayQueue.size(); /*Empty :O */) {
+        ITask* task = delayQueue[i];
+        if (task->GetScheduledTime() < HAL_GetTick()) {
             dispatcher.AddTask(task);
-            RemoveTask(task);
+            RemoveTask(task);// erases delayQueue[i], next element shifts into i
+        } else {
+            i++;// only increment if no task was removed
         }
     }
-	dispatcher.Run(); // Execute dispatched tasks.
+    dispatcher.Run();// Execute dispatched tasks.
 }

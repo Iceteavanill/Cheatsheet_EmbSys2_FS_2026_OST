@@ -115,16 +115,17 @@ Unprivileged mode does \textbf{not allow} execution of all instructions and is m
 
 \subsubsection{Simple Scheduler and Dispatcher implementation}
 
-\begin{minipage}[t]{0.5\columnwidth}
+\begin{minipage}[t]{0.46\columnwidth}
     Dispatcher header
     \lstinputlisting{code/Simple_Rtos_Dispatcher.hpp}
     Dispatcher implementation
     \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
 \end{minipage}
-\begin{minipage}[t]{0.5\columnwidth}
+\begin{minipage}[t]{0.54\columnwidth}
+    Task Header
+    \lstinputlisting{code/task.hpp}
     Scheduler header
     \lstinputlisting{code/Simple_Rtos_Scheduler.hpp}
-    The scheduler instantiates the dispatcher.
 \end{minipage}
 Scheduler implementation (simple)
 \lstinputlisting{code/Simple_Rtos_Scheduler.cpp}

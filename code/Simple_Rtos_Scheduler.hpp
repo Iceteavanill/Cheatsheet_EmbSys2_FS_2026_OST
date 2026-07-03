@@ -4,7 +4,7 @@
 
 class Scheduler {
 public:
-	void AddTask(ITask *task, uint32_t delay_tick);
+	void AddTask(ITask *task, uint32_t delayTck);
 	void RemoveTask(ITask *task);
 	void Run();
 private:
