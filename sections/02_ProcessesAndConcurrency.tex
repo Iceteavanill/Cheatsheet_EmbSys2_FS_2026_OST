@@ -10,7 +10,7 @@ That consists of:
 \begin{itemize}
     \item \textbf{Memory context:} Memory used by the process (program code, stack)
     \item \textbf{Hardware context:} Registers (PC, SP, PSR)
-    \item \textbf{System context:} OS intern management data of the process (called TCB)
+    \item \textbf{System context:} OS intern management data of the process (called \textbf{TCB})
 \end{itemize}
 
 % TODO : Maybe add Task Control Block (TCB)
@@ -135,7 +135,7 @@ This reduces overhead of context switches, but it also increases response time.
 
 The following example shows 3 concurrent, cyclical tasks in a preemptive and non-preemptive situation.
 The tasks' priority is \( \text{A} > \text{B} > \text{C}\).
-A occurs every 6s, B every 9 and C every 3s.
+A occurs every \qty{6}{\second}, B every \qty{9}{\second} and C every \qty{3}{\second}.
 
 \includegraphics[width=\columnwidth]{images/preemptive_vs_non.png}
 
