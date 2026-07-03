@@ -141,7 +141,7 @@ On ARM systems, these 2 modes are commonly used to separate kernel and user exec
 \end{minipage}
 \begin{minipage}{0.48\columnwidth}
     \begin{enumerate}
-        \item When \verb|Addtask| is called, the task is added to the ready queue.
+        \item When \verb|Addtask| is called, the task is added to the queue.
         \item The Scheduler periodically checks if tasks are ready.
         \item If a task is ready to be called (delay expired and priority sufficient), it is moved to the dispatcher queue.
         \item The scheduler calls the dispatcher queue, which executes all queued tasks.
