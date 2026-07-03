@@ -151,17 +151,15 @@ On ARM systems, these 2 modes are commonly used to separate kernel and user exec
 
 \subsubsection{Simple Scheduler and Dispatcher implementation}
 
+\vspace{-0.2cm}
 \begin{minipage}[t]{0.46\columnwidth}
-    Dispatcher header
     \lstinputlisting{code/Simple_Rtos_Dispatcher.hpp}
-    Dispatcher implementation
-    \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
+    \vspace{-0.2cm}
+    \lstinputlisting{code/task.hpp}
 \end{minipage}
 \begin{minipage}[t]{0.54\columnwidth}
-    Task Header
-    \lstinputlisting{code/task.hpp}
-    Scheduler header
+    \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
+    \vspace{-0.2cm}
     \lstinputlisting{code/Simple_Rtos_Scheduler.hpp}
 \end{minipage}
-Scheduler implementation (simple)
 \lstinputlisting{code/Simple_Rtos_Scheduler.cpp}
