@@ -77,7 +77,7 @@
     \end{itemize}
   \end{minipage}
 
-\subsection{Caching} % TODO: Cross-check this subsection (Caching) + Vorgehensweise Uebungen hinzufügen / Abgleichen, ob damit gut lösbar. Das kommt höchstwahrscheinlich and der Prüfung!
+\subsection{Caching}
   \subsubsection{Locality}
     % GOAL V06 • You can explain the key concept of the principle of locality and cache-friendly code.
       \begin{itemize}
@@ -85,8 +85,8 @@
         \item Spatial: Nearby addresses will likely be accessed.
       \end{itemize}
 
-  \begin{minipage}[t]{0.68\linewidth}
-    \subsubsection{Cache-Friendly Code}
+  \begin{minipage}[t]{0.65\linewidth}
+  \subsubsection{Cache-Friendly Code}
     % GOAL L07 • You can analyze code with regard to its cache friendliness.
       \begin{itemize}
         \item C arrays use \textbf{row-major order}.
@@ -94,13 +94,13 @@
         \item \textcolor{red}{Column-wise / strided traversal \textrightarrow~many cache misses.}
       \end{itemize}
 
-    \subsubsection{Cache Performance}
+  \subsubsection{Cache Performance}
       \begin{itemize}
         \item Cache \textcolor{codeGreen}{hit} / \textcolor{red}{miss}: Requested data \textcolor{codeGreen}{found} / \textcolor{red}{not found}
         \item \textcolor{red}{Miss types: Compulsory (cold) / Capacity / Conflict}
       \end{itemize}
   \end{minipage}\hfill
-  \begin{minipage}[t]{0.28\linewidth}
+  \begin{minipage}[t]{0.31\linewidth}
     \vspace{0pt}
     \includegraphics[width=\linewidth]{images/PDF/Caches_RowMajorVsColumnMajor.pdf}
   \end{minipage}
@@ -164,7 +164,7 @@
       \begin{itemize}
         \item Cache contains $2^{\cacheK}$ lines
         \item Cache size: $2^{\cacheK+\cacheI}$\\
-        For $n$-way: $n \cdot 2^{k+i}$
+        For $n$-way: $n \cdot 2^{\cacheK+\cacheI}$
         \item Entry: Tag + Valid + Data
       \end{itemize}
     \end{minipage}\hfill
@@ -177,6 +177,9 @@
         \text{Tag}   = \lfloor \text{Block}/2^{\cacheK}\rfloor
       \end{array}\]
     \end{minipage}
+
+    \textbf{Ways vs.\ Sets:} $\cacheK = s + x \qquad \rightarrow \#\text{sets} = 2^s$ and $\#\text{ways} = n = 2^x$\\
+    Fully associative: $\#\text{sets} = 1 \Rightarrow x = \cacheK$, Direct mapped: $n = 1 \Rightarrow \cacheK = s$
 
     \vspace{0.2cm}
     \begin{minipage}[t]{0.48\columnwidth}

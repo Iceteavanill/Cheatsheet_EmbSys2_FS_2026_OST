@@ -13,18 +13,19 @@
 \subsection{Real time systems definition}
 
 \begin{minipage}{0.5\columnwidth}
-Real time systems are computing systems that \textbf{must} react within precise time constraints to events in the environment.
-They are also characterized by a deadline.
-Rather than being fast, a real time computing system is \textbf{predictable}.
-Even in a worst case event where workload is the largest, they do not violate timing constraints.
-Generally operating systems are used when multiple tasks have to be done simultaneously.
-Core functions are:
-\begin{itemize}
-    \item Parallel processes and interprocess communication
-    \item Abstract and provide driver for periphery
-    \item Memory management, file systems
-    \item General utilities (Clock, Math, Multi user)
-\end{itemize}
+    Real time systems are computing systems that \textbf{must} react within precise time constraints to events in the environment.
+    They are characterized by deadlines.
+    The key property is not maximum speed, but \textbf{predictability}.
+    Even under worst-case workload conditions, timing constraints must not be violated.
+
+    In contrast, general-purpose operating systems are used when multiple tasks must be executed simultaneously.
+    Core functions are:
+    \begin{itemize}
+        \item Parallel processes and interprocess communication
+        \item Abstract and provide driver for periphery
+        \item Memory management, file systems
+        \item System services (clock, math, multi user)
+    \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
     \includegraphics[width=\columnwidth]{images/PDF/System_OS.pdf}
@@ -57,76 +58,108 @@ Core functions are:
     \item No “delay” capability
     \item Higher power consumption due to the lack of a power save mode in most architectures
     \item Difficult to maintain as program grows
-    \item Timing of all software components depends on all other software components: Small change in one place can have major side effects in other places
+    \item Tight coupling: timing and behavior of one part can affect the whole system
     \item Defeats modular programming
     \item Real time behavior only with interrupts
 \end{itemize}
 
-
-% \subsection{RTOS concepts and task management} TODO : needed?
-
 \subsubsection{FreeRTOS task management}
 % GOAL V02 • You can understand and utilize FreeRTOS to create and manage tasks.
 
+  \textbf{C++ Wrapper}: inherit \texttt{TaskClassS<N>}, implement \texttt{task()}, instantiate on heap.\\
+  \textbf{Preemption}: \texttt{configUSE\_PREEMPTION} in \texttt{FreeRTOSConfig.h} — shorter interval $\rightarrow$ faster response, more overhead.
+
+  \begin{center}
+    \begin{tabular}{ll}
+      \toprule
+      \texttt{vTaskDelay(n)}     & Block for $n$ ticks (releases CPU) \\
+      \texttt{vTaskDelayUntil()} & Block until absolute tick (precise period) \\
+      \texttt{timer()}           & Periodic callback — no \texttt{vTaskDelay} inside \\ \bottomrule
+    \end{tabular}
+  \end{center}
 
 \subsection{Components of a RTOS}
 
-\begin{itemize}
-    \item Scheduler
-    \begin{itemize}
-        \item Algorithm that determines when, which task is executed
-        \item planning of processes only possible if usage is fully known, else it is \say{fancy guessing}
-        \item Allows for multitasking
-    \end{itemize}
-    \item Dispatcher
-    \begin{itemize}
-        \item executes scheduled tasks
-    \end{itemize}
-    \item Objects
-    \begin{itemize}
-        \item Kernel constructs that function as an API
-        \item e.g. Tasks, semaphores, Message queues, \dots
-    \end{itemize}
-    \item Services
-    \begin{itemize}
-        \item Timing, interrupt handling, resources management like file systems
-    \end{itemize}
-\end{itemize}
+    \begin{tabular}{p{0.12\linewidth} p{0.79\linewidth}}
+\toprule
+\textbf{Scheduler}  & $\bullet$ Algorithm that determines when which task is executed\\
+                    & $\bullet$ Planning of processes only possible if usage is fully known; \\
+                    & \textcolor{white}{$\bullet$} otherwise it is \say{fancy guessing} \\
+                    & $\bullet$ Allows multitasking \\ \midrule
+\textbf{Dispatcher} & $\bullet$ Executes the scheduled tasks by performing context switches. \\ \midrule
+\textbf{Objects}    & $\bullet$ Kernel constructs that function as an API, e.g. tasks, semaphores, \\
+                    & \textcolor{white}{$\bullet$} message queues, \dots \\ \midrule
+\textbf{Services}   & $\bullet$ Timing, interrupt handling, resource management (e.g. file systems). \\
+\bottomrule
+\end{tabular}
+
+% NOTE: Is more compact as tabular
+% \begin{itemize}
+%     \item Scheduler
+%     \begin{itemize}
+%         \item Algorithm that determines when, which task is executed
+%         \item planning of processes only possible if usage is fully known, else it is \say{fancy guessing}
+%         \item Allows for multitasking
+%     \end{itemize}
+%     \item Dispatcher
+%     \begin{itemize}
+%         \item executes scheduled tasks
+%     \end{itemize}
+%     \item Objects
+%     \begin{itemize}
+%         \item Kernel constructs that function as an API
+%         \item e.g. Tasks, semaphores, Message queues, \dots
+%     \end{itemize}
+%     \item Services
+%     \begin{itemize}
+%         \item Timing, interrupt handling, resources management like file systems
+%     \end{itemize}
+% \end{itemize}
 
 \subsubsection{Execution modes and privilege levels}
+% Another important mechanism is the execution mode.
+% An OS has at least 2 privilege levels / modes for executing instructions.
+% For ARM  these break down to privileged and unprivileged mode.
+% Privileged mode allows for execution of all instructions.
+% Unprivileged mode does \textbf{not allow} execution of all instructions and is ment for unknown user applications
+
 Another important mechanism is the execution mode.
-An OS has at least 2 privilege levels / modes for executing instructions.
-For ARM  these break down to privileged and unprivileged mode.
-Privileged mode allows for execution of all instructions.
-Unprivileged mode does \textbf{not allow} execution of all instructions and is ment for unknown user applications.
+An OS typically provides at least two privilege levels:
+
+\begin{itemize}
+    \item \textbf{Privileged mode}: full access to all instructions and system resources.
+    \item \textbf{Unprivileged mode}: restricted access; used for user applications.
+\end{itemize}
+
+On ARM systems, these 2 modes are commonly used to separate kernel and user execution.
 
 \subsection{Simple RTOS implementation}
 
-
-\begin{minipage}{0.6\columnwidth}
+\vspace{-0.2cm}
+\begin{minipage}{0.48\columnwidth}
     \includegraphics[width=\columnwidth]{images/PDF/Scheduler.pdf}
 \end{minipage}
-\begin{minipage}{0.4\columnwidth}
-    When \verb|Addtask| is called for a task, it is added to the queue.
-    The Scheduler periodically checks if tasks are ready.
-    If the task is ready to be called (Delay passed, sufficient priority), it is added to the dispatcher queue.
-    The scheduler calls the dispatcher queue, which executes all queued tasks.
+\begin{minipage}{0.48\columnwidth}
+    \begin{enumerate}
+        \item When \verb|Addtask| is called, the task is added to the queue.
+        \item The Scheduler periodically checks if tasks are ready.
+        \item If a task is ready to be called (delay expired and priority sufficient), it is moved to the dispatcher queue.
+        \item The scheduler calls the dispatcher queue, which executes all queued tasks.
+    \end{enumerate}
 \end{minipage}
-
+\vspace{-0.2cm}
 
 \subsubsection{Simple Scheduler and Dispatcher implementation}
 
+\vspace{-0.2cm}
 \begin{minipage}[t]{0.46\columnwidth}
-    Dispatcher header
     \lstinputlisting{code/Simple_Rtos_Dispatcher.hpp}
-    Dispatcher implementation
-    \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
+    \vspace{-0.2cm}
+    \lstinputlisting{code/task.hpp}
 \end{minipage}
 \begin{minipage}[t]{0.54\columnwidth}
-    Task Header
-    \lstinputlisting{code/task.hpp}
-    Scheduler header
+    \lstinputlisting{code/Simple_Rtos_Dispatcher.cpp}
+    \vspace{-0.2cm}
     \lstinputlisting{code/Simple_Rtos_Scheduler.hpp}
 \end{minipage}
-Scheduler implementation (simple)
 \lstinputlisting{code/Simple_Rtos_Scheduler.cpp}
