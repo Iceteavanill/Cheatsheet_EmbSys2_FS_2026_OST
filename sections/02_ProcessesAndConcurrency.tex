@@ -130,7 +130,7 @@ The execution time of a task can be calculated by
 \subsubsection{Preemption}{verdrängung}
 
 When pursuing a non-preemptive scheduling policy, the tasks are always run to completion.
-Only when the tasks itself yields, can a context switch occur.
+Only when the tasks itself yields, a context switch can occur.
 This reduces overhead of context switches, but it also increases response time.
 
 The following example shows 3 concurrent, cyclical tasks in a preemptive and non-preemptive situation.
@@ -164,7 +164,7 @@ Typically, the semaphore is taken before entering a critical section and release
         \item Must be taken and released by the same task.
         \item Has an ``\textbf{owner}''.
         \item Is typically initialized in the unlocked state (i.e., token is available).
-        \item boolean valued
+        \item Boolean valued
     \end{itemize}
 
     \subsubsection{Semaphore}
@@ -181,16 +181,15 @@ Typically, the semaphore is taken before entering a critical section and release
     \label{Mutex_From_ISR}
     When a semaphore is given, a previously blocked task might become unblocked.
     To remove additional overhead, the current executed task can directly be set to the now ready task without waiting for an additional systick:
-    \begin{lstlisting}
-    extern "C" void button_pressed_callback_bin_sem(){
-        portBASE_TYPE higher_task_unblocked = pdFALSE;
-        buttonPressedSemHandle->give_ISR(higher_task_unblocked);
-        portYIELD_FROM_ISR( higher_task_unblocked );
-    }
-    \end{lstlisting}
+\begin{lstlisting}
+extern "C" void button_pressed_callback_bin_sem(){
+    portBASE_TYPE higher_task_unblocked = pdFALSE;
+    buttonPressedSemHandle->give_ISR(higher_task_unblocked);
+    portYIELD_FROM_ISR( higher_task_unblocked );
+} \end{lstlisting}
 
 \subsubsection{Semaphore vs. Mutex}
-\begin{tabular}{p{0.45\columnwidth} p{0.45\columnwidth}}
+\begin{tabular}{p{0.5\columnwidth} p{0.42\columnwidth}}
 \hline
 \textbf{Semaphore (signaling mechanism)} & \textbf{Mutex (locking mechanism)} \\
 \hline
