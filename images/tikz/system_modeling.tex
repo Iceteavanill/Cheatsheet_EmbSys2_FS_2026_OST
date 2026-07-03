@@ -16,7 +16,7 @@
 
 \hfill\resizebox{0.5\columnwidth}{!}{%
 \begin{tikzpicture}[
-  font=\small,
+  font=\large,
   arrow/.style={-{Stealth[length=3mm,width=2.6mm]},line width=1.1pt},
 ]
  
@@ -26,7 +26,7 @@
  
 % ===== physical-world process box (green) =====
 \node[rounded corners=9pt,draw=grnbord,line width=1pt,fill=grnfill,align=center,
-      minimum width=4.6cm,minimum height=1.3cm,font=\normalsize\bfseries] at (5.8,2.4)
+      minimum width=4.6cm,minimum height=1.3cm,font=\Large\bfseries] at (5.8,2.4)
       {physical/biological/social\\processes};
  
 % ===== cyber / physical dividing line =====
@@ -40,7 +40,7 @@
  
 % ===== computation core (brown) =====
 \node[rounded corners=7pt,fill=brownfill,text=white,align=center,
-      minimum width=1.9cm,minimum height=1.2cm,font=\normalsize] (core) at (5.8,5.1)
+      minimum width=1.9cm,minimum height=1.2cm] (core) at (5.8,5.1)
       {reasoning\\deciding\\big data};
  
 % ===== flow arrows =====
@@ -48,9 +48,9 @@
 \draw[arrow] (core.east) -- (8.0,5.1) -- (inf.north);
  
 % ===== labels inside / around the embedded system =====
-\node[anchor=west,font=\large\bfseries,text=red] at (2.9,7.0) {Embedded System};
-\node[font=\large\bfseries] at (5.8,6.25) {Computation};
-\node[font=\large\bfseries] at (5.8,4.0) {Communication};
+\node[anchor=west,font=\LARGE\bfseries,text=red] at (2.9,7.0) {Embedded System};
+\node[font=\LARGE\bfseries] at (5.8,6.25) {Computation};
+\node[font=\LARGE\bfseries] at (5.8,4.0) {Communication};
  
 % ===== world labels (left) =====
 \node[align=center,font=\bfseries,text=cybgray] at (1.45,3.95) {CYBER\\WORLD};
@@ -58,7 +58,7 @@
  
 % ===== caption box (bottom, gray) =====
 \node[rounded corners=7pt,draw=boxgrayb,line width=0.8pt,fill=boxgray,align=center,
-      minimum width=8.0cm,minimum height=1.1cm,font=\normalsize\bfseries] at (5.2,0.7)
+      minimum width=8.0cm,minimum height=1.1cm,font=\Large\bfseries] at (5.2,0.7)
       {Use feedback to influence the dynamics of the physical\\
        world by taking smart decisions in the cyber world};
  

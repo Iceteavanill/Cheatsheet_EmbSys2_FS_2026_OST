@@ -28,9 +28,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      showgrid="false"
-     inkscape:zoom="1.9724684"
-     inkscape:cx="377.69933"
-     inkscape:cy="142.2076"
+     inkscape:zoom="1.3947458"
+     inkscape:cx="255.24365"
+     inkscape:cy="23.301737"
      inkscape:window-width="2560"
      inkscape:window-height="1417"
      inkscape:window-x="2552"
@@ -55,26 +55,67 @@
     <text
        id="text2"
        xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,21.356,80.137333)"><tspan
-         id="tspan2"
-         style="font-variant:normal;font-weight:normal;font-size:7.5716px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         dx="0 0 0 0 -0.075715996 -0.075715996"
-         y="0">Program</tspan><tspan
-         id="tspan3"
-         style="font-variant:normal;font-weight:normal;font-size:7.5716px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         dx="0 -0.227148 -0.227148"
-         y="9.4650002">execution</tspan><tspan
-         id="tspan4"
-         style="font-variant:normal;font-weight:normal;font-size:7.5716px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         y="18.929001">order</tspan><tspan
+       x="21.505219"
+       y="91.895821"
+       style="font-size:19.1137px;stroke-width:1.33333"><tspan
+         sodipodi:role="line"
+         x="21.505219"
+         y="91.895821"
          id="tspan5"
-         style="font-variant:normal;font-weight:normal;font-size:7.5716px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         dx="0 0 0 2.1049049 0 0 0 0 0.113574"
-         y="28.393999">(ininstructions)</tspan></text>
+         style="stroke-width:1.33333"><tspan
+           id="tspan2"
+           style="font-variant:normal;font-weight:normal;font-size:12.0602px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+           x="21.505219"
+           y="91.895821"
+           dx="0 0 0 0 -0.12060151 -0.12060151 0 0 0 -0.36180452 -0.36180452 0 0 0 0 0 0">Program execution</tspan></tspan></text>
+    <text
+       id="text2-8"
+       xml:space="preserve"
+       x="21.505219"
+       y="103.66158"
+       style="font-size:19.1137px;stroke-width:1.33333"><tspan
+         sodipodi:role="line"
+         x="21.505219"
+         y="103.66158"
+         id="tspan5-2"
+         style="stroke-width:1.33333"><tspan
+           id="tspan2-4"
+           style="font-variant:normal;font-weight:normal;font-size:12.0602px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+           x="21.505219"
+           y="103.66158"
+           dx="0 0 0 0 0 0 0 0 3.3527222 0 0 0 0 0.18090226">order(ininstructions)</tspan></tspan></text>
+    <text
+       id="text2-1"
+       xml:space="preserve"
+       x="21.505219"
+       y="251.69807"
+       style="font-size:19.1137px;stroke-width:1.33333"><tspan
+         sodipodi:role="line"
+         x="21.505219"
+         y="251.69807"
+         id="tspan5-1"
+         style="stroke-width:1.33333"><tspan
+           id="tspan2-5"
+           style="font-variant:normal;font-weight:normal;font-size:12.0602px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+           x="21.505219"
+           y="251.69807"
+           dx="0 0 0 0 -0.12060151 -0.12060151 0 0 0 -0.36180452 -0.36180452 0 0 0 0 0 0">Program execution</tspan></tspan></text>
+    <text
+       id="text2-8-2"
+       xml:space="preserve"
+       x="21.505219"
+       y="263.46384"
+       style="font-size:19.1137px;stroke-width:1.33333"><tspan
+         sodipodi:role="line"
+         x="21.505219"
+         y="263.46384"
+         id="tspan5-2-7"
+         style="stroke-width:1.33333"><tspan
+           id="tspan2-4-6"
+           style="font-variant:normal;font-weight:normal;font-size:12.0602px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+           x="21.505219"
+           y="263.46384"
+           dx="0 0 0 0 0 0 0 0 3.3527222 0 0 0 0 0.18090226">order(ininstructions)</tspan></tspan></text>
     <text
        id="text5"
        xml:space="preserve"
@@ -223,38 +264,40 @@
     <text
        id="text18"
        xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,32.694667,137.16133)"><tspan
+       style="font-size:20.0936px;stroke-width:1.33333"
+       x="21.702913"
+       y="137.8802"><tspan
          id="tspan18"
-         style="font-variant:normal;font-weight:normal;font-size:7.5716px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         dx="0 0 0 0 2.1049049 0 0 2.1049049"
-         y="0">LDURX1,[X4,#100]</tspan></text>
+         style="font-variant:normal;font-weight:normal;font-size:12.6784px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+         x="21.702913"
+         dx="0 0 0 0 3.5245941 0 0 3.5245941"
+         y="137.8802">LDURX1,[X4,#100]</tspan></text>
     <text
        id="text19"
        xml:space="preserve"
-       x="32.694664"
-       y="167.39677"
-       style="font-size:16px;stroke-width:1.33333"><tspan
+       x="21.702795"
+       y="168.11061"
+       style="font-size:20.0936px;stroke-width:1.33333"><tspan
          id="tspan19"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="32.694664"
-         dx="0 0 0 0 2.8065398 0 0 2.8065398"
-         y="167.39677">LDURX2,[X4,#200]</tspan></text>
+         style="font-variant:normal;font-weight:normal;font-size:12.6784px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+         x="21.702795"
+         dx="0 0 0 0 3.5245993 0 0 3.5245993"
+         y="168.11061">LDURX2,[X4,#200]</tspan></text>
     <text
        id="text20"
        xml:space="preserve"
-       x="32.694664"
-       y="197.63225"
-       style="font-size:16px;stroke-width:1.33333"><tspan
+       x="21.703247"
+       y="198.34605"
+       style="font-size:20.0935px;stroke-width:1.33333"><tspan
          id="tspan20"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="32.694664"
-         dx="0 0 0 0 2.8065398 0 0 2.8065398"
-         y="197.63225">LDURX3,[X4,#400]</tspan></text>
+         style="font-variant:normal;font-weight:normal;font-size:12.6783px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+         x="21.703247"
+         dx="0 0 0 0 3.5245697 0 0 3.5245697"
+         y="198.34605">LDURX3,[X4,#400]</tspan></text>
     <path
        id="path20"
        d="M 0,28.3468 V 51.02432 H 45.32997 V 28.3468 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#88ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(1.3333333,0,0,-1.3333333,190.744,187.42667)" />
     <text
        id="text21"
@@ -273,7 +316,7 @@
     <path
        id="path22"
        d="M 45.32997,28.3468 V 51.02432 H 67.99496 V 28.3468 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(1.3333333,0,0,-1.3333333,190.744,187.42667)" />
     <text
        id="text22"
@@ -286,7 +329,7 @@
     <path
        id="path23"
        d="m 67.99496,28.3468 v 22.67752 h 45.32998 V 28.3468 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffa7ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(1.3333333,0,0,-1.3333333,190.744,187.42667)" />
     <text
        id="text23"
@@ -299,7 +342,7 @@
     <path
        id="path24"
        d="m 113.32494,28.3468 v 22.67752 h 45.32998 V 28.3468 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#6aa0ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(1.3333333,0,0,-1.3333333,190.744,187.42667)" />
     <text
        id="text24"
@@ -316,7 +359,7 @@
     <path
        id="path26"
        d="m 158.65492,28.3468 v 22.67752 h 22.665 V 28.3468 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49814;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        transform="matrix(1.3333333,0,0,-1.3333333,190.744,187.42667)" />
     <text
        id="text26"
@@ -329,7 +372,7 @@
     <path
        id="path27"
        d="m 432.50389,179.86762 v -30.23668 h 60.43996 v 30.23668 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#88ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text27"
        xml:space="preserve"
@@ -349,7 +392,7 @@
     <path
        id="path29"
        d="m 492.94385,179.86762 v -30.23668 h 30.21998 v 30.23668 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text29"
        xml:space="preserve"
@@ -363,7 +406,7 @@
     <path
        id="path30"
        d="m 523.16383,179.86762 v -30.23668 h 60.43996 v 30.23668 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffa7ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text30"
        xml:space="preserve"
@@ -377,7 +420,7 @@
     <path
        id="path31"
        d="m 583.60379,179.86762 v -30.23668 h 60.44 v 30.23668 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#6aa0ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text31"
        xml:space="preserve"
@@ -395,7 +438,7 @@
     <path
        id="path33"
        d="m 644.04379,179.86762 v -30.23668 h 30.22 v 30.23668 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text33"
        xml:space="preserve"
@@ -409,7 +452,7 @@
     <path
        id="path34"
        d="m 674.26379,210.10434 v -30.23672 h 60.43996 v 30.23672 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#88ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text34"
        xml:space="preserve"
@@ -513,31 +556,6 @@
          x="753.57538"
          dx="0 1.8809435 1.8809435"
          y="225.88283">···</tspan></text>
-    <text
-       id="text47"
-       xml:space="preserve"
-       x="21.356001"
-       y="242.04266"
-       style="font-size:16px;stroke-width:1.33333"><tspan
-         id="tspan47"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="21.356001"
-         dx="0 0 0 0 -0.10095466 -0.10095466"
-         y="242.04266">Program</tspan><tspan
-         id="tspan48"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="21.356001"
-         dx="0 -0.30286399 -0.30286399"
-         y="254.66266">execution</tspan><tspan
-         id="tspan49"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="21.356001"
-         y="267.28134">order</tspan><tspan
-         id="tspan50"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="21.356001"
-         dx="0 0 0 2.8065398 0 0 0 0 0.15143199"
-         y="279.90134">(ininstructions)</tspan></text>
     <text
        id="text50"
        xml:space="preserve"
@@ -666,40 +684,40 @@
     <text
        id="text61"
        xml:space="preserve"
-       x="32.694668"
-       y="299.06668"
-       style="font-size:16px;stroke-width:1.33333"><tspan
+       x="21.703657"
+       y="299.78552"
+       style="font-size:20.0933px;stroke-width:1.33333"><tspan
          id="tspan61"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="32.694668"
-         dx="0 0 0 0 2.8065398 0 0 2.8065398"
-         y="299.06668">LDURX1,[X4,#100]</tspan></text>
+         style="font-variant:normal;font-weight:normal;font-size:12.6783px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+         x="21.703657"
+         dx="0 0 0 0 3.5245433 0 0 3.5245433"
+         y="299.78552">LDURX1,[X4,#100]</tspan></text>
     <text
        id="text62"
        xml:space="preserve"
-       x="32.694668"
-       y="329.30325"
-       style="font-size:16px;stroke-width:1.33333"><tspan
+       x="21.703293"
+       y="330.01709"
+       style="font-size:20.0935px;stroke-width:1.33333"><tspan
          id="tspan62"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="32.694668"
-         dx="0 0 0 0 2.8065398 0 0 2.8065398"
-         y="329.30325">LDURX2,[X4,#200]</tspan></text>
+         style="font-variant:normal;font-weight:normal;font-size:12.6783px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+         x="21.703293"
+         dx="0 0 0 0 3.5245671 0 0 3.5245671"
+         y="330.01709">LDURX2,[X4,#200]</tspan></text>
     <text
        id="text63"
        xml:space="preserve"
-       x="32.694668"
-       y="359.53851"
-       style="font-size:16px;stroke-width:1.33333"><tspan
+       x="21.703617"
+       y="360.25232"
+       style="font-size:20.0933px;stroke-width:1.33333"><tspan
          id="tspan63"
-         style="font-variant:normal;font-weight:normal;font-size:10.0955px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
-         x="32.694668"
-         dx="0 0 0 0 2.8065398 0 0 2.8065398"
-         y="359.53851">LDURX3,[X4,#400]</tspan></text>
+         style="font-variant:normal;font-weight:normal;font-size:12.6783px;font-family:'Nirmala UI';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
+         x="21.703617"
+         dx="0 0 0 0 3.5245459 0 0 3.5245459"
+         y="360.25232">LDURX3,[X4,#400]</tspan></text>
     <path
        id="path63"
        d="M 190.744,311.54009 V 281.3034 h 60.43996 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#88ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text64"
        xml:space="preserve"
@@ -719,7 +737,7 @@
     <path
        id="path65"
        d="M 281.40394,311.54009 V 281.3034 h 30.22 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text65"
        xml:space="preserve"
@@ -733,7 +751,7 @@
     <path
        id="path66"
        d="M 311.62394,311.54009 V 281.3034 h 60.43996 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffa7ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text66"
        xml:space="preserve"
@@ -747,7 +765,7 @@
     <path
        id="path67"
        d="M 372.0639,311.54009 V 281.3034 h 60.43999 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#6aa0ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text67"
        xml:space="preserve"
@@ -765,7 +783,7 @@
     <path
        id="path69"
        d="M 432.50389,311.54009 V 281.3034 h 30.21997 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text69"
        xml:space="preserve"
@@ -779,7 +797,7 @@
     <path
        id="path70"
        d="m 251.18396,341.77678 v -30.23669 h 60.43998 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#88ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text70"
        xml:space="preserve"
@@ -799,7 +817,7 @@
     <path
        id="path72"
        d="m 341.84392,341.77678 v -30.23669 h 30.21998 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text72"
        xml:space="preserve"
@@ -813,7 +831,7 @@
     <path
        id="path73"
        d="m 372.0639,341.77678 v -30.23669 h 60.43999 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffa7ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text73"
        xml:space="preserve"
@@ -827,7 +845,7 @@
     <path
        id="path74"
        d="m 432.50389,341.77678 v -30.23669 h 60.43996 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#6aa0ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text74"
        xml:space="preserve"
@@ -845,7 +863,7 @@
     <path
        id="path76"
        d="m 492.94385,341.77678 v -30.23669 h 30.21998 v 30.23669 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text76"
        xml:space="preserve"
@@ -859,7 +877,7 @@
     <path
        id="path77"
        d="m 311.62394,372.01349 v -30.23671 h 60.43996 v 30.23671 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#88ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text77"
        xml:space="preserve"
@@ -879,7 +897,7 @@
     <path
        id="path79"
        d="m 402.28389,372.01349 v -30.23671 h 30.22 v 30.23671 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text79"
        xml:space="preserve"
@@ -893,7 +911,7 @@
     <path
        id="path80"
        d="m 432.50389,372.01349 v -30.23671 h 60.43996 v 30.23671 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffa7ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text80"
        xml:space="preserve"
@@ -907,7 +925,7 @@
     <path
        id="path81"
        d="m 492.94385,372.01349 v -30.23671 h 60.43997 v 30.23671 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#6aa0ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text81"
        xml:space="preserve"
@@ -925,7 +943,7 @@
     <path
        id="path83"
        d="m 553.38382,372.01349 v -30.23671 h 30.21997 v 30.23671 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:#ffff9b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.664187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" />
     <text
        id="text83"
        xml:space="preserve"
