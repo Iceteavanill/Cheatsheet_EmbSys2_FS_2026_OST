@@ -78,7 +78,6 @@ Split a task into \textbf{stages} processed in overlap (assembly line).
     \item \textbf{Write Back:} Write back to registers 
 \end{itemize}
 \textbf{Pipeline registers} hold data between stages (transparent to the user). Ideal: one finished instruction \emph{per cycle}. 
-\vspace*{-0.2cm}
 \[ \text{Speedup} = \frac{\text{CPI unpipelined}}{1 + \text{stall cycles per instruction}} = \frac{\text{Pipeline depth}}{1 + \text{stall cycles per instruction}} \]
 Limits: bus access times, pipeline-register delay, hazards.
 
@@ -220,7 +219,7 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
 \end{minipage}
 
 % Grenzfall $n\to\infty$: $\text{Speedup}\to 1/s$ (harte obere Schranke durch den seriellen Anteil).
-\vspace{-0.4cm}
+\vspace{-0.6cm}
 \example{Simple}
 Serial part \qty{10}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.1$}, parallel part \qty{90}{\percent}~\textrightarrow~\pastelbox{green}{$p=0.9$}, \pastelbox{orange}{\textbf{n}} SISD units
 \vspace{0.1cm}
