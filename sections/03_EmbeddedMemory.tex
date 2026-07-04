@@ -159,16 +159,16 @@ Heap implementation 1 to 5 are provided by FreeRTOS.
   \includegraphics[width=\linewidth]{images/PDF/fragmentation.pdf}
 \end{minipage}
 
-The external memory fragmentation can be calculated By
-\[
+The external memory fragmentation can be calculated by
+\[\boxed{
 \text{External Memory Fragmentation (in percent)}
 =
 1
 -
-\frac{\text{size of biggest free memory block}}{\text{Size of total free memory}}
-\]
+\frac{\text{Size of biggest free memory block}}{\text{Size of total free memory}}
+}\]
 where the value $0$ means all free memory is in one contiguous block (no fragmentation) and values approaching $1$ indicate severe fragmentation.
-A \textit{lower} fragmentation is better.
+A \textcolor{codeGreen}{\textit{lower}} fragmentation is better.
 
 \subsubsection{Memory Coalescing and Free Space Management}
 
