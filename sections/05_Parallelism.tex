@@ -187,7 +187,7 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
     \item Application to multi-processors: Improvement $=$ parallelization; utilization rate $=$ degree of parallelizability.
     \item Guiding principles: \emph{make common case fast}; \emph{rule of diminishing returns}; another part of the system can become the new bottleneck.
 \end{itemize}
-
+\vspace*{-0.4cm}
 \subsubsection{Derivation of Speed-up}
 \vspace*{-0.2cm}
 \begin{minipage}[t]{0.4\linewidth}
@@ -232,7 +232,9 @@ Serial part \qty{10}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.1$}, parall
 \end{description}
 
 \example{Multiple parallel parts}
+\vspace*{-0.1cm}
 Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \pastelbox{orange}{$4$}-times parallel part \qty{17}{\percent}\\\textrightarrow~\pastelbox{green}{$p_1=0.17$}, fully parallel part rest~\textrightarrow~\pastelbox{green}{$p_2=0.74$}, \pastelbox{orange}{32} SISD units
+\vspace*{-0.3cm}
 
 \[
 \text{Speedup}
@@ -252,7 +254,7 @@ Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \paste
 \subsection{Gustafson's Law (Weak Scaling), fixed Execution time}
 % GOAL V12 • You can distinguish Amdahl’s Law and Gustafson’s Law, and independently apply them to estimate performance gains (like potential speed-ups in your computing system).
 
-\includegraphics[width=0.8\columnwidth]{images/PDF/Amdahl_vs_Gustafson.pdf}
+\includegraphics[width=\columnwidth]{images/PDF/Amdahl_vs_Gustafson.pdf}
 
 \subsection{Roofline Model}
 % GOAL V12 • You can relate theoretical gains to hardware-centric constraints (memory vs. compute) according to the Roofline model.
