@@ -696,7 +696,9 @@ $\boxed{A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A
   \vspace{0.2cm}
   \textbf{Example:}
 \vspace{-0.2cm}
-\[\text{\small Page size (in bytes)} = P = \qty{8}{KiB} = 2^{\pastelbox{yellow}{13}}\]
+\[\begin{aligned}\text{\small Page size (in bytes)} &= P = 2^{\pastelbox{yellow}{13}}\\
+  &= \qty{8}{KiB} = 8192 = 0x2000 \end{aligned}\]
+\[\Rightarrow PD[1] \in \texttt{0x0000..0x1FFFF}\]
 \vspace{-0.2cm}
 \textbf{Virtual address:}
 \[\text{VA} = \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\]
@@ -704,11 +706,10 @@ $\boxed{A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A
 \[\begin{aligned}
   \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} \\
             &= \text{\texttt{PD[AL<16..13>]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
-            &= \text{PD}[\pastelbox{gray}{\text{VPN}}] \mid \pastelbox{yellow}{\texttt{AL<12..0>}}
+            &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}}
 \end{aligned}\]
 
 \end{minipage}
-\vspace{0.2cm}
     
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
