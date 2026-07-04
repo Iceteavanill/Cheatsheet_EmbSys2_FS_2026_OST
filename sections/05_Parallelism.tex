@@ -194,49 +194,49 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
     \textit{Notation:}
     \vspace{0.1cm}
 
-    $\bullet$ $A$ Workload (steps)
+    $\bullet$ \pastelbox{yellow}{$A$ Workload (steps)}
 
     $\bullet$ $L_{\text{SISD}}$, $L_{\text{MIMD}}$ Performance (steps/time)
 
-    $\bullet$ $n$ number of processors
+    $\bullet$ \pastelbox{orange}{$n$ number of processors}
 
-    $\bullet$ $s$ sequential part
+    $\bullet$ \pastelbox{cyan}{$s$ sequential part}
 
-    $\bullet$ $p$ parallel part with $(s+p)\cdot A = A$ 
+    $\bullet$ \pastelbox{green}{$p$ parallel part} with $(\pastelbox{cyan}{$s$}+\pastelbox{green}{$p$})\cdot \pastelbox{yellow}{$A$} = \pastelbox{yellow}{$A$}$ 
     
-    $\Rightarrow s+p=1$, $p=1-s$.
+    $\Rightarrow \pastelbox{cyan}{$s$}+\pastelbox{green}{$p$}=1$, $\pastelbox{green}{$p$}=1-\pastelbox{cyan}{$s$}$.
 \end{minipage}\hfill
 \begin{minipage}[t]{0.58\linewidth}
     \vspace*{0pt}
     \begin{align*}
-    T_m &= T_s + T_p = \frac{s\cdot A}{L_{\text{SISD}}} + \frac{p\cdot A}{n\cdot L_{\text{SISD}}} = \frac{A}{L_{\text{SISD}}}\left(s+\frac{p}{n}\right)\\
-    \overline{L_{\text{MIMD}}} &= \frac{A}{T_m} = L_{\text{SISD}}\cdot\frac{1}{s+\frac{1-s}{n}} = \frac{L_{\text{SISD}}}{s+\frac{1-s}{n}}
+    T_m &= T_s + T_p = \frac{\pastelbox{cyan}{$s$}\cdot \pastelbox{yellow}{$A$}}{L_{\text{SISD}}} + \frac{\pastelbox{green}{$p$}\cdot \pastelbox{yellow}{A}}{\pastelbox{orange}{$n$}\cdot L_{\text{SISD}}} = \frac{\pastelbox{yellow}{$A$}}{L_{\text{SISD}}}\left(\pastelbox{cyan}{$s$}+\frac{\pastelbox{green}{$p$}}{\pastelbox{orange}{$n$}}\right)\\
+    \overline{L_{\text{MIMD}}} &= \frac{\pastelbox{yellow}{$A$}}{T_m} = L_{\text{SISD}}\cdot\frac{1}{\pastelbox{cyan}{$s$}+\frac{1-\pastelbox{cyan}{s}}{\pastelbox{orange}{$n$}}} = \frac{L_{\text{SISD}}}{\pastelbox{cyan}{$s$}+\frac{1-\pastelbox{cyan}{$s$}}{\pastelbox{orange}{$n$}}}
     \end{align*}
     \[
-    \boxed{\;\text{Speedup} = S(n) = \frac{\overline{L_{\text{MIMD}}}}{L_{\text{SISD}}} = \frac{1}{s+\dfrac{1-s}{n}}\;}
+    \boxed{\;\text{Speedup} = S(\pastelbox{orange}{$n$}) = \frac{\overline{L_{\text{MIMD}}}}{L_{\text{SISD}}} = \frac{1}{\pastelbox{cyan}{$s$}+\dfrac{1-\pastelbox{cyan}{$s$}}{\pastelbox{orange}{$n$}}}\;}
     \]
 \end{minipage}
 
 % Grenzfall $n\to\infty$: $\text{Speedup}\to 1/s$ (harte obere Schranke durch den seriellen Anteil).
 
 \example{Simple}
-Serial part \qty{10}{\percent}~\textrightarrow~$s=0.1$, parallel part \qty{90}{\percent}~\textrightarrow~$p=0.9$, \textbf{n} SISD units
+Serial part \qty{10}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.1$}, parallel part \qty{90}{\percent}~\textrightarrow~\pastelbox{green}{$p=0.9$}, \pastelbox{orange}{\textbf{n}} SISD units
 \vspace{0.1cm}
 
 \begin{description}
-    \item[$n=1$] $S = \frac{1}{(0.1+\frac{0.9}{1})} = 1$, efficiency = $\frac{1}{1} = \qty{100}{\percent}$
-    \item[$n=4$] $S = \frac{1}{(0.1+\frac{0.9}{4})} \approx 3.08$, efficiency = $\frac{3.08}{4} = \qty{77}{\percent}$
-    \item[$n=15$] $S = \frac{1}{(0.1+\frac{0.9}{15})} \approx 6.25$, efficiency = $\frac{6.25}{15} = \qty{41.7}{\percent}$
-    \item[$n=\infty$] $S = \lim_{n\rightarrow\infty}\frac{1}{(0.1+\frac{0.9}{\infty})} = 10$, efficiency = $\lim_{n\rightarrow\infty}\frac{10}{\infty} = \qty{0}{\percent}$
+    \item[\pastelbox{orange}{$n=1$}] $S = \frac{1}{(0.1+\frac{0.9}{1})} = 1$, efficiency = $\frac{1}{1} = \qty{100}{\percent}$
+    \item[\pastelbox{orange}{$n=4$}] $S = \frac{1}{(0.1+\frac{0.9}{4})} \approx 3.08$, efficiency = $\frac{3.08}{4} = \qty{77}{\percent}$
+    \item[\pastelbox{orange}{$n=15$}] $S = \frac{1}{(0.1+\frac{0.9}{15})} \approx 6.25$, efficiency = $\frac{6.25}{15} = \qty{41.7}{\percent}$
+    \item[\pastelbox{orange}{$n=\infty$}] $S = \lim_{n\rightarrow\infty}\frac{1}{(0.1+\frac{0.9}{\infty})} = 10$, efficiency = $\lim_{n\rightarrow\infty}\frac{10}{\infty} = \qty{0}{\percent}$
 \end{description}
 
 \example{Multiple parallel parts}
-Serial part \qty{9}{\percent}~\textrightarrow~$s=0.09$, 4-times parallel part \qty{17}{\percent}\\\textrightarrow~$p_1=0.17$, fully parallel part rest~\textrightarrow~$p_2=0.74$, 32 SISD units
+Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \pastelbox{orange}{$4$}-times parallel part \qty{17}{\percent}\\\textrightarrow~\pastelbox{green}{$p_1=0.17$}, fully parallel part rest~\textrightarrow~\pastelbox{green}{$p_2=0.74$}, \pastelbox{orange}{32} SISD units
 
 \[
 \text{Speedup}
 =
-\frac{1}{s+\dfrac{p_1}{n_1}+\dfrac{p_2}{n_2}}
+\frac{1}{\pastelbox{cyan}{$s$}+\dfrac{\pastelbox{green}{$p_1$}}{\pastelbox{orange}{$n_1$}}+\dfrac{\pastelbox{green}{$p_2$}}{\pastelbox{orange}{$n_2$}}}
 =
 \frac{1}{0.09+\dfrac{0.17}{4}+\dfrac{0.74}{32}}
 =
