@@ -648,7 +648,7 @@ BNF
     \begin{center}
       \includegraphics[width=\linewidth]{images/PDF/Paging_AddressTranslation.pdf}
     \end{center}
-    \vspace{-0.2cm}
+    \vspace{-0.5cm}
 
   \subsubsection{Page Tables}
     Map \pastelbox{gray}{VPN} $\rightarrow$ \pastelbox{codeGreen}{PFN} via \textbf{Page Table Entries (PTEs)}.
@@ -686,7 +686,6 @@ $\boxed{A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A
 
 \begin{minipage}{0.48\linewidth}
 \begin{center}
-\vspace{-0.5cm}
 \[\boxed{\text{\pastelbox{yellow}{Offset (in bits)}} = \log_2(P) = \log_2(2^{\pastelbox{yellow}{k}}) = \pastelbox{yellow}{k}}\]
 \[\boxed{\#\text{Virtual Pages} = 2^{\pastelbox{gray}{VPN bits}} = 2^{\text{VA}-\pastelbox{yellow}{k}}}\]
 \[\boxed{\text{VPN} \rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}] \rightarrow \pastelbox{codeGreen}{\text{PFN}}}\]
@@ -700,17 +699,16 @@ $\boxed{A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A
   &= \qty{8}{KiB} = 8192 = 0x2000 \end{aligned}\]
 \[\Rightarrow PD[1] \in \texttt{0x0000..0x1FFFF}\]
 \vspace{-0.2cm}
-\textbf{Virtual address:}
-\[\text{VA} = \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\]
-\textbf{Physical address mapping:}
+\end{minipage}
+
 \[\begin{aligned}
-  \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} \\
-            &= \text{\texttt{PD[AL<16..13>]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
-            &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}}
+  \text{VA} &= \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\\
+  \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} 
+              = \text{\texttt{PD[AL<16..13>]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
+            &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}} \Rightarrow \texttt{PD[1] = \%\pastelbox{gray}{0000'1100'0101}'0001 = 0x0C51}
 \end{aligned}\]
 
-\end{minipage}
-    
+
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
         \item \textbf{Paging}: fixed-size pages, no external fragmentation.
