@@ -490,10 +490,10 @@ $T_{eff}$ = mean acces time (s or \#clocks), $T_{Hit}$ = cache access time (s or
     \end{enumerate}
 
   \begin{minipage}[t]{0.5\columnwidth}
-    \lstinputlisting{code/Serialization_Parser.cpp}
+    \lstinputlisting[morekeywords={[2]std::string}, morekeywords={[4]msg, nr, i}]{code/Serialization_Parser.cpp}
   \end{minipage}
   \begin{minipage}[t]{0.5\columnwidth}
-    \lstinputlisting{code/Serialization_Serializer.cpp}
+    \lstinputlisting[morekeywords={[2]std::string}, morekeywords={[4]buf, ts, te,p}]{code/Serialization_Serializer.cpp}
   \end{minipage}
 
   \subsubsection{Serialization Formats}
@@ -528,9 +528,9 @@ $T_{eff}$ = mean acces time (s or \#clocks), $T_{Hit}$ = cache access time (s or
       \item \textbf{Workflow}: Build FlatBuffer object via generated builder API $\rightarrow$ obtain byte buffer $\rightarrow$ transmit via protocol.
                               On reception: pass buffer to root accessor $\rightarrow$ read fields zero-copy.
   \end{itemize}
-  \lstinputlisting{code/Serialization_FlatBuffer_SchemaPattern.cpp}
+  \lstinputlisting[morekeywords={[2]table, root_type, Payload}, morekeywords={[4]CommandMessage, DataMessage, Message}]{code/Serialization_FlatBuffer_SchemaPattern.cpp}
   \vspace{-0.2cm}
-  \lstinputlisting{code/Serialization_Parser_FlatBuffer.cpp}
+  \lstinputlisting[morekeywords={[4]builder, msg, ts, temp}]{code/Serialization_Parser_FlatBuffer.cpp}
 
 \subsection{BNF Grammar}
 % GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted.

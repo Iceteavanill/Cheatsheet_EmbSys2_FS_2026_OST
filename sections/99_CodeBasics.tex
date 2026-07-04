@@ -5,10 +5,10 @@
 To make a C library callable from \CC{} code the following template must be used:
 
 \begin{minipage}[t]{0.5\columnwidth}
-\lstinputlisting{code/c_from_cpp_h.c}
+\lstinputlisting[morekeywords={[2]INCLUDE_LIB_H_ , __cplusplus}, morekeywords={[4]param}]{code/c_from_cpp_h.c}
 \end{minipage}
 \begin{minipage}[t]{0.5\columnwidth}
-\lstinputlisting{code/c_from_cpp_c.c}
+\lstinputlisting[morekeywords={[2]INCLUDE_LIB_H_ , __cplusplus}, morekeywords={[4]param}]{code/c_from_cpp_c.c}
 Because the function is wrapped with \verb|extern|, nothing has to be done in the .c file.
 The compiler was already told that the function has the C calling conventions.
 \end{minipage}
@@ -24,27 +24,27 @@ Because this is only applied in \CC{}, the compiler must adjust the naming schem
 % GOAL L01 • You can write a C++ application and call it from C.
 If you want to call \CC{} code from a C application you must expose a pure c api:
 \begin{minipage}[t]{0.4\columnwidth}
-    \lstinputlisting[firstline=5]{code/cpp_from_c_h.cpp}
+    \lstinputlisting[firstline=5, morekeywords={[2]EXTERNC , __cplusplus, mylibrary_mytype_t}, morekeywords={[4]mytype, self, param}]{code/cpp_from_c_h.cpp}
 \end{minipage}
 \begin{minipage}[t]{0.6\columnwidth}
-    \lstinputlisting[firstline=5]{code/cpp_from_c_c.cpp}
+    \lstinputlisting[firstline=5, morekeywords={[2]MyType , mylibrary_mytype_t}, morekeywords={[4]untyped_ptr, typed_ptr, param, untyped_self, typed_self}]{code/cpp_from_c_c.cpp}
 \end{minipage}
 
 \subsection{Task Sync with hardware semaphores of H755}
 
 \begin{minipage}{0.5\columnwidth}
-    \lstinputlisting[linerange=1-12]{code/HSEM.cpp}
+    \lstinputlisting[linerange=1-12, morekeywords={[4]HAL_OK}, keywordstyle={[4]\color{variableclour}}]{code/HSEM.cpp}
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
-    \lstinputlisting[linerange=14-25]{code/HSEM.cpp}
+    \lstinputlisting[linerange=14-25, morekeywords={[4]HAL_OK}]{code/HSEM.cpp}
 \end{minipage}
 
 \subsection{Cache friendly code}
 \begin{minipage}{0.5\columnwidth}
-    \lstinputlisting[linerange=1-4, style=basestyle]{code/Cache_code.c}
+    \lstinputlisting[linerange=1-4, morekeywords={[4]row, col, data, result}]{code/Cache_code.c}
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
-    \lstinputlisting[linerange=6-9, style=cppstyle]{code/Cache_code.c}
+    \lstinputlisting[linerange=6-9, morekeywords={[4]row, col, data, result}]{code/Cache_code.c}
 \end{minipage}
 
 
@@ -53,7 +53,7 @@ If you want to call \CC{} code from a C application you must expose a pure c api
 % -------------------------------------
 
 \subsection{Pointers}
-\begin{lstlisting}
+\begin{lstlisting}[morekeywords={[2]NULL},morekeywords={[4]x, p, paramPointer, aValue}]
 int x = 10;
 int* p = &x;   // p points to x
 // &x gives the address of variable x, *p gives the value at the address. (Here 10)
@@ -65,7 +65,7 @@ if (paramPointer == NULL) { // NULL pointer check ALWAYS!!!!
 
 \subsection{memcpy}
 memcpy copies a fixed number of bytes from one memory location to another.
-\begin{lstlisting}
+\begin{lstlisting}[morekeywords={[4]destination, source, number_of_bytes, a, b}]
 memcpy(destination, source, number_of_bytes);
 int a = 42;
 int b;

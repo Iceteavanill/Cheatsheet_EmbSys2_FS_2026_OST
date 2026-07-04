@@ -193,7 +193,7 @@ CNN's are deep learning networks that are designed for grid structured data like
 
 \subsection{Inference of a DNN on Embedded Systems}
 
-\lstinputlisting{code/Ml_DL.c}
+\lstinputlisting[morekeywords={[2]HIDDEN_NODES, INPUT_NODES}, morekeywords={[4]layer1_data, inp_data, z1, z2, bias1, bias2, bias3, output_data, x, y, i, j, weight1, weight2, weight3, network, ai_input, ai_output}]{code/Ml_DL.c}
 
 \subsection{CNN-Softmax post-processing}
 
@@ -205,7 +205,7 @@ To convert these logits to a probability, a softmax function can be used:
 =
 \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}} \quad \text{for}\ i = 1, 2, \dots, K,
 \]
-\lstinputlisting{code/Softmax.c}
+\lstinputlisting[morekeywords={[2]NUM_OF_OUTPUT_NODES}, morekeywords={[4]sumOfExp , i, prob, logits, sumOfExp}]{code/Softmax.c}
 
 \subsection{Applications}
 

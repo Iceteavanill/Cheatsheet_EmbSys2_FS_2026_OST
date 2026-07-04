@@ -29,15 +29,15 @@ Note: \textbf{Loop unrolling} replicates the body (e.g.\ 4 MACs/iter) to cut loo
 \subsubsection{Code implementation example of a dotproduct}
 % GOAL L10 • You can utilize SIMD instructions to speed up basic matrix and vector calculations.
 % GOAL L10 • You can work with the CMSIS-Core and CMSIS DSP library on Arm Cortex microcontrollers to realize the vector and matrix operations.
-\lstinputlisting[lastline=1]{code/simd.cpp}
+\lstinputlisting[lastline=1, morekeywords={[4]pSrc1, pSrc2, pDest, len}]{code/simd.cpp}
 
 \begin{minipage}[t]{0.4\linewidth}
-    \lstinputlisting[linerange=2-5]{code/simd.cpp}
+    \lstinputlisting[linerange=2-5, morekeywords={[4]pSrc1, pSrc2, pDest, len, i, pS1Vec, pS2Vec}]{code/simd.cpp}
     This implementation is simple but slow.
     The SIMD however needs some casts to acquire the separate memory blocks
 \end{minipage}
 \begin{minipage}[t]{0.6\linewidth}
-    \lstinputlisting[linerange=7-15]{code/simd.cpp}
+    \lstinputlisting[linerange=7-15,morekeywords={[2]__SMLAD}, morekeywords={[4]pSrc1, pSrc2, pDest, len, i}]{code/simd.cpp}
 \end{minipage}
 \begin{lstlisting}
 }
