@@ -294,14 +294,19 @@ A \textbf{gatekeeper task} with sole ownership of a resource (no locking), or a 
 \subsection{Deadlocks}
 A \textbf{deadlock} permanently blocks threads because their resource needs can never be satisfied (possible whenever the RTOS shares resources and a thread may hold several).
 
-\subsubsection{Coffman conditions}
 All four must hold for a deadlock:
-\begin{ctabular}{ll}
+\subsubsection{Coffman conditions}
+\begin{minipage}{0.63\columnwidth}
+\begin{tabular}{ll}
 Mutual exclusion & resource used by one task at a time \\
 No preemption & freed only by its holder \\
 Hold and wait & holds some, waits for more \\
 Circular wait & cyclic chain of holders/requesters \\
-\end{ctabular}
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.33\columnwidth}
+\includegraphics[width=\columnwidth]{images/PDF/Deadlock_ProcessSchedule.pdf}
+\end{minipage}
 
 \subsubsection{Prevention} 
 Negate one condition:
