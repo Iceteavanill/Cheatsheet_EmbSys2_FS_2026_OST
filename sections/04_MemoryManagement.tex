@@ -646,7 +646,7 @@ BNF
 
   \subsubsection{Address Translation}
     \begin{center}
-      \includegraphics[width=0.9\linewidth]{images/PDF/Paging_AddressTranslation.pdf}
+      \includegraphics[width=\linewidth]{images/PDF/Paging_AddressTranslation.pdf}
     \end{center}
     \vspace{-0.2cm}
 
@@ -681,16 +681,19 @@ BNF
   %   \texttt{AP<21..0> = PD[AL<16..13>]<12..4>|AL<12..0>}
 
 \subsubsection{Useful Relations}
+\textbf{Page Transformation Formula}
+$\boxed{A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A_L\texttt{<k-1..0>}}$
 
 \begin{minipage}{0.48\linewidth}
 \begin{center}
 \vspace{-0.5cm}
-\[\boxed{\text{Offset (in bits)} = \log_2(P) = \log_2(2^{\pastelbox{yellow}{k}}) = \pastelbox{yellow}{k}}\]
+\[\boxed{\text{\pastelbox{yellow}{Offset (in bits)}} = \log_2(P) = \log_2(2^{\pastelbox{yellow}{k}}) = \pastelbox{yellow}{k}}\]
 \[\boxed{\#\text{Virtual Pages} = 2^{\pastelbox{gray}{VPN bits}} = 2^{\text{VA}-\pastelbox{yellow}{k}}}\]
 \[\boxed{\text{VPN} \rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}] \rightarrow \pastelbox{codeGreen}{\text{PFN}}}\]
 \end{center}
 \end{minipage}\hfill
 \begin{minipage}{0.48\linewidth}
+  \vspace{0.2cm}
   \textbf{Example:}
 \vspace{-0.2cm}
 \[\text{\small Page size (in bytes)} = P = \qty{8}{KiB} = 2^{\pastelbox{yellow}{13}}\]
@@ -706,8 +709,6 @@ BNF
 
 \end{minipage}
 \vspace{0.2cm}
-
-$A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A_L\texttt{<k-1..0>}$
     
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
