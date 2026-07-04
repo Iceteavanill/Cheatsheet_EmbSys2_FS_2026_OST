@@ -218,7 +218,7 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
 \end{minipage}
 
 % Grenzfall $n\to\infty$: $\text{Speedup}\to 1/s$ (harte obere Schranke durch den seriellen Anteil).
-
+\vspace{-0.4cm}
 \example{Simple}
 Serial part \qty{10}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.1$}, parallel part \qty{90}{\percent}~\textrightarrow~\pastelbox{green}{$p=0.9$}, \pastelbox{orange}{\textbf{n}} SISD units
 \vspace{0.1cm}
@@ -260,7 +260,7 @@ Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \paste
     \vspace*{0pt}
     Code is \textbf{compute bound} if it has high operational intensity, \textbf{memory bound} if it has low operational intensity.
     
-    Platform: \textbf{bandwidth} $\beta$ in bytes/cycle, \textbf{peak performance} $\pi$ in flops/cycle per core. 
+    Platform: \textbf{bandwidth} $\beta$ in bytes/cycle,\\ \textbf{peak performance} $\pi$ in flops/cycle per core. 
     Algorithm: work $W(n)$ in flops, data movement $Q(n)$ in bytes.
     \[ 
     I(n)
