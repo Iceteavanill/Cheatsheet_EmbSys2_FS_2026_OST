@@ -141,7 +141,7 @@
 
     \begin{tabular}{llll}
       \toprule
-      \textbf{Type (\pastelbox{yellow}{$\dots$}-way)} & \textbf{Address Format}                                         & \textbf{Characteristics}          & \textbf{Cache Size} \\
+      \textbf{Type (\pastelbox{yellow}{$\dots$-way})} & \textbf{Address Format}                                         & \textbf{Characteristics}          & \textbf{Cache Size} \\
       \midrule
       Fully associative           & Tag $|$ \pastelbox{green}{Offset}                               & Any block $\rightarrow$ any line  & $2^{\cacheK+\cacheI}$           \\
       Direct mapped (\pastelbox{yellow}{$1$})         & Tag $|$ \pastelbox{cyan}{Index} $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one line  & $2^{\cacheK+\cacheI}$           \\
@@ -237,10 +237,10 @@
       \item \textbf{LRU (Least Recently Used):} Replace least recently used line.
         Assumes entries unused for a long time are unlikely to be used again soon.
       \item \textbf{Random:} Random (or pseudo-random) eviction.
-        For large caches (e.g., $n \geq 4$ ways), gives results comparable to LRU.
+        For large caches (e.g., \pastelbox{yellow}{$n \geq 4$ ways}), gives results comparable to LRU.
       \item \textbf{FIFO:} Replace oldest inserted line.
       \item \textbf{LFU (Least Frequently Used):} Replace the least frequently used line.
-      \item \textbf{Pseudo-LRU:} Hardware approximation of LRU, used because true LRU is expensive to implement (e.g., 3 history bits per cache line set, as in the Intel 486 \qty{8}{\kilo\byte} 4-way set-associative L1 cache).
+      \item \textbf{Pseudo-LRU:} Hardware approximation of LRU, used because true LRU is expensive to implement (e.g., 3 history bits per cache line set, as in the Intel 486 \qty{8}{\kilo\byte} \pastelbox{yellow}{4-way} set-associative L1 cache).
     \end{itemize}
 
   % TODO - brauchen wir das?: Pseudo-LRU Diagramme gem. V07, Slide 18
@@ -249,7 +249,8 @@
 
   \subsubsection{Cache Performance}
   % GOAL V07 • You know how to assess the cache performance.
-$T_{eff}$ = mean acces time (s or \#clocks), $T_{Hit}$ = cache access time (s or \#clocks), $r_{Miss}$ = cache miss rate (\%), $A_{miss}$ = additional cache delay on miss (s or \#clocks)
+  $T_{eff}$ = mean acces time (in s or \#clocks), $T_{Hit}$ = cache access time (in s or \#clocks),\\
+  $r_{Miss}$ = cache miss rate (in \%), $A_{miss}$ = additional cache delay on miss (in s or \#clocks)
 
     Single-level cache:
     \[\boxed{r_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{r_{miss}= 1 - r_{hit}} \quad \boxed{T_{eff}=T_{hit}+r_{miss}\cdot A_{miss}}\]
