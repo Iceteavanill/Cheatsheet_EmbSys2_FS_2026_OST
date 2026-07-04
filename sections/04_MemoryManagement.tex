@@ -222,12 +222,14 @@
         \end{itemize}
         \item \textcolor{red}{Write-miss:} Write-allocate or no-write-allocate
       \end{itemize}
-      \textbf{Typical combinations:}
-      \begin{itemize}
-        \item Write-back + Write-allocate\\ \textrightarrow~maximize write \textcolor{codeGreen}{hits}
-        \item Write-through + No-Write-allocate\\ \textrightarrow~allocation gives no performance gain 
-      \end{itemize}
     \end{minipage}
+
+    \textbf{Typical combinations:}
+    \begin{itemize}
+      \item Write-back + Write-allocate \textrightarrow~maximize write \textcolor{codeGreen}{hits}
+      \item Write-through + No-Write-allocate \textrightarrow~allocation gives no performance gain 
+    \end{itemize}
+
 
   \subsubsection{Replacement Policies}
   % GOAL V07 • You understand the cache accesses (read, write) and different cache replacement strategies.
