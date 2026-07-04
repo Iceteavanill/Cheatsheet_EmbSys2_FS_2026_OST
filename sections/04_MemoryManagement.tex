@@ -141,11 +141,11 @@
 
     \begin{tabular}{llll}
       \toprule
-      \textbf{Type ($\dots$-way)} & \textbf{Address Format}                                         & \textbf{Characteristics}          & \textbf{Cache Size} \\
+      \textbf{Type (\pastelbox{yellow}{$\dots$}-way)} & \textbf{Address Format}                                         & \textbf{Characteristics}          & \textbf{Cache Size} \\
       \midrule
       Fully associative           & Tag $|$ \pastelbox{green}{Offset}                               & Any block $\rightarrow$ any line  & $2^{\cacheK+\cacheI}$           \\
-      Direct mapped ($1$)         & Tag $|$ \pastelbox{cyan}{Index} $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one line  & $2^{\cacheK+\cacheI}$           \\
-      Set associative ($n$)       & Tag $|$ \pastelbox{cyan}{Set}   $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one set   & $n\cdot2^{\cacheK+\cacheI}$     \\
+      Direct mapped (\pastelbox{yellow}{$1$})         & Tag $|$ \pastelbox{cyan}{Index} $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one line  & $2^{\cacheK+\cacheI}$           \\
+      Set associative (\pastelbox{yellow}{$n$})       & Tag $|$ \pastelbox{cyan}{Set}   $|$ \pastelbox{green}{Offset}   & One block $\rightarrow$ one set   & $\pastelbox{yellow}{$n$} \cdot 2^{\cacheK+\cacheI}$     \\
       \bottomrule
     \end{tabular}
 
@@ -164,7 +164,7 @@
       \begin{itemize}
         \item Cache contains $2^{\cacheK}$ lines
         \item Cache size: $2^{\cacheK+\cacheI}$\\
-        For $n$-way: $n \cdot 2^{\cacheK+\cacheI}$
+        For \pastelbox{yellow}{$n$}-way: $\pastelbox{yellow}{n} \cdot 2^{\cacheK+\cacheI}$
         \item Entry: Tag + Valid + Data
       \end{itemize}
     \end{minipage}\hfill
@@ -178,8 +178,8 @@
       \end{array}\]
     \end{minipage}
 
-    \textbf{Ways vs.\ Sets:} $\cacheK = s + x \qquad \rightarrow \#\text{sets} = 2^s$ and $\#\text{ways} = n = 2^x$\\
-    Fully associative: $\#\text{sets} = 1 \Rightarrow x = \cacheK$, Direct mapped: $n = 1 \Rightarrow \cacheK = s$
+    \textbf{Ways vs.\ Sets:} $\cacheK = s + x \qquad \rightarrow \#\text{sets} = 2^s$ and $\#\text{ways} = \pastelbox{yellow}{n} = 2^x$\\
+    Fully associative: $\#\text{sets} = 1 \Rightarrow x = \cacheK$, Direct mapped: $\pastelbox{yellow}{n = 1} \Rightarrow \cacheK = s$
 
     \vspace{0.2cm}
     \begin{minipage}[t]{0.48\columnwidth}
