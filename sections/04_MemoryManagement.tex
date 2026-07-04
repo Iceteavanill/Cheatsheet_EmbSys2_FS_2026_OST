@@ -695,19 +695,13 @@ BNF
 \vspace{-0.2cm}
 \[\text{\small Page size (in bytes)} = P = \qty{8}{KiB} = 2^{\pastelbox{yellow}{13}}\]
 \vspace{-0.2cm}
-\[\begin{aligned}
-  \text{VA} &= \text{\texttt{0x02341}} = \text{\texttt{AP<21..0>}} \\
-            &= \text{\texttt{PD[\pastelbox{gray}{AL<16..13>}]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
-            &= \texttt{\pastelbox{gray}{AL<21..12>}|\pastelbox{yellow}{AL<12..0>}}
-\end{aligned}\]
-
-
+\textbf{Virtual address:}
+\[\text{VA} = \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..12>}|\pastelbox{yellow}{AL<12..0>}}\]
 \textbf{Physical address mapping:}
 \[\begin{aligned}
-  \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} \\
-            &= \text{PD}[\pastelbox{gray}{\text{VPN}}]
-             \mid
-             \pastelbox{yellow}{\texttt{AL<12..0>}}
+  \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} \\
+            &= \text{\texttt{PD[\pastelbox{gray}{AL<16..13>}]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
+            &= \text{PD}[\pastelbox{gray}{\text{VPN}}] \mid \pastelbox{yellow}{\texttt{AL<12..0>}}
 \end{aligned}\]
 
 \end{minipage}
