@@ -195,6 +195,17 @@ CNN's are deep learning networks that are designed for grid structured data like
 
 \lstinputlisting{code/Ml_DL.c}
 
+\subsection{CNN-Softmax post-processing}
+
+The output of the CNN is not a direct percentage or probability.
+They must first be converted.
+To convert these logits to a probability, a softmax function can be used:
+\[
+\sigma(z_i) 
+=
+\frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}} \quad \text{for}\ i = 1, 2, \dots, K,
+\]
+\lstinputlisting{code/Softmax.c}
 
 \subsection{Applications}
 

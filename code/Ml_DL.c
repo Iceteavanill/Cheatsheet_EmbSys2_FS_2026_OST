@@ -1,3 +1,9 @@
+// Weight and bias storage
+extern float bias1[HIDDEN_NODES];
+extern float weight1[INPUT_NODES][HIDDEN_NODES];
+float layer1_data[HIDDEN_NODES];
+float inp_data[INPUT_NODES];
+
 // Activation function: ReLU
 float relu(float x) {
 	return x > 0.0F ? x : 0.0F;

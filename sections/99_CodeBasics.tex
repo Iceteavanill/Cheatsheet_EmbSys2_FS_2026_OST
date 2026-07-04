@@ -30,6 +30,24 @@ If you want to call \CC{} code from a C application you must expose a pure c api
     \lstinputlisting[firstline=5]{code/cpp_from_c_c.cpp}
 \end{minipage}
 
+\subsection{Task Sync with hardware semaphores of H755}
+
+\begin{minipage}{0.5\columnwidth}
+    \lstinputlisting[linerange=1-12]{code/HSEM.cpp}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+    \lstinputlisting[linerange=14-25]{code/HSEM.cpp}
+\end{minipage}
+
+\subsection{Cache friendly code}
+\begin{minipage}{0.5\columnwidth}
+    \lstinputlisting[linerange=1-4, style=basestyle]{code/Cache_code.c}
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+    \lstinputlisting[linerange=6-9, style=cppstyle]{code/Cache_code.c}
+\end{minipage}
+
+
 % -------------------------------------
 % TODO : Here are the coding tips from the last formula sheet. Maybe not relevant
 % -------------------------------------
@@ -38,12 +56,10 @@ If you want to call \CC{} code from a C application you must expose a pure c api
 \begin{lstlisting}
 int x = 10;
 int* p = &x;   // p points to x
-// &x gives the address of variable x.
-// *p gives the value at the address. (Here 10)
+// &x gives the address of variable x, *p gives the value at the address. (Here 10)
 
-// Always at first, when pointer received as parameter
-if (paramPointer == NULL) { // NULL pointer check
-    return true;  return aValue;  return;
+if (paramPointer == NULL) { // NULL pointer check ALWAYS!!!!
+    return false;  return aValue;  return;
 }
 \end{lstlisting}
 
@@ -56,53 +72,53 @@ int b;
 memcpy(&b, &a, sizeof(int)); // b now holds 42
 \end{lstlisting}
 
-\subsection{Unit Tests}
-To test your implementation, you can use the \texttt{assert.h} library in C. This allows you to write simple unit tests to verify that your functions behave as expected.
-The tests should be written to check for both typical and edge cases.
-\begin{lstlisting}
-  float a = 1.0f;        // test simple add function
-  float b = 2.0f;
-  float expected = 3.0f;
-  float result = Add(a, b);
-  assert(fabsf(result - expected) < 0.001f && "Add normal case failed");
-  printf("Test 1 passed\n");
-\end{lstlisting}
+% \subsection{Unit Tests}
+% To test your implementation, you can use the \texttt{assert.h} library in C. This allows you to write simple unit tests to verify that your functions behave as expected.
+% The tests should be written to check for both typical and edge cases.
+% \begin{lstlisting}
+%   float a = 1.0f;        // test simple add function
+%   float b = 2.0f;
+%   float expected = 3.0f;
+%   float result = Add(a, b);
+%   assert(fabsf(result - expected) < 0.001f && "Add normal case failed");
+%   printf("Test 1 passed\n");
+% \end{lstlisting}
 
-\subsection{General Theory} % TODO: Maybe find a better name for subsection....
-% General Coding Notices
-\begin{minipage}[t]{0.5\linewidth} % CHECK: could maybe be moved
-    \textbf{Blocking}\\
-    Returns only after task completion / timeout.\\
-    Calling code remains idle.
-\end{minipage}
-\begin{minipage}[t]{0.5\linewidth}
-    \textbf{Non-Blocking}\\
-    Returns immediately.\\
-    Result via callback/ polling/ IRQ.
-\end{minipage}
-\hrule
-\begin{minipage}[t]{0.5\linewidth}
-    \textbf{Super Loop}\\
-    While(1) loop that always executes
-\end{minipage}
-\begin{minipage}[t]{0.5\linewidth}
-    \textbf{Timer driven}\\
-    Executes all the code after in fixed intervals and sleeps while idle
-\end{minipage}
-% \subsection{Sample diagrams} 
-% \includegraphics[width=\columnwidth]{images/uml_ref.pdf}
+% \subsection{General Theory} % TODO: Maybe find a better name for subsection....
+% % General Coding Notices
+% \begin{minipage}[t]{0.5\linewidth} % CHECK: could maybe be moved
+%     \textbf{Blocking}\\
+%     Returns only after task completion / timeout.\\
+%     Calling code remains idle.
+% \end{minipage}
+% \begin{minipage}[t]{0.5\linewidth}
+%     \textbf{Non-Blocking}\\
+%     Returns immediately.\\
+%     Result via callback/ polling/ IRQ.
+% \end{minipage}
+% \hrule
+% \begin{minipage}[t]{0.5\linewidth}
+%     \textbf{Super Loop}\\
+%     While(1) loop that always executes
+% \end{minipage}
+% \begin{minipage}[t]{0.5\linewidth}
+%     \textbf{Timer driven}\\
+%     Executes all the code after in fixed intervals and sleeps while idle
+% \end{minipage}
+% % \subsection{Sample diagrams} 
+% % \includegraphics[width=\columnwidth]{images/uml_ref.pdf}
 
-\subsection{Difference CRC and checksum}
-\begin{minipage}[t]{0.69\linewidth}
-    \textbf{checksum}\\
-    Typically done via 2's complement.
-    The address and data is added and sent as the inverted 2's complement as well.
-    On the receiver, the same calculation is made and the 2 values added.
-    If zero results, the transmission was successful.
-    Easy way to detect errors in data transmission.
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.29\linewidth}
-    \textbf{Cyclic Redundancy Check}\\
-    More advanced method of detecting transmission errors using polynomials.
-\end{minipage}
+% \subsection{Difference CRC and checksum}
+% \begin{minipage}[t]{0.69\linewidth}
+%     \textbf{checksum}\\
+%     Typically done via 2's complement.
+%     The address and data is added and sent as the inverted 2's complement as well.
+%     On the receiver, the same calculation is made and the 2 values added.
+%     If zero results, the transmission was successful.
+%     Easy way to detect errors in data transmission.
+% \end{minipage}
+% \hfill
+% \begin{minipage}[t]{0.29\linewidth}
+%     \textbf{Cyclic Redundancy Check}\\
+%     More advanced method of detecting transmission errors using polynomials.
+% \end{minipage}
