@@ -703,7 +703,7 @@ $\boxed{A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A
 \textbf{Physical address mapping:}
 \[\begin{aligned}
   \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} \\
-            &= \text{\texttt{PD[\pastelbox{gray}{AL<16..13>}]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
+            &= \text{\texttt{PD[AL<16..13>]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
             &= \text{PD}[\pastelbox{gray}{\text{VPN}}] \mid \pastelbox{yellow}{\texttt{AL<12..0>}}
 \end{aligned}\]
 
