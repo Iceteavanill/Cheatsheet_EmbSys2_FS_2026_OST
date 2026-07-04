@@ -697,11 +697,11 @@ BNF
   &= \qty{8}{KiB} = 8192 = 0x2000 \end{aligned}\]
 \[\Rightarrow PD[1] \in \texttt{0x0000..0x1FFF}\]
 \[\Rightarrow PD[2] \in \texttt{0x2000..0x2FFF}\]
+\[\text{VA} = \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\]
 \vspace{-0.2cm}
 \end{minipage}
 
 \[\begin{aligned}
-  \text{VA} &= \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\\
   \text{PA} &= \underbrace{\texttt{0x18A341}}_{\text{Speicheradresse}} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} 
               = \text{\texttt{PD[AL<16..13>]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
             &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}} \Rightarrow \texttt{PD[1] = \%\pastelbox{gray}{0000'1100'0101}'0001 = 0x0C51}
