@@ -118,7 +118,7 @@ On a \textbf{heterogeneous} multiprocessor (like the STM32 H755), each CPU has i
 Shared memory can be used to exchange data.
 Hardware semaphores (\textbf{HSEM}) must be used for shared access.
 Some interrupt lines are available between the two CPUs, which can be used to sync the processors (see \ref{Mutex_From_ISR}).
-(Shared memory can still be used).
+Shared memory can still be used, however it \textbf{must} be set \textbf{non-cachable}.
 
 % TODO: maybe add NPUs, TPU's
 

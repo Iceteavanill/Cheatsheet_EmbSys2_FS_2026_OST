@@ -513,7 +513,7 @@
     \lstinputlisting[morekeywords={[2]std::string}, morekeywords={[4]buf, ts, te,p}]{code/Serialization_Serializer.cpp}
   \end{minipage}
   \vspace*{-0.4cm}
-  \subsubsection{Serialization Formats}
+  \subsubsection{Serialization Formats}\label{Serialization_Formats}
   \vspace*{-0.1cm}
     The efficiency (size, parsing speed, memory overhead) depends entirely on the chosen \emph{format}.
   \vspace*{-0.2cm}
@@ -585,7 +585,6 @@ BNF
 \subsection{BNF Grammar}
 % GOAL V09 • You can apply BNF grammar definitions and explain how structured data formats are defined and interpreted.
 
-  \subsubsection{BNF Syntax}
     Backus-Naur Form (BNF) is a notation for describing context-free grammars. A grammar consists of:
       \begin{itemize}
         \item \textbf{Terminal}: Literal character/symbol (e.g. \texttt{'a'}, \texttt{','}, \texttt{'\{'}).
@@ -596,12 +595,13 @@ BNF
       % General template:
       % \[\texttt{<A>} ::= \texttt{<B>}\;\texttt{<C>} \;\big|\; \texttt{<B>}\,\texttt{','}\,\texttt{<A>}\]
       % Common sub-grammars:
+      \vspace*{-0.2cm}
       \[
         \texttt{<digit>} ::= \texttt{'0'} \mid \cdots \mid \texttt{'9'} \qquad
         \texttt{<number>} ::= \texttt{<digit>} \mid \texttt{<digit>}\,\texttt{<number>}
       \]
-
-    \subsubsection{Structured Data Representation}
+      \vspace*{-0.4cm}
+    \subsubsection{Structured Data Representation}{example in section \ref{Serialization_Formats}}
       To check whether a data stream is \emph{\textcolor{blue}{deserializable}} according to a BNF:
       \begin{enumerate}
         \item Start at the root non-terminal (e.g.\ \texttt{<message>}).
