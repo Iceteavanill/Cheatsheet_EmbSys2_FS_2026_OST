@@ -33,13 +33,16 @@ Note: \textbf{Loop unrolling} replicates the body (e.g.\ 4 MACs/iter) to cut loo
 
 \vspace{-0.3cm}
 \begin{minipage}[t]{0.4\linewidth}
+    \textbf{Normal}\vspace{-0.1cm}
     \lstinputlisting[linerange=2-5, morekeywords={[4]pSrc1, pSrc2, pDest, len, i, pS1Vec, pS2Vec}]{code/simd.cpp}
     This implementation is simple but slow.
     The SIMD however needs some casts to acquire the separate memory blocks
 \end{minipage}
 \begin{minipage}[t]{0.6\linewidth}
+    \textbf{SIMD}\vspace{-0.1cm}
     \lstinputlisting[linerange=7-15,morekeywords={[2]__SMLAD}, morekeywords={[4]pSrc1, pSrc2, pDest, len, i}]{code/simd.cpp}
 \end{minipage}
+\vspace{-0.5cm}
 \begin{lstlisting}
 }
 \end{lstlisting}
