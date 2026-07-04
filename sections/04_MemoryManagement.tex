@@ -281,11 +281,11 @@
   % GOAL V07 • You are aware of possible issues and solutions to ensure cache coherence and cache consistency.
     \textbf{Coherence:} caches \& main memory must agree on shared data; occurs in multi-CPU \emph{and} single-CPU multi-level-cache systems.
 
-    \begin{minipage}[t]{0.6\columnwidth}
+    \begin{minipage}[t]{0.64\columnwidth}
       \textbf{Issues:} 
       \begin{itemize}
         \item \textcolor{orange}{DMA writes to SRAM} \textrightarrow\ \textbf{invalidate} line
-        \item \textcolor{orange}{DMA reads from SRAM} \textrightarrow\ \textbf{clean} (write-back)\\line
+        \item \textcolor{orange}{DMA reads from SRAM} \textrightarrow\ \textbf{clean} (write-back) line
         \item \textcolor{orange}{CPU0--CPU1 write-through} \textrightarrow\ write propagation
         \item \textcolor{orange}{CPU0--CPU1 write-back} \textrightarrow\ write serialization
       \end{itemize}
@@ -426,26 +426,29 @@
     \end{itemize}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.48\linewidth}
-    \textbf{Common libraries:}\\
+    \textbf{Common libraries:}
+    
+    \vspace{0.2cm}
     \begin{tabular}{ll}
-      \textbf{FatFS}    & SD cards, PC-compatible \\
+      \toprule
+      \textbf{FatFS}    & SD cards, PC-compatible \\\midrule
       \textbf{LittleFS} & NOR flash, power-fail safe,\\
-                        & wear leveling, small footprint
+                        & wear leveling, small footprint\\ \bottomrule
     \end{tabular}
   \end{minipage}
 
-  \begin{minipage}[t]{0.48\linewidth}
+  \begin{minipage}[t]{0.55\linewidth}
     \subsubsection{Basic File System Operations}
       \begin{enumerate}
         \item Initialize the storage
-        \item Mount file system (ready for use; initializes basic buffers of file system)
+        \item Mount file system (ready for use; initializes basic\\ buffers of file system)
         \item If \textcolor{red}{mount fails}: Format file system \textrightarrow\ mount again
         \item Open file (f\_open)
         \item Read / Write data (f\_read, f\_write)
         \item Close file (f\_close)
       \end{enumerate}
   \end{minipage}\hfill
-  \begin{minipage}[t]{0.48\linewidth}
+  \begin{minipage}[t]{0.46\linewidth}
     \subsubsection{Embedded File Systems}
       \begin{itemize}
         \item Optimized for flash memory constraints:
