@@ -37,7 +37,7 @@
     \begin{tabular}{lll}
       \toprule
       \textbf{Section} & \textbf{Location} & \textbf{Content} \\ \midrule
-      \texttt{.text}   & Flash & executable code \\
+      \texttt{.text}   & Flash & Executable code \\
       \texttt{.rodata} & Flash & Read-only data, constants (\texttt{const}) \\
       \texttt{.data}   & RAM (init from Flash) & Initialized global/static variables \\
       \texttt{.bss}    & RAM & Zero-initialized global/static variables \\
@@ -64,7 +64,7 @@
   
       \item With dynamic allocation:
       \begin{itemize}
-          \item Stack + TCB are allocated from the \textbf{FreeRTOS heap (ucHeap)}
+          \item Stack + TCB are allocated from the\\ \textbf{FreeRTOS heap (ucHeap)}
           \item Allocation via \texttt{pvPortMalloc}
       \end{itemize}
   
