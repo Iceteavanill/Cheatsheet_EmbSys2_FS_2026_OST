@@ -48,6 +48,24 @@ Note: \textbf{Loop unrolling} replicates the body (e.g.\ 4 MACs/iter) to cut loo
 \end{lstlisting}
 \vspace{-0.2cm}
 
+
+\subsection{Flynn's Taxonomy}{Klassierung nach Flynn}
+% GOAL V11 • You can describe and classify computing platforms according to their (potentially different) architectural characteristics using Flynn’s taxonomy.
+% GOAL V11 • You can recognize the specific type of a multi-processor architecture and name the underlying mechanisms and primitives.
+% \begin{ctabular}{l|cc}
+%  & \textbf{single data} & \textbf{multiple data} \\ \hline
+% \textbf{single instr.} & SISD & SIMD \\
+% \textbf{multiple instr.} & MISD & MIMD \\
+% \end{ctabular}
+\includegraphics[width=\columnwidth]{images/PDF/flynn.pdf}
+
+\textbf{SISD:} Von-Neumann / Harvard. 
+\textbf{SIMD:} vector/array processors. 
+\textbf{MISD:} no real machines (akin to systolic arrays). 
+\textbf{MIMD:} multiprocessors, GPUs (multi-threaded SIMD), NPU/TPU. 
+\textbf{Von-Neumann bottleneck:} one bus for instructions $+$ data; 
+\textbf{Harvard} (separate I/D buses or caches) relieves it.
+
 \subsection{Pipelining}
 % GOAL V11 • You can explain how pipelining and its variations like superscalar or VLIW architectures work.
 
@@ -60,6 +78,7 @@ Split a task into \textbf{stages} processed in overlap (assembly line).
     \item \textbf{Write Back:} Write back to registers 
 \end{itemize}
 \textbf{Pipeline registers} hold data between stages (transparent to the user). Ideal: one finished instruction \emph{per cycle}. 
+\vspace*{-0.2cm}
 \[ \text{Speedup} = \frac{\text{CPI unpipelined}}{1 + \text{stall cycles per instruction}} = \frac{\text{Pipeline depth}}{1 + \text{stall cycles per instruction}} \]
 Limits: bus access times, pipeline-register delay, hazards.
 
@@ -81,23 +100,6 @@ abandons strict Von-Neumann order \textrightarrow{} \textbf{out-of-order} execut
 \emph{result} sequentiality (hazards more severe, solve at compile time). \textbf{Superpipeline:} finer, shorter stages at higher clock (mixes exist). 
 \textbf{VLIW:} several operations packed in one long instruction word, scheduled by the \textbf{compiler} (avoids hazards, simplifies runtime HW). 
 \textbf{Hyper-threading (SMT):} hardware multithreading $+$ superscalar pipelining (combines TLP $+$ ILP).
-
-\subsection{Flynn's Taxonomy}{Klassierung nach Flynn}
-% GOAL V11 • You can describe and classify computing platforms according to their (potentially different) architectural characteristics using Flynn’s taxonomy.
-% GOAL V11 • You can recognize the specific type of a multi-processor architecture and name the underlying mechanisms and primitives.
-% \begin{ctabular}{l|cc}
-%  & \textbf{single data} & \textbf{multiple data} \\ \hline
-% \textbf{single instr.} & SISD & SIMD \\
-% \textbf{multiple instr.} & MISD & MIMD \\
-% \end{ctabular}
-\includegraphics[width=\columnwidth]{images/PDF/flynn.pdf}
-
-\textbf{SISD:} Von-Neumann / Harvard. 
-\textbf{SIMD:} vector/array processors. 
-\textbf{MISD:} no real machines (akin to systolic arrays). 
-\textbf{MIMD:} multiprocessors, GPUs (multi-threaded SIMD), NPU/TPU. 
-\textbf{Von-Neumann bottleneck:} one bus for instructions $+$ data; 
-\textbf{Harvard} (separate I/D buses or caches) relieves it.
 
 
 \subsection{Multiprocessors (MIMD)}
@@ -251,7 +253,7 @@ Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \paste
 \subsection{Gustafson's Law (Weak Scaling), fixed Execution time}
 % GOAL V12 • You can distinguish Amdahl’s Law and Gustafson’s Law, and independently apply them to estimate performance gains (like potential speed-ups in your computing system).
 
-\includegraphics[width=\columnwidth]{images/PDF/Amdahl_vs_Gustafson.pdf}
+\includegraphics[width=0.8\columnwidth]{images/PDF/Amdahl_vs_Gustafson.pdf}
 
 \subsection{Roofline Model}
 % GOAL V12 • You can relate theoretical gains to hardware-centric constraints (memory vs. compute) according to the Roofline model.

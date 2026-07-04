@@ -707,7 +707,14 @@ BNF
             &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}} \Rightarrow \texttt{PD[1] = \%\pastelbox{gray}{0000'1100'0101}'0001 = 0x0C51}
 \end{aligned}\]
 
-
+\begin{minipage}[t]{0.5\columnwidth}
+  \vspace*{0cm}
+  \input{images/tikz/page_descriptor.tex}
+\end{minipage}
+\begin{minipage}[t]{0.5\columnwidth}
+  \vspace*{0cm}
+  \input{images/tikz/Page_transformation_formula.tex}
+\end{minipage}
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
         \item \textbf{Paging}: fixed-size pages, no external fragmentation.
