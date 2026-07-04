@@ -161,8 +161,7 @@ Typically, the semaphore is taken before entering a critical section and release
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
     A mutex is \textbf{a locking mechanism} used to protect a shared resource.
     \begin{itemize}
-        \item Must be taken and released by the same task.
-        \item Has an ``\textbf{owner}''.
+        \item Must be taken and released by the same task. \textrightarrow{} one single tasks is the ``\textbf{owner}''.
         \item Is typically initialized in the unlocked state (i.e., token is available).
         \item Boolean valued
     \end{itemize}
@@ -171,8 +170,7 @@ Typically, the semaphore is taken before entering a critical section and release
     % GOAL L04 • You understand the difference between a semaphore and a mutex.
     A semaphore is \textbf{a signaling mechanism} used to notify a waiting task that it can proceed.
     \begin{itemize}
-        \item Can be manipulated from different tasks; any can execute \texttt{give} and \texttt{take}.
-        \item Has no ``owner''.
+        \item Can be manipulated from different tasks; any can execute \texttt{give} and \texttt{take}. \textrightarrow{} no ``\textbf{owner}''.
         \item At initialization it is typically empty (i.e., no available token).
         \item Integer valued
     \end{itemize}
