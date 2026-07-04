@@ -1,0 +1,102 @@
+\resizebox{0.5\columnwidth}{!}{%
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily\huge},
+    diamond node/.style={
+        shape=diamond,
+        draw=black,
+        minimum width=1.6cm,
+        minimum height=1.0cm,
+        inner sep=0pt
+    }
+]
+% ============ LEFT: TABLE ============
+% column edges: colA | label | colB | I2 | colC | I1 | colD | I0 | colE
+% colA=0, colB=2.6, colC=3.6, colD=4.6, colE=5.6
+% row edges: rowTop=0, rowH=-1.0 (end header), rowR1=-1.7, rowR2=-2.4, rowR3=-3.1, rowBot=-3.8
+
+% outer rectangle
+\draw (0,0) rectangle (5.6,-3.8);
+% vertical lines - full height, including through the header row
+\draw (2.6,0) -- (2.6,-3.8);
+\draw (3.6,0) -- (3.6,-3.8);
+\draw (4.6,0) -- (4.6,-3.8);
+% horizontal line under header (full width)
+\draw (0,-1.0) -- (5.6,-1.0);
+% horizontal lines between data rows (full width)
+\draw (0,-1.7) -- (5.6,-1.7);
+\draw (0,-2.4) -- (5.6,-2.4);
+\draw (0,-3.1) -- (5.6,-3.1);
+
+% header text
+\node[anchor=west] at (0.15,-0.35) {\textbf{benutzter}};
+\node[anchor=west] at (0.15,-0.68) {\textbf{Block}};
+\node at (3.1,-0.68) {\textbf{I2}};
+\node at (4.1,-0.68) {\textbf{I1}};
+\node at (5.1,-0.68) {\textbf{I0}};
+
+% row labels
+\node[anchor=west] at (0.15,-1.35) {\textbf{B0}};
+\node[anchor=west] at (0.15,-2.05) {\textbf{B1}};
+\node[anchor=west] at (0.15,-2.75) {\textbf{B2}};
+\node[anchor=west] at (0.15,-3.45) {\textbf{B3}};
+
+% data values
+% row B0: - 1 1
+\node at (3.1,-1.35) {-};
+\node at (4.1,-1.35) {1};
+\node at (5.1,-1.35) {1};
+% row B1: - 0 1
+\node at (3.1,-2.05) {-};
+\node at (4.1,-2.05) {0};
+\node at (5.1,-2.05) {1};
+% row B2: 1 - 0
+\node at (3.1,-2.75) {1};
+\node at (4.1,-2.75) {-};
+\node at (5.1,-2.75) {0};
+% row B3: 0 - 0
+\node at (3.1,-3.45) {0};
+\node at (4.1,-3.45) {-};
+\node at (5.1,-3.45) {0};
+
+% caption below table
+\node[anchor=west] at (0,-4.15) {\textbf{-: wird nicht modifiziert}};
+
+% ============ RIGHT: DECISION TREE ============
+% top I0 node
+\node[diamond node] (I0) at (11.0,0) {$I_0$};
+% incoming arrow from above
+\draw[-{Latex[length=2.5mm]}] (11.0,1.0) -- (I0);
+
+% second level nodes
+\node[diamond node] (I1) at (9.0,-1.8) {$I_1$};
+\node[diamond node] (I2) at (13.0,-1.8) {$I_2$};
+
+% edges I0 -> I1 (labeled 0) and I0 -> I2 (labeled 1)
+\draw (I0) -- (I1) node[midway, above left=-1pt] {0};
+\draw (I0) -- (I2) node[midway, above right=-1pt] {1};
+
+% leaves
+\coordinate (B0leaf) at (7.9,-3.4);
+\coordinate (B1leaf) at (10.1,-3.4);
+\coordinate (B2leaf) at (11.9,-3.4);
+\coordinate (B3leaf) at (14.1,-3.4);
+
+\draw[-{Latex[length=2.5mm]}] (I1) -- (B0leaf) node[midway, above left=-1pt] {0};
+\draw[-{Latex[length=2.5mm]}] (I1) -- (B1leaf) node[midway, above right=-1pt] {1};
+\draw[-{Latex[length=2.5mm]}] (I2) -- (B2leaf) node[midway, above left=-1pt] {0};
+\draw[-{Latex[length=2.5mm]}] (I2) -- (B3leaf) node[midway, above right=-1pt] {1};
+
+\node at ($(B0leaf)+(0,-0.35)$) {\textbf{B0}};
+\node at ($(B1leaf)+(0,-0.35)$) {\textbf{B1}};
+\node at ($(B2leaf)+(0,-0.35)$) {\textbf{B2}};
+\node at ($(B3leaf)+(0,-0.35)$) {\textbf{B3}};
+
+% side labels for top-level branches
+\node[align=center] at (8.6,0) {\textbf{B0, B1}};
+\node[align=center] at (13.4,0) {\textbf{B2,B3}};
+
+% ============ BOTTOM CAPTION ============
+\node[font=\itshape\Large] at (7.3,-4.9) {LRU-Hardware des Embedded Intel486};
+
+\end{tikzpicture}
+}

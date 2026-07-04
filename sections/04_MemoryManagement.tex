@@ -246,8 +246,11 @@
       \item \textbf{LFU (Least Frequently Used):} Replace the least frequently used line.
       \item \textbf{Pseudo-LRU:} Hardware approximation of LRU, used because true LRU is expensive to implement (e.g., 3 history bits per cache line set, as in the Intel 486 \qty{8}{\kilo\byte} \pastelbox{yellow}{4-way} set-associative L1 cache).
     \end{itemize}
-
-  % TODO - brauchen wir das?: Pseudo-LRU Diagramme gem. V07, Slide 18
+    \vspace*{-0.5cm}
+    \begin{center}
+      \input{images/tikz/LRU.tex}
+    \end{center}
+    \vspace*{-0.5cm}
   
   % CHECK if needed: Cache Controller FSM (Slide 24) — pure diagram in the lecture, no accompanying text.
 
@@ -469,21 +472,24 @@
 
 \subsection{Serialization}
 
-  \subsubsection{Purpose of Serialization}
+  % \subsubsection{Purpose of Serialization}
   % GOAL V09 • You can understand why serialization is needed, how it works conceptually, and describe different serialization formats for embedded use cases.
   % GOAL L09 • You know the purpose and use cases of serialization.
-
-    \includegraphics[width=0.7\linewidth]{images/PDF/Serialization_mainPrinciple.pdf}
-
-    % Use cases:
-    \begin{itemize}
-      \item Communication between devices (via UART, SPI, network)
-      \item Persistent storage (flash, SD card)
-      \item Cross-platform / cross-language data exchange
-    \end{itemize}
+\begin{minipage}{0.6\columnwidth}
+  \includegraphics[width=\linewidth]{images/PDF/Serialization_mainPrinciple.pdf}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+  % Use cases:
+  \begin{itemize}
+    \item Communication between devices (via UART, SPI, network)
+    \item Persistent storage (flash, SD card)
+    \item Cross-platform / cross-language data exchange
+  \end{itemize}
+\end{minipage}
 
   \subsubsection{Serialization and Deserialization Process}
   % GOAL L09 • You understand how data is serialized and deserialized.
+  \vspace*{-0.1cm}
 
     \begin{itemize}
       \item \textbf{\textcolor{codeGreen}{Serialization}}: Encode an in-memory data structure into a byte stream/text according to a defined schema/grammar (e.g. BNF).
@@ -499,16 +505,18 @@
       \item Implement a \textcolor{codeGreen}{serializer} that writes outgoing data fields according to the schema.
       \item Wrap messages with a transport-layer protocol (e.g.\ length-prefix) if message boundaries are not otherwise delimited.
     \end{enumerate}
-
+  \vspace*{-0.2cm}
   \begin{minipage}[t]{0.5\columnwidth}
     \lstinputlisting[morekeywords={[2]std::string}, morekeywords={[4]msg, nr, i}]{code/Serialization_Parser.cpp}
   \end{minipage}
   \begin{minipage}[t]{0.5\columnwidth}
     \lstinputlisting[morekeywords={[2]std::string}, morekeywords={[4]buf, ts, te,p}]{code/Serialization_Serializer.cpp}
   \end{minipage}
-
+  \vspace*{-0.4cm}
   \subsubsection{Serialization Formats}
+  \vspace*{-0.1cm}
     The efficiency (size, parsing speed, memory overhead) depends entirely on the chosen \emph{format}.
+  \vspace*{-0.2cm}
     \begin{center}
       \begin{tabular}{lp{3.8cm}p{3.8cm}}
         \toprule
@@ -518,7 +526,38 @@
         FlatBuffers     & Very memory-efficient, fast binary format; zero-copy deserialization (no parsing or object reconstruction needed); cross-language compatible via schema & Rather complex; poor human readability/debuggability; requires a predefined, shared schema (less flexible/dynamic)                      \\ \bottomrule
       \end{tabular}
     \end{center}
+  \vspace*{-0.2cm}
+\begin{minipage}[t]{0.26\columnwidth}
+  \CC{} struct
+  \vspace*{-0.2cm}
+\begin{lstlisting}[morekeywords={[2]Measurement_t}, morekeywords={[4]m, temperature, timestamp}]
+Measurement_t m{
+ .temperature = 23.f,
+ .timestamp = 1711234
+}
+\end{lstlisting}
+\vspace*{-0.2cm}
+Json\vspace*{-0.1cm}
+\begin{lstlisting}
+{"temperature":23.5, 
+"timestamp":1711234}
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}[t]{0.74\columnwidth}
+BNF
+\vspace*{-0.2cm}
+\begin{lstlisting}[morekeywords={[2]measurement, temp-field, time-field, uint, digit}]
+<measurement>::= "{" <temp-field> "," <time-field> "}"
+<temp-field> ::= "\"temperature\"" ":" <float>
+<time-field> ::= "\"timestamp\"" ":" <uint>
+<float> ::= <uint> "." <uint>
+<uint> ::= <digit> | <digit> <uint>
 
+<digit> ::= "0" | "1" | "2" | "3" | "4"
+| "5" | "6" | "7" | "8" | "9"
+\end{lstlisting}
+\end{minipage}
+\vspace*{-0.4cm}
     \subsubsection{Format Selection Criteria}
     % GOAL L09 • You can select an appropriate serialization format given a program’s requirements.
 
