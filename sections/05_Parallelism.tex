@@ -139,7 +139,8 @@ Some interrupt lines are available between the two CPUs, which can be used to sy
 % See  for base model.
 
 % \subsubsection{Improvements in execution time}
-\[
+\vspace{-0.2cm}
+\[\boxed{
 T_{\text{App}} 
 = 
 \frac{\text{Thr}}{\text{App}}\cdot
@@ -153,7 +154,7 @@ T_{\text{App}}
 \mathrm{IPO}\cdot
 \mathrm{CPI}\cdot
 \mathrm{TPC}
-\]
+}\]
 \begin{tikzpicture}
 \node[inner sep=0pt] (tab) {%
 \begin{tabular}{p{0.07\linewidth}p{0.42\linewidth}p{0.3\linewidth}}
@@ -188,23 +189,24 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
 
 \subsubsection{Derivation of Speed-up}
 
-\begin{minipage}[t]{0.38\linewidth}
+\begin{minipage}[t]{0.4\linewidth}
     \vspace*{0pt}
-    \textit{Notation:} 
+    \textit{Notation:}
+    \vspace{0.1cm}
 
-    $A$ Workload (steps)
+    $\bullet$ $A$ Workload (steps)
 
-    $L_{\text{SISD}}$, $L_{\text{MIMD}}$ Performance (steps/time)
+    $\bullet$ $L_{\text{SISD}}$, $L_{\text{MIMD}}$ Performance (steps/time)
 
-    $n$ number of processors
+    $\bullet$ $n$ number of processors
 
-    $s$ sequential part
+    $\bullet$ $s$ sequential part
 
-    $p$ parallel part with $(s+p)\cdot A = A$, 
+    $\bullet$ $p$ parallel part with $(s+p)\cdot A = A$ 
     
-    so $s+p=1$, $p=1-s$.
+    $\Rightarrow s+p=1$, $p=1-s$.
 \end{minipage}\hfill
-\begin{minipage}[t]{0.6\linewidth}
+\begin{minipage}[t]{0.58\linewidth}
     \vspace*{0pt}
     \begin{align*}
     T_m &= T_s + T_p = \frac{s\cdot A}{L_{\text{SISD}}} + \frac{p\cdot A}{n\cdot L_{\text{SISD}}} = \frac{A}{L_{\text{SISD}}}\left(s+\frac{p}{n}\right)\\
@@ -218,7 +220,8 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
 % Grenzfall $n\to\infty$: $\text{Speedup}\to 1/s$ (harte obere Schranke durch den seriellen Anteil).
 
 \example{Simple}
-Serial part \qty{10}{\percent}\textrightarrow$s=0.1$, parallel part \qty{90}{\percent}\textrightarrow$p=0.9$, \textbf{n} SISD units
+Serial part \qty{10}{\percent}~\textrightarrow~$s=0.1$, parallel part \qty{90}{\percent}~\textrightarrow~$p=0.9$, \textbf{n} SISD units
+\vspace{0.1cm}
 
 \begin{description}
     \item[$n=1$] $S = \frac{1}{(0.1+\frac{0.9}{1})} = 1$, efficiency = $\frac{1}{1} = \qty{100}{\percent}$
@@ -228,7 +231,7 @@ Serial part \qty{10}{\percent}\textrightarrow$s=0.1$, parallel part \qty{90}{\pe
 \end{description}
 
 \example{Multiple parallel parts}
-Serial part \qty{9}{\percent}\textrightarrow$s=0.09$, 4-times parallel part \qty{17}{\percent}\textrightarrow$p_1=0.17$, fully parallel part rest\textrightarrow$p_2=0.74$, 32 SISD units
+Serial part \qty{9}{\percent}~\textrightarrow~$s=0.09$, 4-times parallel part \qty{17}{\percent}\\\textrightarrow~$p_1=0.17$, fully parallel part rest~\textrightarrow~$p_2=0.74$, 32 SISD units
 
 \[
 \text{Speedup}
