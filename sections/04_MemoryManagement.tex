@@ -651,31 +651,85 @@ BNF
     \vspace{-0.2cm}
 
   \subsubsection{Page Tables}
-    Map VPN $\rightarrow$ PFN via \textbf{Page Table Entries (PTEs)}.
-    \textbf{PTE} fields: PFN, valid/present bit, access permissions (read/write/execute), dirty/accessed bit, cacheability.
+    Map \pastelbox{gray}{VPN} $\rightarrow$ \pastelbox{codeGreen}{PFN} via \textbf{Page Table Entries (PTEs)}.
+    \textbf{PTE} fields: \pastelbox{codeGreen}{PFN}, valid/present bit, access permissions (read/write/execute), dirty/accessed bit, cacheability.
     \begin{itemize}
       \item \textbf{Multi-level:} Allocate only needed levels $\rightarrow$ less memory.
-      \item \textbf{Translation Lookaside Buffer (TLB):} Caches VPN $\rightarrow$ PFN.\\
+      \item \textbf{Translation Lookaside Buffer (TLB):} Caches \pastelbox{gray}{VPN} $\rightarrow$ \pastelbox{codeGreen}{PFN}.\\
       \textcolor{codeGreen}{TLB hit:} direct translation, \textcolor{red}{TLB miss:} page-table walk + update.
     \end{itemize}
 
     \textcolor{red}{Invalid page table entry} $\rightarrow$ MMU raises \emph{page fault} $\rightarrow$ OS handles fault
 
   
-  \subsubsection{Useful Relations}
-    For a virtual address width $V$, page size $P=2^k$ bytes and page table entry size $E$:
+  % \subsubsection{Useful Relations}
+  %   For a virtual address width $V$, page size $P=2^k$ bytes and page table entry size $E$:
 
-    \[
-    \begin{aligned}
-    \text{Offset bits}      &= \log_2(P) = k \\
-    \text{VPN bits}         &= V - \log_2(P) \\
-    \#\text{Virtual Pages}  &= \#\text{PTE} = 2^{\,V-\log_2(P)} \\
-    \text{Page Table Size}  &= \#\text{PTE} \times E
-    \end{aligned}
-    \]
+  %   \[
+  %   \begin{aligned}
+  %   \text{Offset bits}      &= \log_2(P) = k \\
+  %   \text{VPN bits}         &= V - \log_2(P) \\
+  %   \#\text{Virtual Pages}  &= \#\text{PTE} = 2^{\,V-\log_2(P)} \\
+  %   \text{Page Table Size}  &= \#\text{PTE} \times E
+  %   \end{aligned}
+  %   \]
 
-    \textcolor{gray}{Example: $P=\qty{4}{KiB}=2^{12}$ bytes $\Rightarrow$ Offset $=12$ bits.}
+  %   \textcolor{gray}{Example: $P=\qty{4}{KiB}=2^{\pastelbox{yellow}{12}}$ bytes $\Rightarrow$ \pastelbox{yellow}{Offset $=12$ bits}.}
 
+  %   Example
+
+  %   \texttt{AP<21..0> = PD[AL<16..13>]<12..4>|AL<12..0>}
+
+\subsubsection{Useful Relations}
+
+\begin{minipage}{0.48\linewidth}
+\begin{center}
+\vspace{-0.3cm}
+\[\boxed{\text{Offset (in bits)} = \log_2(P) = \log_2(2^{\pastelbox{yellow}{k}}) = \pastelbox{yellow}{k}}\]
+\[\boxed{\#\text{Virtual Pages} = 2^{\pastelbox{gray}{VPN bits}} = 2^{\text{VA}-\pastelbox{yellow}{k}}}\]
+\[\boxed{\text{VPN} \rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}] \rightarrow \pastelbox{codeGreen}{\text{PFN}}}\]
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.48\linewidth}
+  Example:
+
+\[\text{\small Page size (in bytes)} = P = \qty{8}{KiB} = 2^{\pastelbox{yellow}{13}}\]
+
+\[\begin{aligned}
+  \text{VA} &= \text{\texttt{0x02341}} = \text{\texttt{AP<21..0>}} \\
+            &= \text{\texttt{PD[\pastelbox{gray}{AL<16..13>}]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
+\end{aligned}\]
+
+
+% TODO: #Physical Pages -> Calculate this
+
+\end{minipage}
+
+% TODO include:
+
+\[
+\text{VA} = \text{AL}<21..0>
+=
+\pastelbox{gray}{\text{AL}<21..12>}
+\mid
+\pastelbox{yellow}{\text{AL}<11..0>}
+\]
+
+\vspace{0.2cm}
+
+\[\text{Translation:} \quad \pastelbox{gray}{\text{AL}<21..12>}
+\rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}]
+\rightarrow \pastelbox{codeGreen}{\text{PFN}}\]
+
+\vspace{0.2cm}
+
+\[
+\text{PA} =
+\pastelbox{codeGreen}{\text{PD}[\text{AL}<21..12>]<12..4>}
+\mid
+\pastelbox{yellow}{\text{AL}<11..0>}
+\]
+    
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
         \item \textbf{Paging}: fixed-size pages, no external fragmentation.
