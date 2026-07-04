@@ -1,0 +1,21 @@
+\resizebox{0.5\columnwidth}{!}{%
+\begin{tikzpicture}
+% ---------- definitions list ----------
+\node[anchor=north west, align=left, inner sep=0pt] (list) at (0,0) {%
+\begin{tabular}{@{}ll@{}}
+n: & bit count of physical address\\
+m: & bit count of logical address\\
+k: & bit count of page offset\\
+x: & LS-Bit of physical addess of page number in page-deskriptor\\
+A\textsubscript{P}: & physical address (memory address)\\
+A\textsubscript{L} & logical address (address for programm)\\
+PD: & page table (entries are the page descriptors)\\
+PD[i]: & Page-descriptors-nummer i (entry with Index i of PD)\\
+\end{tabular}
+};
+% ---------- formula box ----------
+\node[anchor=north west, inner sep=5pt, draw=black,align=left]
+      (box) at ($(list.south west)+(0,0cm)$)
+      {A\textsubscript{P}<n-1..0> = PD[A\textsubscript{L}<m-1..k>]<x+(n-1-k)..x> | A\textsubscript{L}<k-1..0>};
+\end{tikzpicture}
+}%
