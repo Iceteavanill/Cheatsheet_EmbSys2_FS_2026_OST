@@ -187,7 +187,7 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
     \item Application to multi-processors: Improvement $=$ parallelization; utilization rate $=$ degree of parallelizability.
     \item Guiding principles: \emph{make common case fast}; \emph{rule of diminishing returns}; another part of the system can become the new bottleneck.
 \end{itemize}
-\vspace*{-0.4cm}
+\vspace*{-0.2cm}
 \subsubsection{Derivation of Speed-up}
 \vspace*{-0.2cm}
 \begin{minipage}[t]{0.4\linewidth}
@@ -213,6 +213,7 @@ TPC & Time per Clock (process node dependent) & Heating, min.\ pipeline length \
     T_m &= T_s + T_p = \frac{\pastelbox{cyan}{$s$}\cdot \pastelbox{yellow}{$A$}}{L_{\text{SISD}}} + \frac{\pastelbox{green}{$p$}\cdot \pastelbox{yellow}{A}}{\pastelbox{orange}{$n$}\cdot L_{\text{SISD}}} = \frac{\pastelbox{yellow}{$A$}}{L_{\text{SISD}}}\left(\pastelbox{cyan}{$s$}+\frac{\pastelbox{green}{$p$}}{\pastelbox{orange}{$n$}}\right)\\
     \overline{L_{\text{MIMD}}} &= \frac{\pastelbox{yellow}{$A$}}{T_m} = L_{\text{SISD}}\cdot\frac{1}{\pastelbox{cyan}{$s$}+\frac{1-\pastelbox{cyan}{s}}{\pastelbox{orange}{$n$}}} = \frac{L_{\text{SISD}}}{\pastelbox{cyan}{$s$}+\frac{1-\pastelbox{cyan}{$s$}}{\pastelbox{orange}{$n$}}}
     \end{align*}
+    \vspace*{-0.2cm}
     \[
     \boxed{\;\text{Speedup} = S(\pastelbox{orange}{$n$}) = \frac{\overline{L_{\text{MIMD}}}}{L_{\text{SISD}}} = \frac{1}{\pastelbox{cyan}{$s$}+\dfrac{1-\pastelbox{cyan}{$s$}}{\pastelbox{orange}{$n$}}}\;}
     \]
