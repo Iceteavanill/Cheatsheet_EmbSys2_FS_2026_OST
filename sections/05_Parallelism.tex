@@ -31,6 +31,7 @@ Note: \textbf{Loop unrolling} replicates the body (e.g.\ 4 MACs/iter) to cut loo
 % GOAL L10 • You can work with the CMSIS-Core and CMSIS DSP library on Arm Cortex microcontrollers to realize the vector and matrix operations.
 \lstinputlisting[lastline=1, morekeywords={[4]pSrc1, pSrc2, pDest, len}]{code/simd.cpp}
 
+\vspace{-0.3cm}
 \begin{minipage}[t]{0.4\linewidth}
     \lstinputlisting[linerange=2-5, morekeywords={[4]pSrc1, pSrc2, pDest, len, i, pS1Vec, pS2Vec}]{code/simd.cpp}
     This implementation is simple but slow.
@@ -40,8 +41,8 @@ Note: \textbf{Loop unrolling} replicates the body (e.g.\ 4 MACs/iter) to cut loo
     \lstinputlisting[linerange=7-15,morekeywords={[2]__SMLAD}, morekeywords={[4]pSrc1, pSrc2, pDest, len, i}]{code/simd.cpp}
 \end{minipage}
 \begin{lstlisting}
-}
 \end{lstlisting}
+\vspace{-0.3cm}
 
 \subsection{Pipelining}
 % GOAL V11 • You can explain how pipelining and its variations like superscalar or VLIW architectures work.
