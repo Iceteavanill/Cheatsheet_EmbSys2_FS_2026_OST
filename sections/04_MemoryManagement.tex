@@ -691,12 +691,12 @@ BNF
 \end{center}
 \end{minipage}\hfill
 \begin{minipage}{0.48\linewidth}
-  Example:
+  \textbf{Example:}
 \vspace{-0.2cm}
 \[\text{\small Page size (in bytes)} = P = \qty{8}{KiB} = 2^{\pastelbox{yellow}{13}}\]
 \vspace{-0.2cm}
 \textbf{Virtual address:}
-\[\text{VA} = \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..12>}|\pastelbox{yellow}{AL<12..0>}}\]
+\[\text{VA} = \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\]
 \textbf{Physical address mapping:}
 \[\begin{aligned}
   \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} \\
@@ -706,6 +706,8 @@ BNF
 
 \end{minipage}
 \vspace{0.2cm}
+
+$A_p\texttt{<n-1..0>} = PD[A_L\texttt{<m-1..k>}]\texttt{<x+(n-1-k)..x>}|A_L\texttt{<k-1..0>}$
     
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
