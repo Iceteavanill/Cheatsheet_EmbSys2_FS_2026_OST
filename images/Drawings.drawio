@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="14">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2" pages="15">
   <diagram id="4gctYlMDlic3PbXvwV3u" name="03_LowPower">
     <mxGraphModel dx="786" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0" adaptiveColors="none">
       <root>
@@ -1061,6 +1061,58 @@
       </root>
     </mxGraphModel>
   </diagram>
+  <diagram id="ZDd-BLnWHyogmQ88SyVL" name="Queues">
+    <mxGraphModel dx="655" dy="430" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YFiiQp2377P4bWZzEC02-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YFiiQp2377P4bWZzEC02-2" target="YFiiQp2377P4bWZzEC02-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-2" value="Task A" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="240" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-3" value="Task A ─┐&#xa;Task B ─┼──► Queue ───► Gatekeeper Task ───► Resource&#xa;Task C ─┘" style="text;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="110" y="120" width="390" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YFiiQp2377P4bWZzEC02-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-4" value="Task B" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="260" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YFiiQp2377P4bWZzEC02-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="270" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="290" />
+              <mxPoint x="180" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-5" value="Task C" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="280" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YFiiQp2377P4bWZzEC02-6" target="YFiiQp2377P4bWZzEC02-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-6" value="Queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="240" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YFiiQp2377P4bWZzEC02-7" target="YFiiQp2377P4bWZzEC02-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-7" value="Gatekeeper Task" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="265" y="260" width="95" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="YFiiQp2377P4bWZzEC02-8" value="Resource" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="390" y="260" width="80" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
   <diagram id="xzBi8BhfagEE2L7Tz5rW" name="EmbeddedMemory">
     <mxGraphModel dx="605" dy="397" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="1" shadow="0">
       <root>
@@ -1273,7 +1325,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="dbh1teOTWSosekimDJ61" name="Caches">
-    <mxGraphModel dx="786" dy="1685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="1" shadow="0">
+    <mxGraphModel dx="144" dy="1676" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />

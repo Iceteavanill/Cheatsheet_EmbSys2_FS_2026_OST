@@ -253,7 +253,7 @@ bSemaphore.give()
 
 \subsection{Priority inversion}
 % GOAL V04 • You can explain priority inversion and how it can be dealt with via resource access protocols.
-Under \emph{priority-based preemptive} scheduling, a low-priority task holding a resource blocks a higher-priority task (HPT).
+Under \emph{priority-based preemptive} scheduling, a low-priority task (LPT) holding a resource blocks a higher-priority task (HPT).
 A resource-access protocol can prevent this.
 \subsubsection{Resource-access protocols}
 \begin{outline}
@@ -272,6 +272,8 @@ A \textbf{message queue} is a buffer-like kernel object through which tasks/ISRs
 A queue can be \textbf{Empty}, \textbf{Not Empty} or \textbf{Full}. 
 Sending to a full queue or receiving from an empty one can \textbf{block} the caller.
 \subsubsection{Data vs. pointer}
+
+\vspace{-0.2cm}
 \begin{ctabular}{p{0.46\linewidth}p{0.46\linewidth}}
 \textbf{By value (copy)} & \textbf{By reference (pointer)} \\ \hline
 two copies (sender\textrightarrow{}queue\textrightarrow{}receiver); good for \emph{small} messages. & queue holds a pointer to a shared buffer; good for \emph{large} messages. \\
@@ -281,8 +283,12 @@ two copies (sender\textrightarrow{}queue\textrightarrow{}receiver); good for \em
 \textbf{Pipes} provide \emph{unstructured} byte exchange and synchronization: the reader blocks when empty, the writer when full. A \textbf{select} operation blocks on a condition over one or several pipes. FreeRTOS has no pipes; alternatives: \textbf{queues}, \textbf{stream buffers} (single reader/writer byte stream, e.g.\ ISR\textrightarrow{}task or core-to-core) and \textbf{message buffers} (discrete variable-length messages on top of stream buffers).
 
 \subsection{Locks vs.\ Lock-Free}
-Queues are a quasi lock-free instrument: transferring data ownership avoids explicit locks. 
-A gatekeeper task with sole ownership of a resource (no locking), or a shared memory pool passed by reference can serve as the sole handler of critical structures.
+\textbf{Queues} are a quasi lock-free instrument: transferring data ownership avoids explicit locks. 
+A \textbf{gatekeeper task} with sole ownership of a resource (no locking), or a shared memory pool passed by reference can serve as the sole handler of critical structures.
+
+\begin{center}
+    \includegraphics[width=0.6\columnwidth]{images/PDF/Queues_GatekeeperTask.pdf}
+\end{center}
 
 \subsection{Deadlocks}
 A \textbf{deadlock} permanently blocks threads because their resource needs can never be satisfied (possible whenever the RTOS shares resources and a thread may hold several).
