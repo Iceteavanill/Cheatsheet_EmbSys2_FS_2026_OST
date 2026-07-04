@@ -684,7 +684,7 @@ BNF
 
 \begin{minipage}{0.48\linewidth}
 \begin{center}
-\vspace{-0.3cm}
+\vspace{-0.5cm}
 \[\boxed{\text{Offset (in bits)} = \log_2(P) = \log_2(2^{\pastelbox{yellow}{k}}) = \pastelbox{yellow}{k}}\]
 \[\boxed{\#\text{Virtual Pages} = 2^{\pastelbox{gray}{VPN bits}} = 2^{\text{VA}-\pastelbox{yellow}{k}}}\]
 \[\boxed{\text{VPN} \rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}] \rightarrow \pastelbox{codeGreen}{\text{PFN}}}\]
@@ -692,43 +692,26 @@ BNF
 \end{minipage}\hfill
 \begin{minipage}{0.48\linewidth}
   Example:
-
+\vspace{-0.2cm}
 \[\text{\small Page size (in bytes)} = P = \qty{8}{KiB} = 2^{\pastelbox{yellow}{13}}\]
-
+\vspace{-0.2cm}
 \[\begin{aligned}
   \text{VA} &= \text{\texttt{0x02341}} = \text{\texttt{AP<21..0>}} \\
             &= \text{\texttt{PD[\pastelbox{gray}{AL<16..13>}]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
+            &= \texttt{\pastelbox{gray}{AL<21..12>}|\pastelbox{yellow}{AL<12..0>}}
 \end{aligned}\]
 
 
-% TODO: #Physical Pages -> Calculate this
+\textbf{Physical address mapping:}
+\[\begin{aligned}
+  \text{PA} &= \texttt{0x18A341} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} \\
+            &= \text{PD}[\pastelbox{gray}{\text{VPN}}]
+             \mid
+             \pastelbox{yellow}{\texttt{AL<12..0>}}
+\end{aligned}\]
 
 \end{minipage}
-
-% TODO include:
-
-\[
-\text{VA} = \text{AL}<21..0>
-=
-\pastelbox{gray}{\text{AL}<21..12>}
-\mid
-\pastelbox{yellow}{\text{AL}<11..0>}
-\]
-
 \vspace{0.2cm}
-
-\[\text{Translation:} \quad \pastelbox{gray}{\text{AL}<21..12>}
-\rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}]
-\rightarrow \pastelbox{codeGreen}{\text{PFN}}\]
-
-\vspace{0.2cm}
-
-\[
-\text{PA} =
-\pastelbox{codeGreen}{\text{PD}[\text{AL}<21..12>]<12..4>}
-\mid
-\pastelbox{yellow}{\text{AL}<11..0>}
-\]
     
   \subsubsection{Segmentation vs.\ Paging}
     \begin{itemize}
