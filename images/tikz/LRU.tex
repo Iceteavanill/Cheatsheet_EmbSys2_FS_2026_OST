@@ -30,9 +30,9 @@
 % header text
 \node[anchor=west] at (0.15,-0.35) {\textbf{used}};
 \node[anchor=west] at (0.15,-0.75) {\textbf{block}};
-\node at (2.1,-0.68) {\textbf{I2}};
-\node at (3.1,-0.68) {\textbf{I1}};
-\node at (4.1,-0.68) {\textbf{I0}};
+\node at (2.1,-0.68) {$\mathbf{I}_2$};
+\node at (3.1,-0.68) {$\mathbf{I}_1$};
+\node at (4.1,-0.68) {$\mathbf{I}_0$};
 
 % row labels
 \node[anchor=west] at (0.15,-1.35) {\textbf{B0}};
@@ -63,13 +63,13 @@
 
 % ============ RIGHT: DECISION TREE ============
 % top I0 node
-\node[diamond node] (I0) at (8.5,0) {$I_0$};
+\node[diamond node] (I0) at (8.5,0) {$\mathbf{I}_0$};
 % incoming arrow from above
 \draw[-{Latex[length=2.5mm]}] (8.5,1.0) -- (I0);
 
 % second level nodes
-\node[diamond node] (I1) at (6.5,-1.8) {$I_1$};
-\node[diamond node] (I2) at (10.5,-1.8) {$I_2$};
+\node[diamond node] (I1) at (6.5,-1.8) {$\mathbf{I}_1$};
+\node[diamond node] (I2) at (10.5,-1.8) {$\mathbf{I}_2$};
 
 % edges I0 -> I1 (labeled 0) and I0 -> I2 (labeled 1)
 \draw (I0) -- (I1) node[midway, above left=-1pt] {0};
