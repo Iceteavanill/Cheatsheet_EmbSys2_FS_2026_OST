@@ -119,15 +119,15 @@ NAS & DMA, NPU offloading \\
 % GOAL V13 • You can distinguish different number formats and quantization method types used in TinyML training and inference.
 Reduces numerical precision of weights/activations
 (\texttt{float32}\textrightarrow{}\texttt{int8} $=4\times$ smaller) with minimal accuracy loss. 
-Formats: FP32/FP16/BF16 (BF16 keeps FP32's 8-bit exponent, trades mantissa), INT/Q-format fixed point.(BF=Brain floatingpoint)
+Formats: \texttt{FP32 / FP16 / BF16} (\texttt{BF16} keeps \texttt{FP32}'s 8-bit exponent, trades mantissa),\\ INT/Q-format fixed point. (\texttt{BF} = Brain floatingpoint)
 \begin{outline}
-  \1 \textbf{Symmetric:} $x_q=\text{round}(x/s)$. \textbf{Asymmetric (affine):} $x_q=\text{round}(x/s+z)$ with scale $s$ and zero-point $z$ mapping real $0$ to an integer.
+  \1 \textbf{Symmetric:} $x_q=\text{round}(x/s)$ $\qquad$ \textbf{Asymmetric (affine):} $x_q=\text{round}(x/s+z)$ \\with scale $s$ and zero-point $z$ mapping real $0$ to an integer.
   \1 \textbf{Weights} are static; \textbf{activations} are dynamic and need calibration.
   \1 \textbf{Clipping} saturates outliers to improve resolution; scale granularity can be layer-/channel-/block-wise.
 \end{outline}
 
 \subsubsection{Pruning}
-removes redundant parameters \textrightarrow{} \textbf{sparse} matrices. 
+Removes redundant parameters \textrightarrow{} \textbf{sparse} matrices. 
 \textbf{Structured} (whole rows/channels: hardware-efficient, lower max sparsity) vs.
 \textbf{unstructured magnitude} pruning (individual smallest-$|w|$ weights: highest sparsity but needs sparse-matrix support).
 
@@ -139,7 +139,7 @@ removes redundant parameters \textrightarrow{} \textbf{sparse} matrices.
 automated search over a space with a search strategy $+$ performance estimator (one-shot learns architecture $+$ weights jointly).
 
 \subsubsection{Metrics} 
-memory, latency, energy, accuracy, F1. From the confusion matrix: accuracy $\frac{TP+TN}{\text{all}}$, precision $\frac{TP}{TP+FP}$, recall $\frac{TP}{TP+FN}$,
+memory, latency, energy, accuracy, $F_1$. From the confusion matrix: accuracy $\frac{TP+TN}{\text{all}}$, precision $\frac{TP}{TP+FP}$, recall $\frac{TP}{TP+FN}$,
 \[ F_1 = 2\,\frac{\text{precision}\cdot\text{recall}}{\text{precision}+\text{recall}} = \frac{2TP}{2TP+FP+FN}. \]
 
 % \includegraphics[width=0.35\columnwidth]{images/PDF/precision_Accuracy.pdf}
@@ -187,7 +187,7 @@ CNN's are deep learning networks that are designed for grid structured data like
 \draw[-{Stealth},gray] (6.3,1.0)--(6.75,1.0);
 \end{tikzpicture}\hspace*{\fill}
 \begin{outline}
-  \1 \textbf{Convolution:} $h_{ij}=\text{a}[\beta+\sum_{m,n}\omega_{mn}\,x_{i+m-2,j+n-2}]$; hyperparameters: kernel size $f$, stride $s$ (also subsamples), \#filters.
+  \1 \textbf{Convolution:} $h_{ij}=\text{a}[\beta+\sum_{m,n}\omega_{mn}\,x_{i+m-2,j+n-2}]$;\\ hyperparameters: kernel size $f$, stride $s$ (also subsamples), \#filters.
   \1 \textbf{Padding:} a (zero) border lets the kernel reach edges and controls output size.
   \1 \textbf{Pooling:} downsamples a window (max/average/global) \textrightarrow{} fewer parameters, translation robustness.
   \1 \textbf{Flatten:} 2D maps \textrightarrow{} 1D vector for the final dense layers.
