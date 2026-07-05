@@ -304,25 +304,15 @@ Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \paste
 %     \textbf{$\beta$}    & Bandwidth             & bytes/cycle\\
 % \end{tabular}
 
-\begin{minipage}[t]{0.48\linewidth}
-\begin{tabular}{p{0.7cm} p{2.1cm} p{0.5cm}}
-    \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit}\\
-    \textbf{I(n)}       & Operational intensity & flops/byte\\
-    \textbf{W(n)}       & Work                  & flops\\
-    \textbf{Q(n)}       & Data movement         & bytes\\
-    \textbf{T(n)}       & Runtime               & cycles\\
-    \textbf{P(n)}       & Performance           & flops/cycle\\
+\begin{tabular}{llllll}
+    \toprule
+    \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit} & \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit}\\
+    \textbf{I(n)}       & Operational intensity & flops/byte    & \textbf{$\pi$}      & Peak performance      & flops/cycle\\
+    \textbf{W(n)}       & Work                  & flops         &                     &                       & per core\\
+    \textbf{Q(n)}       & Data movement         & bytes         & \textbf{$\beta$}    & Bandwidth             & bytes/cycle\\
+    \textbf{T(n)}       & Runtime               & cycles        &                     &                       & \\
+    \textbf{P(n)}       & Performance           & flops/cycle   &                     &                       & \\
 \end{tabular}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.48\linewidth}
-\vspace{-0.9cm}
-\begin{tabular}{p{0.7cm} p{1.8cm} p{0.5cm}}
-    \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit}\\
-    \textbf{$\pi$}      & Peak performance      & flops/cycle\\
-                        &                       & per core\\
-    \textbf{$\beta$}    & Bandwidth             & bytes/cycle\\
-\end{tabular}
-\end{minipage}
 
 \subsection{Energy Saving via Parallelism}
 Dynamic power/energy with activity $\alpha$, load capacitance $C_L$, supply $V_{dd}$, frequency $f$ (with $f\sim V_{dd}$):
