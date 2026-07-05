@@ -98,7 +98,7 @@ Optimization is driven by hardware bounds (Roofline) and parallelism limits (Amd
 8 B/value:\\
 weights: $\pastelbox{red}{$10$}\cdot \pastelbox{green}{$20$} + \pastelbox{green}{$20$}*\pastelbox{blue}{$5$} =300$, 
 biases: $\pastelbox{green}{$20$}+\pastelbox{blue}{$5$}=25$\\
-\textrightarrow{} $325$ params $=2600$\,B $\approx2.54$\,kB (fits a Cortex-M4 easily);\\
+\textrightarrow{} $325$ params $=2600$\,B $\approx2.54$\,kiB (fits a Cortex-M4 easily);\\
 MACs $=N_\text{in}\cdot N_\text{out}\\
 \textcolor{white}{MACs} = \pastelbox{red}{$10$}\cdot \pastelbox{green}{$20$} + \pastelbox{green}{$20$} \cdot \pastelbox{blue}{$5$}= 300$.
 \end{minipage}\hfill
@@ -110,6 +110,8 @@ pruning & SIMD/vectorization \\
 distillation & CMSIS-NN \\
 NAS & DMA, NPU offloading \\
 \end{ctabular}
+
+$\boxed{\qty{1}{\kilo i \byte} = \qty{1024}{\byte}}$
 \end{minipage}
 
 \hfill
