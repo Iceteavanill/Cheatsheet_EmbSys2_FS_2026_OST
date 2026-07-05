@@ -89,12 +89,18 @@ Many manufacturers typically provide a device specific solution like STM32Cube.A
 \subsection{Model Optimization}
 % GOAL V13 • You can explain why and how model optimization leads to performance improvements, which are particularly important for TinyML.
 Optimization is driven by hardware bounds (Roofline) and parallelism limits (Amdahl/Gustafson).
+\begin{minipage}{0.36\columnwidth}
 \example{FCNN cost} 
-10 inputs, 20 hidden, 
-5 outputs, 
-8 B/value: weights $200+100=300$, 
-biases $20+5=25$ \textrightarrow{} $325$ params $=2600$\,B $\approx2.54$\,kB (fits a Cortex-M4 easily); 
-MACs $=N_\text{in}\cdot N_\text{out}= 10\cdot 20 + 20 \cdot 5= 300$.
+\pastelbox{red}{10 inputs}, \pastelbox{green}{20 hidden}, 
+\pastelbox{blue}{5 outputs},\\
+8 B/value:\\
+weights: $\pastelbox{red}{$10$}\cdot \pastelbox{green}{$20$} + \pastelbox{green}{$20$}*\pastelbox{blue}{$5$} =300$, 
+biases: $\pastelbox{green}{$20$}+\pastelbox{blue}{$5$}=25$\\
+\textrightarrow{} $325$ params $=2600$\,B $\approx2.54$\,kB (fits a Cortex-M4 easily);\\
+MACs $=N_\text{in}\cdot N_\text{out}\\
+\textcolor{white}{MACs} = \pastelbox{red}{$10$}\cdot \pastelbox{green}{$20$} + \pastelbox{green}{$20$} \cdot \pastelbox{blue}{$5$}= 300$.
+\end{minipage}\hfill
+\begin{minipage}{0.6\columnwidth}
 \begin{ctabular}{ll}
 \textbf{Model optimization} & \textbf{Implementation optimization} \\ \hline
 quantization & operator fusion \\
@@ -102,6 +108,7 @@ pruning & SIMD/vectorization \\
 distillation & CMSIS-NN \\
 NAS & DMA, NPU offloading \\
 \end{ctabular}
+\end{minipage}
 
 \hfill
 \newpage
