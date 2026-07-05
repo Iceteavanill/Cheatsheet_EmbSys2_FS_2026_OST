@@ -246,10 +246,15 @@
       \item \textbf{LFU (Least Frequently Used):} Replace the least frequently used line.
       \item \textbf{Pseudo-LRU:} Hardware approximation of LRU, used because true LRU is expensive to implement (e.g., 3 history bits per cache line set, as in the Intel 486 \qty{8}{\kilo\byte} \pastelbox{yellow}{4-way} set-associative L1 cache).
     \end{itemize}
-    \vspace*{-0.5cm}
-    \begin{center}
+    \begin{minipage}{0.4\columnwidth}
       \input{images/tikz/LRU.tex}
-    \end{center}
+    \end{minipage}
+    \begin{minipage}{0.6\columnwidth}
+      The 3 history bits($\text{I}_1, \text{I}_2,\text{I}_3$) are updated if a hit or miss occurs.
+      On a miss, the block, which is overridden must first be selected.
+      That happens via the binary tree search depicted on the right.
+      Then regardless if a hit or miss occurs, the bits get updated, depending on the used block.
+    \end{minipage}
     \vspace*{-0.5cm}
   
   % CHECK if needed: Cache Controller FSM (Slide 24) — pure diagram in the lecture, no accompanying text.

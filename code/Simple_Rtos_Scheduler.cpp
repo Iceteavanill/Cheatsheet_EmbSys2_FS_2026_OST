@@ -12,7 +12,7 @@ void Scheduler::AddTask(ITask* task, uint32_t delayTck) {
 
 void Scheduler::RemoveTask(ITask *task){
 	auto tasks_match = [task](ITask* t){return task == t;};
-	delayQueue.erase(std::remove_if(delayQueue.begin(), delayQueue.end(), tasks_match));
+	delayQueue.erase(std::remove_if(delayQueue.begin(), delayQueue.end(), tasks_match), delayQueue.end());
 }
 
 void Scheduler::Run() {
