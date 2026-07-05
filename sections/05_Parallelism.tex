@@ -262,19 +262,23 @@ Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \paste
 
 \begin{minipage}[t]{0.44\linewidth}
     \vspace*{0pt}
-    Code is \textbf{compute bound} if it has high operational intensity, \textbf{memory bound} if it has low operational intensity.
+    Code is \pastelbox{red}{\textbf{compute bound}} if it has high operational intensity, \pastelbox{blue}{\textbf{memory bound}} if it has low operational intensity.
     
-    Platform: \textbf{bandwidth} $\beta$ in bytes/cycle,\\ \textbf{peak performance} $\pi$ in flops/cycle per core. 
-    Algorithm: work $W(n)$ in flops, data movement $Q(n)$ in bytes.
-    \[ 
-    I(n)
-    =
-    \frac{W(n)}{Q(n)}\ \text{in}\ \frac{\text{flops}}{\text{byte}},
-    \ P(n)
-    =
-    \frac{W(n)}{T(n)}\ \text{in} \frac{\text{flops}}{\text{cycle}} 
-    \]
-    The \textbf{ridge point} is at $I=\pi/\beta$: below it memory-bound, above it compute-bound. 
+    % Platform: \textbf{bandwidth} $\beta$ in bytes/cycle,\\ \textbf{peak performance} $\pi$ in flops/cycle per core. 
+    % Algorithm: work $W(n)$ in flops, data movement $Q(n)$ in bytes.
+    % \[ 
+    % I(n)
+    % =
+    % \frac{W(n)}{Q(n)}\ \text{in}\ \frac{\text{flops}}{\text{byte}},
+    % \ P(n)
+    % =
+    % \frac{W(n)}{T(n)}\ \text{in} \frac{\text{flops}}{\text{cycle}} 
+    % \]
+    \[\boxed{
+    I(n) = \frac{W(n)}{Q(n)}, \qquad
+    \ P(n) = \frac{W(n)}{T(n)} 
+    }\]
+    The \textbf{ridge point} is at $I=\pi/\beta$: below it \pastelbox{blue}{memory-bound}, above it \pastelbox{red}{compute-bound}. 
     SIMD/ILP/TLP raise $\pi$ (higher roof) and push the ridge right (more programs become memory bound); caching raises effective $I$ (less $Q$).
 \end{minipage}\hfill
 \begin{minipage}[t]{0.55\linewidth}
@@ -286,9 +290,39 @@ Serial part \qty{9}{\percent}~\textrightarrow~\pastelbox{cyan}{$s=0.09$}, \paste
     {
     \color{olive!70} Switch to 4-way SIMD:
     }
-    Compute bound increases, memory stays the same
+    \pastelbox{red}{Compute bound} increases, \\ \pastelbox{blue}{memory bound} stays the same
 \end{minipage}
 
+% \begin{tabular}{lll}
+%     \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit}\\
+%     \textbf{I(n)}       & Operational intensity & flops/byte\\
+%     \textbf{W(n)}       & Work                  & flops\\
+%     \textbf{Q(n)}       & Data movement         & bytes\\
+%     \textbf{T(n)}       & Runtime               & cycles\\
+%     \textbf{P(n)}       & Performance           & flops/cycle\\
+%     \textbf{$\pi$}      & Peak performance      & flops/cycle per core\\
+%     \textbf{$\beta$}    & Bandwidth             & bytes/cycle\\
+% \end{tabular}
+
+\begin{minipage}[t]{0.48\linewidth}
+\begin{tabular}{lll}
+    \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit}\\
+    \textbf{I(n)}       & Operational intensity & flops/byte\\
+    \textbf{W(n)}       & Work                  & flops\\
+    \textbf{Q(n)}       & Data movement         & bytes\\
+    \textbf{T(n)}       & Runtime               & cycles\\
+    \textbf{P(n)}       & Performance           & flops/cycle\\
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\begin{tabular}{lll}
+    \textbf{Symbol}     & \textbf{Description}  & \textbf{Unit}\\
+    \textbf{$\pi$}      & Peak performance      & flops/cycle\\
+                        &                       & per core\\
+    \textbf{$\beta$}    & Bandwidth             & bytes/cycle\\
+\end{tabular}
+\hfill
+\end{minipage}
 
 \subsection{Energy Saving via Parallelism}
 Dynamic power/energy with activity $\alpha$, load capacitance $C_L$, supply $V_{dd}$, frequency $f$ (with $f\sim V_{dd}$):
