@@ -651,11 +651,11 @@ BNF
     \vspace{-0.5cm}
 
   \subsubsection{Page Tables}
-    Map \pastelbox{gray}{VPN} $\rightarrow$ \pastelbox{codeGreen}{PFN} via \textbf{Page Table Entries (PTEs)}.
-    \textbf{PTE} fields: \pastelbox{codeGreen}{PFN}, valid/present bit, access permissions (read/write/execute), dirty/accessed bit, cacheability.
+    Map \pastelbox{gray}{VPN} (index) $\rightarrow$ \pastelbox{codeGreen}{PPN} via \textbf{Page Table Entries (PTEs)}.
+    \textbf{PTE} fields: \pastelbox{codeGreen}{PPN}, valid/present bit, access permissions (read/write/execute), dirty/accessed bit, cacheability.
     \begin{itemize}
       \item \textbf{Multi-level:} Allocate only needed levels $\rightarrow$ less memory.
-      \item \textbf{Translation Lookaside Buffer (TLB):} Caches \pastelbox{gray}{VPN} $\rightarrow$ \pastelbox{codeGreen}{PFN}.\\
+      \item \textbf{Translation Lookaside Buffer (TLB):} Caches \pastelbox{gray}{VPN} $\rightarrow$ \pastelbox{codeGreen}{PPN}.\\
       \textcolor{codeGreen}{TLB hit:} direct translation, \textcolor{red}{TLB miss:} page-table walk + update.
     \end{itemize}
 
@@ -685,8 +685,8 @@ BNF
 \begin{minipage}{0.48\linewidth}
 \begin{center}
 \[\boxed{\text{\pastelbox{yellow}{Offset (in bits)}} = \log_2(P) = \log_2(2^{\pastelbox{yellow}{k}}) = \pastelbox{yellow}{k}}\]
-\[\boxed{\#\text{Virtual Pages} = 2^{\pastelbox{gray}{VPN bits}} = 2^{\text{VA}-\pastelbox{yellow}{k}}}\]
-\[\boxed{\text{VPN} \rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}] \rightarrow \pastelbox{codeGreen}{\text{PFN}}}\]
+\[\boxed{\#\text{Virtual Pages} = 2^{\pastelbox{gray}{\#VPN bits}} = 2^{\text{VA}-\pastelbox{yellow}{k}}}\]
+\[\boxed{\pastelbox{gray}{\text{VPN}} \rightarrow \text{PD}[\pastelbox{gray}{\text{VPN}}] \rightarrow \pastelbox{codeGreen}{\text{PPN}}}\]
 \end{center}
 \end{minipage}\hfill
 \begin{minipage}{0.48\linewidth}
@@ -695,24 +695,29 @@ BNF
 \vspace{-0.2cm}
 \[\begin{aligned}\text{\small Page size (in bytes)} &= P = 2^{\pastelbox{yellow}{13}}\\
   &= \qty{8}{KiB} = 8192 = 0x2000 \end{aligned}\]
-\[\Rightarrow PD[1] \in \texttt{0x0000..0x1FFF}\]
-\[\Rightarrow PD[2] \in \texttt{0x2000..0x2FFF}\]
+\[\Rightarrow \text{PD}[1] \in \texttt{0x0000..0x1FFF}\]
+\[\Rightarrow \text{PD}[2] \in \texttt{0x2000..0x2FFF}\]
 \vspace{-0.2cm}
 \end{minipage}
 
 \[\begin{aligned}
-  \text{VA} &= \text{\texttt{0x02341}} = \texttt{\pastelbox{gray}{AL<21..13>}|\pastelbox{yellow}{AL<12..0>}}\\
-  \text{PA} &= \underbrace{\texttt{0x18A341}}_{\text{Speicheradresse}} = \text{\pastelbox{codeGreen}{PFN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} 
+  \text{A}_\text{V} &= \text{\texttt{0x02341}} = \texttt{i|\pastelbox{yellow}{AL<12..0>}} = \pastelbox{white}{0000'001}|\pastelbox{yellow}{0'0011'0100'0001}\Rightarrow \text{Index is 1}\\
+  \text{A}_\text{P} &= \underbrace{\texttt{0x18A341}}_{\text{Address in memory}} = \text{\pastelbox{codeGreen}{PPN}} \mid \text{\pastelbox{yellow}{Offset}} = \text{\texttt{AP<21..0>}} 
               = \text{\texttt{PD[AL<16..13>]<12..4>|\pastelbox{yellow}{AL<12..0>}}}\\
-            &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}} \Rightarrow \texttt{PD[1] = \%\pastelbox{codeGreen}{0000'1100'0101}'0001 = 0x0C51}
+            &= \underbrace{\text{PD}[\pastelbox{gray}{\text{VPN}}]}_{PTE} \mid \pastelbox{yellow}{\texttt{AL<12..0>}} \Rightarrow \texttt{PD[1] = 0\text{b}\pastelbox{codeGreen}{0000'1100'0101}'0001 = 0x0C51}
 \end{aligned}\]
+The \texttt{0001} was chosen at random because unknown \textrightarrow valid bit set
 
 \begin{minipage}[t]{0.5\columnwidth}
   \vspace*{0cm}
+  Page descriptor entry
+
   \input{images/tikz/page_descriptor.tex}
 \end{minipage}
 \begin{minipage}[t]{0.5\columnwidth}
   \vspace*{0cm}
+Notation for Page descriptors
+
   \input{images/tikz/Page_transformation_formula.tex}
 \end{minipage}
   \subsubsection{Segmentation vs.\ Paging}

@@ -8,25 +8,25 @@
 
 % ---------- top bit-position labels ----------
 \node[anchor=south west] at (0,0.28) {x+(n-1-k)};
-\node[anchor=south east] at (8.586,0.28) {x};
-\node[anchor=south] at (11.84,0.28) {1};
-\node[anchor=south] at (12.605,0.28) {0};
+\node[anchor=south east] at (5.586,0.28) {x};
+\node[anchor=south] at (8.84,0.28) {1};
+\node[anchor=south] at (9.605,0.28) {0};
 
 % ---------- the box ----------
-\draw (0,0) rectangle (13.01,-0.81);
-\draw (8.586,0) -- (8.586,-0.81);
-\draw (11.48,0) -- (11.48,-0.81);
-\draw (12.20,0) -- (12.20,-0.81);
+\draw (0,0) rectangle (10.01,-0.81);
+\draw (5.586,0) -- (5.586,-0.81);
+\draw (8.48,0) -- (8.48,-0.81);
+\draw (9.20,0) -- (9.20,-0.81);
 
 % ---------- box field text ----------
 \node[anchor=west] at (0.15,-0.405) {Physical page number};
-\node at (10.03,-0.405) {*};
-\node at (11.84,-0.405) {W};
-\node at (12.605,-0.405) {V};
+\node at (7.03,-0.405) {*};
+\node at (8.84,-0.405) {W};
+\node at (9.605,-0.405) {V};
 
 % ---------- legend ----------
 \node[anchor=north west] at (0,-1.215) {V: Valid-Bit (=1: PD-contents valid)};
-\node[anchor=north west] at (0,-1.728) {W: Write-Bit (=1: writeing to page allowed)};
+\node[anchor=north west] at (0,-1.728) {W: Write-Bit (=1: writing to page allowed)};
 \node[anchor=north west] at (0,-2.241) {*: more information on virtual memory};
 
 \end{tikzpicture}

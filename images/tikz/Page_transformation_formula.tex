@@ -16,6 +16,8 @@ PD[i]: & Page-descriptors-nummer i (entry with Index i of PD)\\
 % ---------- formula box ----------
 \node[anchor=north west, inner sep=5pt, draw=black,align=left]
       (box) at ($(list.south west)+(0,0cm)$)
-      {A\textsubscript{P}<n-1..0> = PD[A\textsubscript{L}<m-1..k>]<x+(n-1-k)..x> | A\textsubscript{L}<k-1..0>};
+      {$\text{A}_{\text{P}}\!<\!\text{n}\!-\!1..0\!>\; 
+      = \underbrace{\text{PD}[\text{A}_\text{L}\!<\!\text{m}\!-\!1\dots\text{k}\!>\!]}_{\text{index PD at i}}
+      \underbrace{\!<\!\text{x}\!+\!(\text{n}\!-\!1\!-\!\text{k})..\text{x}\!>\!}_{\text{Extract bits}} | \underbrace{\text{A}_\text{L}\!<\!\text{k}\!-\!1..0\!>\!}_{\text{lsb's are the offset}}$};
 \end{tikzpicture}
 }%
