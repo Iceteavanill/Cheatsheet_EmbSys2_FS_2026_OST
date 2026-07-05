@@ -246,14 +246,15 @@
       \item \textbf{LFU (Least Frequently Used):} Replace the least frequently used line.
       \item \textbf{Pseudo-LRU:} Hardware approximation of LRU, used because true LRU is expensive to implement (e.g., 3 history bits per cache line set, as in the Intel 486 \qty{8}{\kilo\byte} \pastelbox{yellow}{4-way} set-associative L1 cache).
     \end{itemize}
-    \begin{minipage}{0.45\columnwidth}
+    \vspace*{-0.2cm}
+    \begin{minipage}{0.5\columnwidth}
       \input{images/tikz/LRU.tex}
     \end{minipage}
-    \begin{minipage}{0.55\columnwidth}
+    \begin{minipage}{0.5\columnwidth}
       The 3 history bits($\text{I}_1, \text{I}_2,\text{I}_3$) are updated if a hit or miss occurs.
-      On a miss, the block, which is overridden must first be selected.
-      That happens via the binary tree search depicted on the right.
-      Then regardless if a hit or miss occurs, the bits get updated, depending on the used block.
+      On a miss, the block, which gets overridden, must be selected.
+      That happens via the binary tree search depicted on the left.
+      Then regardless of a hit or miss, the bits get updated, depending on the used block via the table.
     \end{minipage}
     \vspace*{-0.6cm}
   
@@ -263,12 +264,13 @@
   % GOAL V07 • You know how to assess the cache performance.
   $T_{eff}$ = mean acces time (in s or \#clocks), $T_{Hit}$ = cache access time (in s or \#clocks),\\
   $r_{Miss}$ = cache miss rate (in \%), $A_{miss}$ = additional cache delay on miss (in s or \#clocks)
-
-    Single-level cache:
+  
+  Single-level cache:
+  \vspace*{-0.3cm}
     \[\boxed{r_{hit}=\frac{N_{hit}}{N_{access}}} \quad \boxed{r_{miss}= 1 - r_{hit}} \quad \boxed{T_{eff}=T_{hit}+r_{miss}\cdot A_{miss}}\]
-
+    \vspace*{-0.2cm}
     Two-level cache hierarchy (L1 + L2):
-    \vspace{-0.3cm}
+    \vspace{-0.4cm}
     \[
       \boxed{T_{eff} = T_{Hit\text{-}L1} + r_{Miss\text{-}L1} \cdot \left( T_{Hit\text{-}L2} + r_{Miss\text{-}L2} \cdot A_{Miss\text{-}L2} \right)}
       \quad
@@ -311,7 +313,7 @@
         \item Coherence protocol\\(e.g.\ \textbf{MESI})
       \end{enumerate}
     \end{minipage}
-
+    \vspace*{-0.4cm}
     \paragraph{MESI Protocol}
     \small
     \begin{tabular}{@{}lll@{}}
